@@ -1,0 +1,21 @@
+$def with (token, running, failed, msg, segments, devices)
+<?xml version="1.0"?>
+<gp_prerecoverseg>
+    <token>$token</token>
+    $if running:
+        <running>$msg</running>
+    $elif failed:
+        <failed>$msg</failed>
+    $else:
+        $for seg in segments:
+            <Segment> 
+                $for k in seg:
+                    <$k>$seg[k]</$k>
+            </Segment>
+        $for dev in devices:
+            <Device> 
+                $for k in dev:
+                    <$k>$dev[k]</$k>
+            </Device>
+        <message>$msg</message>
+</gp_prerecoverseg>

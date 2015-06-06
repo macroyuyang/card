@@ -1,0 +1,9 @@
+$def with (user, password, csrf_token, allowAutoLogin)
+<?xml version="1.0"?>
+<auto>
+   <username>$user</username>
+   <csrf>$csrf_token</csrf>
+   <autoLogin>$allowAutoLogin</autoLogin>
+   $if allowAutoLogin:
+       <key>$password</key>
+</auto>

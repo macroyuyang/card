@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc Version="1" DescendantCount="17">
+    <TocEntry Title="About the Greenplum Command Center Console" Link="/intro.htm" conditions="Default.gpdb_only" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="0" />
+    <TocEntry Title="Accessing the Greenplum Command Center Console" Link="/accessing.htm" conditions="Default.gpdb_only" ComputedFirstTopic="false" DescendantCount="0" />
+    <TocEntry Title="The Dashboard Tab" Link="/dashboard.htm" conditions="Default.gpdb_only" ComputedFirstTopic="false" DescendantCount="0" />
+    <TocEntry Title="Multi-Cluster Support" Link="/multi-cluster.htm" ComputedFirstTopic="false" DescendantCount="0" />
+    <TocEntry Title="The System Metrics Tab" Link="/system.htm" conditions="Default.gpdb_only" ComputedFirstTopic="false" DescendantCount="0" />
+    <TocEntry Title="The Query Monitor Tab" Link="" conditions="Default.gpdb_only" StartSection="false" StartChapter="false" ComputedFirstTopic="false" DescendantCount="3">
+        <TocEntry Title="Overview" Link="/queries.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Iterator Attributes" Link="/query_attributes.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Query Profiling" Link="/about_queries.htm" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="The Health Tab" Link="/health.htm" StartSection="false" StartChapter="false" VolumeNumberReset="same" SectionNumberReset="continue" ChapterNumberReset="continue" ComputeToc="false" ReplaceMergeNode="false" ComputedFirstTopic="false" DescendantCount="0" />
+    <TocEntry Title="The Administration Tab" ComputedFirstTopic="false" DescendantCount="6">
+        <TocEntry Title="Database Admin" Link="/databaseadmin.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Segment Health" Link="/segmenthealth.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Database Usage" Link="/databaseusage.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Storage Monitoring" Link="/storagemonitoring.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Workload Management" Link="/workloadmgmt.htm" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Manage Resource Queues" Link="/manageresourcequeues.htm" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Exporting Data" Link="/exporting_data.htm" ComputedFirstTopic="false" DescendantCount="0" />
+    <TocEntry Title="Command Center Parameters" Link="/parameters.htm" conditions="Default.gpdb_only" ComputedFirstTopic="false" DescendantCount="0" />
+</CatapultToc>

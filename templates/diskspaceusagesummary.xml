@@ -1,0 +1,19 @@
+$def with (tkeys, hkeys, ckeys, fkeys, tab)
+<?xml version="1.0"?>
+<diskusagesummary start="now" >
+$for host in hkeys:
+    <host name = '$host'>
+    $ v = tab.keys()
+    $for (x, y) in v:
+        $if x == host:
+            <fs_details \
+            $for c in ckeys:
+                $ a = tab[(host, y)]
+                $if not a: a = {}
+                $ a = a.get(c, '#')
+		$if a != None:
+		    $c="${a}" \
+            >
+	    </fs_details>
+    </host>
+</diskusagesummary>

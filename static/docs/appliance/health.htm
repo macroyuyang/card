@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="3168" MadCap:lastWidth="926" MadCap:conditionTagExpression="" MadCap:disableMasterStylesheet="true" MadCap:tocPath="" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="" MadCap:HelpSystemFileName="index.xml" MadCap:SearchType="Stem">
+    <head>
+        <link href="SkinSupport/MadCap.css" rel="stylesheet" type="text/css" /><title>Health Tab</title>
+        <link href="resources/stylesheets/emc_help_stylesheet.css" rel="stylesheet" type="text/css" />
+        <script src="SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 class="EMCHeadingLanding">Health Tab</h1>
+        <p><b>Important:</b> The <b>Health</b> tab is only displayed if you are running Pivotal Greenplum Command Center on an EMC Data&#160;Computing Appliance (DCA). </p>
+        <p>The <b>Health</b> tab is a simple and interactive way to view the health of your Greenplum Database  clusters.</p>
+        <p>You can export the data from any graph or table&#160;in the Command Center UI by clicking the <b>Export</b> icon in the upper right. See <a href="exporting_data.htm" target="" title="" alt="" class="MCXref">"Exporting Data"</a> for more details.</p>
+        <p>The <b>Health</b> tab displays Data Computing Appliance-specific information about the status of your system, and shows collected SNMP&#160;data for the following items:</p>
+        <ul class="EMCBullet1">
+            <li class="EMCBullet1" value="1">
+                <p>Greenplum Database Hardware Health</p>
+                <ul>
+                    <li class="EMCBullet1" value="1">GPDB Masters Hosts </li>
+                    <li class="EMCBullet1" value="2">GPDB Segments Hosts </li>
+                    <li class="EMCBullet1" value="3">Admin Switch </li>
+                    <li class="EMCBullet1" value="4">DIA&#160;(Data Integration&#160;Accelerator)&#160;Host (commonly used for ETL hosts)&#160;</li>
+                    <li class="EMCBullet1" value="5">Interconnect Switch </li>
+                </ul>
+            </li>
+            <li class="EMCBullet1" value="2">
+                <p>Greenplum Database Software Health</p>
+                <ul>
+                    <li class="EMCBullet1" value="1">Database</li>
+                </ul>
+            </li>
+        </ul>
+        <p>The <b>Health</b> tab displays several consolidated views of the health of these components as well as a detailed view of a selected component.</p>
+        <p class="EMCHeading1">Consolidated Views</p>
+        <p>The <b>Consolidated Views</b> display of the health of the system as a whole. Each of the consolidated views uses charts and tables to display the system health of both your Database&#160;clusters.<br /></p>
+        <p>The current status of these EMC DCA&#160;components is indicated by:</p>
+        <ul>
+            <li class="EMCBullet1" value="1"><b>Normal</b> (Green)</li>
+            <li class="EMCBullet1" value="2"><b>Warning</b> (Yellow)</li>
+            <li class="EMCBullet1" value="3"><b>Error</b> (Red)</li>
+            <li class="EMCBullet1" value="4"><b>Unknown</b> (Gray)</li>
+            <li class="EMCBullet1" value="5"><b>Unreachable</b> (Black)</li>
+        </ul>
+        <p class="EMCNote">The <b>Unknown</b> status does not indicate that the Pivotal Greenplum Command Center was unable to determine a status for a component. <b>Unknown</b>&#160;is a valid status that is returned by an SNMP agent when it successfully communicates with a component, but cannot determine the state of the component.</p>
+        <p>Click on any component in any of the consolidated views to see more detailed information in the Details Area. </p>
+        <h2 class="EMCHeading2">Health&#160;by Status</h2>
+        <p>This pie chart shows the health of your system by status. </p>
+        <p>
+            <img src="resources/images/health_status.png">
+            </img>
+        </p>
+        <p>Click on any segment of the pie chart to populate the other views with only components that are in that state (normal, error, and so on.)</p>
+        <h2 class="EMCHeading2">Health by System Component</h2>
+        <p>The other two consolidated views show  the number of hosts/switches, their names, and their current status as follows. </p>
+        <p>Hover over any component in the bar chart to display its name and current status.</p>
+        <p>
+            <img src="resources/images/health_system_view.png">
+            </img>
+        </p>
+        <p>Note that this view is filtered by status (see Health by Status). Click <b>Summary</b> to remove the filter and display all components.</p>
+        <p>
+            <img src="resources/images/health_system_view2.png">
+            </img>
+        </p>
+        <p class="EMCHeading1">Health Details </p>
+        <p>The page list host components and associated SNMP information received by Greenplum Command Center. </p>
+        <p>
+            <img src="resources/images/health_details.png" />
+        </p>
+        <p>&#160;</p>
+        <p>This information includes:</p>
+        <ul>
+            <li class="EMCBullet1" style="font-weight: bold;" value="1">Component Name</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="2">Status</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="3">Message </li>
+        </ul>
+        <p>You can filter the items that display on this page by their current status. Select or clear the status check boxes to filter the list as required. For example, to view only items with a status of <b>Error</b> and <b>Unreachable</b>, select these two checkboxes and clear the <b>Normal</b>, <b>Unknown</b>, and <b>Warning</b> checkboxes.</p>
+        <script type="text/javascript" src="SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

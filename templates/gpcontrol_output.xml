@@ -1,0 +1,11 @@
+$def with (args, starttime, token, status, retCode, byte_num, output)
+<?xml version="1.0"?>
+<gpcontrol>
+    <args>$args</args>
+    <starttime>$starttime</starttime>
+    <token>$token</token>
+    <status>$status</status>
+    <retCode>$retCode</retCode>
+    <byte_num>$byte_num</byte_num>
+    <output>$output</output>
+</gpcontrol>

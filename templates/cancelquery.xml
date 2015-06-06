@@ -1,0 +1,9 @@
+$def with (results)
+<?xml version="1.0"?>
+<cancelquery>
+$for result in results:
+    $if len(result) == 3:
+        <query id="$result[0]" status="$result[1]" reason="$result[2]" />
+    $elif len(result) == 2:
+        <query id="$result[0]" status="$result[1]" />
+</cancelquery>

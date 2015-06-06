@@ -1,0 +1,6 @@
+$def with (res)
+<?xml version="1.0"?>
+<dialhome_summary>
+    $for date, host, desc in res:
+        <event date="$date" host="$host" desc="$desc"> </event>
+</dialhome_summary>

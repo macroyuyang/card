@@ -1,0 +1,430 @@
+html{
+    height:100%
+}
+
+body{
+     margin: 0;
+     overflow: hidden;
+     width: 100%;
+     height: 100%;
+}
+
+.GPCCOverlayConatainer {
+    height: 200px;
+    width: 250px;
+}
+
+.GPCCOverlayHolder {
+    background-color: #D9DDE7;
+    border: 1px solid #2A2E39;
+    border-radius: 20px;
+    height: 178px;
+    left: 0;
+    overflow-y: hidden;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    width: 228px;
+    z-index: 99;
+}
+
+.GPCCLabelHolder {
+	width: 50%;
+	text-align: right;
+}
+
+.GPCCDataHolder {
+	width: 45%;
+	padding-left: 5px;
+}
+
+.GPCCServer {
+	text-align: center;
+	
+}
+
+.GPCCServerDataHolder {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CACACA;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.leftFloat {
+    float: left;
+}
+
+.dynamicOverlayHolder {
+    position: absolute;
+    height: 200px;
+    width: 250px;
+}
+
+#titleheader {
+	width: 100%;
+	height: 35px;
+    background-color: #ececec;
+	padding-left:10px;
+	padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#loginHeader {
+	width: 100%;
+	height: 40px;
+}
+
+#titleImg {
+     background-image: url('../images/greenplum_logo_title.png');
+     background-repeat: no-repeat;
+     width: 100%;
+     height: 35px;
+}
+
+#linkHolder {
+	width: 48%;
+	height: 25px;
+	float: left;
+	padding-top: 10px;
+}
+
+.link:hover{
+	color: #005596;
+	cursor: pointer;
+}
+
+.separator {
+	height: 20px;
+	float: right;
+	line-height: 1;
+	margin-top: -2px;
+	width: 2px;
+	color: #bebfc8;
+}
+
+#greetings {
+	color: #3e2006;
+    	float: right;
+    	font-family: verdana;
+    	font-size: 11px;
+    	height: 20px;
+    	padding-right: 5px;
+}
+
+.link {
+	color: #3e2006;
+    	float: right;
+    	font-family: verdana;
+    	font-size: 11px;
+    	height: 20px;
+    	padding-left: 10px;
+    	padding-right: 10px;
+}
+
+#headerImg {
+	 background-image: url('../images/greenplum_logo_title.png');
+    	 background-repeat: no-repeat;
+    	 width: 50%;
+    	 height: 35px;
+	 float: left;
+}
+
+.cluster{
+	background: none repeat scroll 0 0 #F8F8F8;
+	border:2px solid #F0F0F0;
+	height: 246px;
+	margin-right: 10px;
+    	position: relative;
+	width: 191px;
+	float: left;
+	border-radius: 0 0 15px;
+	padding-left: 10px;
+}
+.clusterRow {
+	height: 250px;
+	margin-bottom: 10px;
+}
+
+#clusterStatus {
+    background-color: #FF0000;
+    border: 2px solid #FFFFFF;
+    border-radius: 24px;
+    color: #000000;
+    font-size: small;
+    height: 16px;
+    left: 50%;
+    margin-left: -37px;
+    padding-left: 6px;
+    position: absolute;
+    top: 49%;
+    width: 60px;
+}
+
+.clusterImage {
+	background-repeat: no-repeat;
+	height: 120px;
+	width: 200px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.spinner {
+	background-image: url("../images/spinner.gif");
+	background-repeat: no-repeat;
+	height: 30px;
+	left: 50%;
+	margin-left: -15px;
+	margin-top: -15px;
+	position: absolute;
+	top: 50%;
+	width: 30px;
+}
+
+#loginStatus {
+	color: red;
+	height: 20px;
+}
+
+#maincontainer {
+	height: 100%;
+	width: 100%;
+	background: #EEFF99;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#cddeed), to(#e9eff5));
+	background: -webkit-linear-gradient(#cddeed, #e9eff5);
+	background: -moz-linear-gradient(#cddeed, #e9eff5);
+	background: -ms-linear-gradient(#cddeed, #e9eff5);
+	background: -o-linear-gradient(#cddeed, #e9eff5);
+	background: linear-gradient(#cddeed, #e9eff5);
+	display:table;
+	width:100%;
+	height:100%;
+}
+
+#innerContainer {
+	width: 100%;
+	height: 92%;
+	background: #FFFFFF;
+}
+
+#landingPageView {
+	width : 100%;
+	height : 100%;
+	display : none;
+}
+
+#loginView {
+	width: 600px;
+	height: 320px;
+	margin: 0 auto;
+	padding: 20px;
+	position: absolute;
+	background: #F8F9FC;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+#loginData {
+	color: #666666;
+    	font-family: verdana;
+    	font-size: 12px;
+    	padding-bottom: 5px;
+}
+
+#loginForm {
+	background: none repeat scroll 0 0 #CCDDEC;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	padding: 10 10 5 10;
+}
+
+#loginFotter {
+	color: #acacac;
+    	font-family: verdana;
+    	font-size: 11px;
+}
+
+#tabs {
+    height: 100%;
+    width: 100%;
+}
+  
+.tabHolder {
+	height: 25px;
+	width: 100%;
+	margin-top: 10px;
+	padding-left: 60px;
+	padding-top: 1px;
+	background: #F0F0F0;
+}
+
+.hover {
+	border: 2px solid blue;
+}
+
+.tabs {
+	background: none repeat scroll 0 0 #cacaca;
+	border-radius: 6px 6px 0 0;
+    	color: #676262;
+    	cursor: pointer;
+    	float: left;
+    	font-family: verdana;
+    	font-size: 14px;
+    	height: 21px;
+    	margin-right: 4px;
+    	padding : 2 10 2 10;
+    	vertical-align: middle;
+    	width: 130px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-transform: capitalize;
+}
+
+.pageHolder {
+	height: 80%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 10px;
+}
+
+.page {
+    height: 100%;
+    width: 100%;
+}  
+
+.active {
+	background: #FFFFFF;
+	border-bottom: 0 none;
+	color: #ACACAC;
+}      
+
+.dataHolder {
+	color: #6c7077;
+	float: left;
+	font-family: verdana;
+	font-size: 10px;
+	font-weight: bold;
+	height: 15px;
+	overflow: auto;
+	text-overflow: ellipsis;
+	width: 55%;
+}   
+
+.dbName {
+	color: #58595b;
+	font-family: verdana;
+	font-size: 15px;
+	margin-top: 5px;
+}
+
+.labelHolder {
+	color: #6c7077;
+	float: left;
+	font-family: verdana;
+	font-size: 10px;
+}
+
+.errorHolder {
+	font-family: arial;
+    	font-size: 16px;
+	color: red;
+	padding: 20px;
+}
+
+#version {
+	color: #666666;
+    	float: right;
+    	font-family: arial;
+    	font-size: 14px;
+    	font-weight: normal;
+}
+
+#termsLink:hover {
+	color: #3366CC;
+	cursor: pointer;
+}
+
+#loginDataHeader {
+	color: #666666;
+    	float: right;
+    	font-family: verdana;
+    	font-size: 12px;
+    	font-weight: bolder;
+    	height: 20px;
+    	padding-bottom: 5px;
+    	padding-right: 15px;
+}
+
+#loginLabel {
+	font-family: verdana;
+    	font-size: 20px;
+    	font-weight: bold;
+    	padding-bottom: 10px;
+}
+
+.greenButton {
+	background: none repeat scroll 0 0 #64b041;
+	border-left: medium none;
+	border-radius: 4px;
+	border-top: medium none;
+	color: #ffffff;
+	font-family: arial;
+	font-size: 14px;
+}
+
+.grayButton {
+	border-left: medium none;
+    	border-radius: 4px;
+    	border-top: medium none;
+    	font-family: verdana;
+    	font-size: 12px;
+}
+
+.dupClusterHeader {
+	font-family: verdana;
+	padding-left: 20px;
+	padding-top: 10px;
+}
+
+#dupClustersList {
+	color: red;
+	font-family: verdana;
+	font-size: 15px;
+	padding-left: 50px;
+}
+
+.clusterNotifier {
+	width: 16px;
+	height: 16px;
+	background: red;
+	color: #ffffff;
+	text-align: center;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	font-size: 11px;
+	font-family: verdana;
+	font-weight: bold;
+	position: absolute;
+}
+
+.alertNotifier {
+	width: 16px;
+	height: 16px;
+	background: red;
+	color: #ffffff;
+	text-align: center;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	font-size: 11px;
+	font-family: verdana;
+	font-weight: bold;
+	position: absolute;
+	right: -5px;
+	top: -5px;
+}
+
+

@@ -1,0 +1,607 @@
+#!/usr/bin/env python
+
+'''
+USAGE: gp_precoverseg_check --host MASTER_HOSTNAME --user USERNAME --port PORT
+       Where this utility will generate a report of available space required to do recovery
+'''
+
+import os, re, sys, time
+from pygresql import pg
+
+try:
+    from optparse import Option, OptionParser 
+    from gppylib.gpparseopts import OptParser, OptChecker
+    from gppylib import userinput
+    from gppylib.gplog import get_default_logger, setup_tool_logging, quiet_stdout_logging
+    from gppylib.commands.unix import getLocalHostname, getUserName
+    from gppylib.commands.base import WorkerPool, Command, REMOTE
+except ImportError, e:    
+    sys.exit('Cannot import modules.  Please check that you have sourced greenplum_path.sh.  Detail: ' + str(e))
+
+EXECNAME = os.path.split(__file__)[-1]
+
+GPPERFMONHOME=os.getenv('GPPERFMONHOME')
+if not GPPERFMONHOME:
+    sys.exit('ERROR: GPPERFMONHOME environment variable is not set.  Please check that you have sourced gpcc_path.sh.')
+
+logger = None
+
+class Segment:
+    def __init__(self, dbid, content, hostname, address, dir):
+        self.dbid = dbid
+        self.content = content
+        self.hostname = hostname
+        self.address = address
+        self.datadir = dir
+        self.dbid_size = None
+        self.devicename = None
+        self.primary_hostname = None
+        self.primary_address = None
+        self.primary_dir = None
+        self.primary_dbid = None
+        self.primary_size = None # MB's
+
+    def Print(self):
+        print "type=SEGMENT_INFO"
+        print "dbid=%s;content=%s;hostname=%s;address=%s;datadir=%s;devicename=%s" % (self.dbid, self.content, self.hostname, self.address, self.datadir, self.devicename)
+        print "primary_hostname=%s;primary_address=%s;primary_dir=%s;primary_dbid=%s" % (self.primary_hostname, self.primary_address, self.primary_dir, self.primary_dbid)
+        print "dbid_size=%dM;primary_size=%dM" % (self.dbid_size,self.primary_size)
+        print ""
+
+class colors:
+    GREEN = 0
+    YELLOW = 1
+    RED = 2
+    UNKNOWN = 3
+    str = ["green", "yellow", "red", "unknown"]
+    
+
+class MirrorFileSystem:
+    def __init__(self, host, address, device, dir, mb_free, mb_used):
+        self.host = host
+        self.address = address
+        self.device = device
+        self.dir = dir
+        self.mb_free = mb_free
+        self.mb_used = mb_used
+        self.additional_mb = 0
+        self.color = colors.UNKNOWN
+        self.after_recover_percent = 0
+        self.message = "data not found for some segments"
+    
+        
+    def Print(self):
+        print "type=HOST_DEVICE_INFO"
+        print "hostname=%s;address=%s;device=%s;mountpoint=%s" % (self.host, self.address, self.device, self.dir)
+        print "mb_free=%d;mb_used=%d;mb_required=%d;after_recover_percent=%d;color=%s" % (self.mb_free, self.mb_used, self.additional_mb, self.after_recover_percent, colors.str[self.color])
+        print "message=%s" % self.message
+        print ""
+
+class GlobalData():
+    def __init__(self):
+        self.recover_list = list() # list of Segments that will grow in size after a recovery
+        self.mirror_devices = dict() # key is tuple (hostname,device) value is MirrorFileSystem objects
+
+gd = GlobalData()
+
+
+# Return None on failure
+# return a list of hashes for each row on success
+def execute_query(query):
+
+    try:
+        conn = pg.connect(dbname='gpperfmon', host=options.host, port=options.port, user=options.user)
+    except Exception, e:
+        logger.error('error connecting to GPDB: %s' % e.__str__().strip())
+        logger.error("dbname=%s, host=%s, port=%s, user=%s" % ('template1', options.host, options.port, options.user))
+        return None
+    except:
+        logger.error('error connecting to GPDB')
+        logger.error("dbname=%s, host=%s, port=%s, user=%s" % ('template1', options.host, options.port, options.user))
+        return None
+
+    try:
+        q = conn.query(query)
+        return q.dictresult()
+    except Exception, e:
+        log.msg('error during query (%s): %s' % (query, e.__str__().strip()))
+    except:
+        log.msg('error during query: %s' % query)
+
+    return None
+    
+
+# does not throw exceptions
+# True is succes, False is failure
+def getListOfFailedMirrors():
+
+    # Get list of DBID's that will grow in size on recovery
+    try:
+        query = """SELECT distinct hostname, address, dbid, content, MAX(fselocation) as datadir FROM pg_filespace_entry
+                   JOIN gp_segment_configuration on (dbid = fsedbid) WHERE fsefsoid = (select oid from pg_filespace 
+                   where fsname='pg_system') and content <> -1 and role = 'm' and status = 'd' GROUP BY (hostname, address, dbid, content)"""
+
+        results = execute_query(query)
+
+        for row in results:
+            seg = Segment(row['dbid'], row['content'], row['hostname'], row['address'], row['datadir'])
+            gd.recover_list.append(seg)
+        return True
+    except Exception, e:
+        logger.error(e.__str__())
+        logger.error("Failed running query: %s" % query)
+        return False
+    except:
+        logger.error("Failed running query: %s" % query)
+        return False
+
+# does not throw exceptions
+# True is succes, False is failure
+def getPrimariesData():
+
+    for seg in gd.recover_list:
+
+        try:
+            query = """SELECT distinct hostname, address, dbid, MAX(fselocation) as datadir FROM pg_filespace_entry
+                   JOIN gp_segment_configuration on (dbid = fsedbid) WHERE fsefsoid = (select oid from pg_filespace 
+                   where fsname='pg_system') and content = %s and role = 'p' GROUP BY (hostname, address, dbid)""" % seg.content
+
+            results = execute_query(query)
+    
+            if len(results) != 1:
+                logger.error("not expected number of rows from query (%d) (%s)" % (len(results), query))
+                return False
+
+            seg.primary_hostname = results[0]['hostname']
+            seg.primary_address = results[0]['address']
+            seg.primary_dir = results[0]['datadir']
+            seg.primary_dbid = results[0]['dbid']
+        except Exception, e:
+            logger.error(e.__str__())
+            logger.error("Error running query: %s" % query)
+            return False
+        except:
+            logger.error("Error running query: %s" % query)
+            return False
+    
+    return True
+
+class DuOutputType():
+    BYTE = 0
+    KILO = 1
+    MEGA = 2
+    GIGA = 3
+    TERA = 4
+
+    ones = 1.0/(1024*1024)
+    ks = 1.0/1024
+    ts = 1024*1024
+    suffixes =  [  '$', 'K$', 'M$', 'G$', 'T$' ]
+    seperators =  [  '', 'K', 'M', 'G', 'T' ]
+    multiplier = [ ones, ks,   1,   1024,  ts ]
+
+# no exceptions
+# return None for failure
+def covertDuToMegaBytes(output, host, dir):
+
+    if not output:
+        return None
+    fields = output.split()
+
+    if len(fields) != 2:
+        logger.error("unexpected output (%s) on host %s for du -sh %s" % (output, host, dir))
+        return None
+
+    sizestr = fields[0].strip()
+
+    type = None
+
+    for i in range(1,5):
+        if re.search(DuOutputType.suffixes[i], sizestr):
+            type = i
+
+    if not type:
+        try:
+            num = int(sizestr)
+            if str(num) != sizestr:
+                raise Exception()
+            type = DuOutputType.BYTE
+        except:
+            logger.error("Could not parse byte output (%s) on host %s for du -sh %s" % (output.strip(), host, dir))
+            return None
+
+    megabytes = None
+    prefix = None
+    try:
+        seperator = DuOutputType.seperators[type]
+        fields = sizestr.split(seperator)
+        if len(fields) != 2:
+            logger.error("Could not parse part of du output (%s) on host %s for du -sh %s" % (output.strip(), host, dir))
+            return None
+        prefix = float(fields[0].strip())
+        megabytes = int(DuOutputType.multiplier[type] * prefix)
+        return megabytes
+    except Exception, e:
+        logger.error(e.__str__())
+        logger.error("Could not parse output (%s) on host %s for du -sh %s" % (output.strip(), host, dir))
+        return None
+    except:
+        logger.error("Could not parse output (%s) on host %s for du -sh %s" % (output.strip(), host, dir))
+        return None
+
+
+# return None for failure or data in megabytes
+def getDiskSpace(pool, host, dir):
+
+    outstr = None
+    try: 
+        cmdStr = "du -sh %s" % dir
+        pool.addCommand( Command('ducmd', cmdStr, REMOTE, host) )
+        pool.join()
+        items = pool.getCompletedItems()
+        for i in items:
+            if i.results.rc:
+                logger.error("Command on (%s) failed: %s" % (host, cmdStr))
+                raise Exception()
+            outstr = i.results.stdout
+            break
+    except:
+        return None
+
+    return covertDuToMegaBytes(outstr, host, dir)
+
+
+# does not throw exceptions
+# True is succes, False is failure
+def getPrimaryDiskSpace():
+
+    pool = WorkerPool()
+    try: 
+        for seg in gd.recover_list:
+            result = getDiskSpace(pool, seg.primary_address, seg.primary_dir)
+            if result is None:
+                logger.error("Failed to get diskspace for %s:%s" % (seg.primary_address, seg.primary_dir))
+                raise Exception()
+            seg.primary_size = result
+
+            result = getDiskSpace(pool, seg.address, seg.datadir)
+            if result is None:
+                logger.error("Failed to get diskspace for %s:%s" % (seg.address, seg.datadir))
+                raise Exception()
+            seg.dbid_size = result
+    except:
+        logger.error("unexpected scenario running disk space usage test")
+        pool.join()
+        pool.haltWork()
+        pool.joinWorkers()
+        return False
+
+    try:
+        pool.join()
+        pool.haltWork()
+        pool.joinWorkers()
+    except:
+        logger.info("unexpected status when joining pool")
+
+    return True
+
+# does not throw exceptions
+# True is succes, False is failure
+def createMirrorHost(pool, host, address, datadir):
+
+    outstr = None
+    try: 
+        GP_DF = os.path.join(GPPERFMONHOME,'bin', 'gp_df')
+        cmdStr = "%s -m" % GP_DF
+        pool.addCommand( Command('dfcmd', cmdStr, REMOTE, address) )
+        pool.join()
+        items = pool.getCompletedItems()
+        for i in items:
+            if i.results.rc:
+                logger.error("Command on (%s) failed: %s" % (address, cmdStr))
+                raise Exception()
+            outstr = i.results.stdout
+            break
+    except:
+        return False
+
+
+    try:
+        firstline = 1
+        for line in outstr.splitlines():
+    
+            if firstline:
+                firstline = 0
+                continue
+        
+            fields = line.split()
+            if len(fields) != 5:
+                return False
+    
+            device = fields[0]
+            dir = fields[1].strip()
+            usedmb = int(fields[3].strip()) 
+            freemb = int(fields[4].strip())
+    
+            if re.match(dir, datadir):
+                key = (host, device)
+                if key not in gd.mirror_devices:
+                    gd.mirror_devices[key] = MirrorFileSystem(host, address, device, dir, freemb, usedmb)
+    
+    except Exception, e:
+        logger.error(e.__str__())
+        return False
+    except:
+        return False
+
+    return True
+            
+
+# does not throw exceptions
+# True is succes, False is failure
+def computeUniqueMirrorHosts():
+
+    pool = WorkerPool()
+    status = True
+
+    try:
+        for seg in gd.recover_list:
+            if not createMirrorHost(pool, seg.hostname, seg.address, seg.datadir):
+                raise Exception("Failed to get device data for host=%s dir=%s" % (seg.address, seg.datadir))
+                
+    except Exception, e:
+        logger.error("Exception determing unique host list")
+        logger.error(e)
+        status = False
+    except:
+        logger.error("Exception determing unique host list")
+        status = False
+
+    try:
+        pool.join()
+        pool.haltWork()
+        pool.joinWorkers()
+    except:
+        logger.info("unexpected status when joining pool")
+
+    return status
+
+
+# does not throw exceptions
+# True is succes, False is failure
+def assignDeviceToSegments():
+
+    try:
+        devices = dict() # KEY is hostname VALUE is list of mirror devices
+    
+        # first lets make a data structure of devices that is keyed off of hostname, so this function is scalable
+        for (host, device) in gd.mirror_devices:
+    
+            # add a list if the host is not there
+            if host not in devices:
+                devices[host] = list()
+    
+            found = False
+    
+            for md in devices[host]:
+                if md.device == device:
+                    found = True
+                    break
+    
+            if not found:
+                devices[host].append(gd.mirror_devices[(host,device)])
+    
+        for seg in gd.recover_list:
+    
+            bestMatch = None
+    
+            if seg.hostname not in devices:
+                logger.error("could not find hostname %s in device list" % seg.hostname)
+                return False
+    
+            for md in devices[seg.hostname]:
+    
+                if re.match(md.dir, seg.datadir):
+    
+                    if not bestMatch:
+                        bestMatch = md
+                        continue
+                    
+                    if len(md.dir) > len(bestMatch.dir):
+                        bestMatch = md
+    
+            if not bestMatch:
+                logger.error("Could not find device for segment %s:%s" % (seg.hostname, seg.datadir))
+                return False
+    
+            seg.devicename = bestMatch.device
+
+    except Exception, e:
+        logger.error(e.__str__())
+        return False
+    except:
+        return False
+
+    return True
+        
+# does not throw exceptions
+# True is succes, False is failure
+def pruneDevices():
+
+    try:
+        extraDevices = set(gd.mirror_devices.keys())
+    
+        for seg in gd.recover_list:
+            if (seg.hostname, seg.devicename) in extraDevices:
+                extraDevices.remove((seg.hostname, seg.devicename))
+    
+        for k in extraDevices:
+            gd.mirror_devices.pop(k, None)
+    
+    except Exception, e:
+        logger.error(e.__str__())
+        return False
+    except:
+        return False
+
+    return True
+
+# does not throw exceptions
+# True is succes, False is failure
+def addUpAdditionalSpaceRequired():
+
+    try:
+        for seg in gd.recover_list:
+            k = (seg.hostname, seg.devicename)
+            if k not in gd.mirror_devices:
+                raise Exception("Did not find device for segment %s:%s" % (seg.hostname, seg.devicename))
+
+            device = gd.mirror_devices[k]
+
+            spaceToAdd = seg.primary_size - seg.dbid_size
+
+            # if the space to add to the mirror is less than 0 we assume the size will not grow
+            if spaceToAdd < 0:
+                spaceToAdd = 0
+
+            device.additional_mb += spaceToAdd
+
+    except Exception, e:
+        logger.error(e.__str__())
+        return False
+    except:
+        return False
+
+    return True
+
+# does not throw exceptions
+# True is succes, False is failure
+def detectSpaceIssuesOnDevices():
+
+    try:
+
+        for k in gd.mirror_devices:
+
+            device = gd.mirror_devices[k]
+
+            device.after_recover_percent = int((100.0 * device.additional_mb + device.mb_used) / (device.mb_free + device.mb_used))
+
+            # this was already marked red during collection
+            if device.color == colors.RED:
+                continue
+
+            if device.after_recover_percent >= 100:
+                device.color = colors.RED
+                device.message = "Not enough space on device to do recovery"
+            elif device.after_recover_percent >= 90:
+                device.color = colors.YELLOW
+                device.message = "The margin of space available on device is low"
+            else:
+                device.color = colors.GREEN
+                device.message = "ok"
+
+    except Exception, e:
+        logger.error(e.__str__())
+        return False
+    except:
+        return False
+
+    return True
+
+# does not throw exceptions
+# True is succes, False is failure
+def produceValidationReport():
+
+    for seg in gd.recover_list:
+        seg.Print()
+
+    for k in gd.mirror_devices:
+        gd.mirror_devices[k].Print()
+
+    printDone()
+
+    return True
+
+def printStart():
+        print "type=OUTPUT_START"
+
+def printDone():
+        print "type=OUTPUT_END"
+
+
+###### main()
+if __name__ == '__main__':
+
+    gphome = os.environ.get('GPHOME')
+    if not gphome:
+        print "GPHOME not set"
+        sys.exit(1)
+
+    quiet_stdout_logging()
+    setup_tool_logging(EXECNAME,getLocalHostname(),getUserName())
+    logger = get_default_logger()
+
+    parser = OptParser(option_class=OptChecker)
+    parser.remove_option('-h')
+    parser.add_option('--host', type='string')
+    parser.add_option('-u', '--user', type='string')
+    parser.add_option('-p', '--port', type='int')
+    parser.add_option('-h', '-?', '--help', action='store_true')
+    (options, args) = parser.parse_args()
+
+    if options.help:
+        print __doc__
+        sys.exit(1)
+
+    if not options.user:
+        print "--user must be specified"
+        sys.exit(1)
+
+    if not options.port:
+        print "--port must be specified"
+        sys.exit(1)
+
+    printStart()
+
+    if not getListOfFailedMirrors():
+        logger.error("failed to get list of failed mirror segments")
+        sys.exit(1)
+
+    if not getPrimariesData():
+        logger.error("failed to get data for primary segments correlated with failed mirrors")
+        sys.exit(1)
+
+    # get disk space for each primary segment
+    if not getPrimaryDiskSpace():
+        logger.error("failed to get disk space used for relevant primary segments")
+        sys.exit(1)
+
+    # get disk space for each mirror filesystem
+    if not computeUniqueMirrorHosts():
+        logger.error("failed to compute unique mirror hosts")
+        sys.exit(1)
+
+    # produce validation report
+    if not assignDeviceToSegments():
+        logger.error("failed to assign devices to segments")
+        sys.exit(1)
+
+    # prune the devices
+    if not pruneDevices():
+        logger.error("failed to prune device list")
+        sys.exit(1)
+        
+    # produce validation report
+    if not addUpAdditionalSpaceRequired():
+        logger.error("failed to calculate additional space required on devices")
+        sys.exit(1)
+
+    # check if we have enough space
+    if not detectSpaceIssuesOnDevices():
+        logger.error("error while evaluating space constraints")
+        sys.exit(1)
+
+    # produce validation report
+    if not produceValidationReport():
+        logger.error("failed to produce validation report")
+        sys.exit(1)

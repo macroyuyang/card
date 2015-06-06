@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="3777" MadCap:lastWidth="1282" MadCap:disableMasterStylesheet="true" MadCap:tocPath="" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="" MadCap:HelpSystemFileName="index.xml" MadCap:SearchType="Stem">
+    <head>
+        <link href="SkinSupport/MadCap.css" rel="stylesheet" type="text/css" /><title>The System Metrics Tab</title>
+        <link href="resources/stylesheets/emc_help_stylesheet.css" rel="stylesheet" type="text/css" />
+        <script src="SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 class="EMCHeadingLanding">The System Metrics Tab</h1>
+        <p>The <b>System Metrics</b> tab provides a more detailed graphical view of system metrics. This page  includes detailed line graphs that highlight items such as active queries, memory usage, CPU usage, swap page usage, disk I/O, and network throughput.</p>
+        <p>You can export the data from any graph or table&#160;in the Command Center UI by clicking the <b>Export</b> icon in the upper right. See <a href="exporting_data.htm" target="" title="" alt="" class="MCXref">"Exporting Data"</a> for more details.</p>
+        <p>Click the <b>Show / Hide Charts</b> to specify which graphs are displayed or hidden on this page.</p>
+        <h1 class="EMCHeading1">Viewing All Metrics</h1>
+        <p>
+            <img src="resources/images/all_metrics_menu.png" />
+        </p>
+        <p>The default view for the System Metrics tab is the <b>All Metrics</b> view, which charts data aggregated across all segments in the database array for a period of one hour. To modify the time period displayed in the graphs, select one of the following options in the <b>Duration</b> pull-down menu: </p>
+        <ul class="EMCBullet1">
+            <li class="EMCBullet1" style="font-weight: bold;" value="1">1 hour (default)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="2">6 hours</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="3">24 hours</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="4">7 days</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="5">2 weeks</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="6">3 months </li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="7">1 year</li>
+        </ul>
+        <p>Hovering the mouse cursor on the various points in the line graphics opens a small window that displays the exact numeric metric value, as well as other details about the specific point on the graph. In the example below, this is the CPU usage by user and by system. </p>
+        <p>
+            <img src="resources/images/system_metrics_cpu.png" />
+        </p>
+        <p>Clicking on any point a line graph opens the System Metrics &gt; <b>Details (by metric)</b>&#160;view.</p>
+        <h1 class="EMCHeading1">Viewing Detailed Information by Metric</h1>
+        <p>
+            <img src="resources/images/detail_by_metric_menu.png" />
+        </p>
+        <p>To view detailed information about a metric, you can either click on a point in the summary graphs, or select the               <b>Details (By Metric)</b> view. For each metric type, there is a generated view that displays a line graph in the upper portion of the page. This information is the average value for that metric across the entire cluster,  over time. If you click on a specific point in time on this chart, the table in the lower part of the screen displays the data for the selected metric type (CPU Usage, Memory, etc) for each host at that time.</p>
+        <p class="EMCNote"> If you are viewing metrics for Active Queries, the table in the lower part of the screen displays data about all queries on the Database cluster at the moment in time you select, not by host.</p>
+        <p>Hovering the mouse cursor over any line graph displays exact data for that metric in a popup window. Clicking on the any point in the line graph lists textual data in the <b>Detailed Data</b> (bottom) area.</p>
+        <p>To view detailed information for different metrics, select any of the following metric types from the pull-down menu in the top left portion of the <b>Detail (By Metric)</b> <![CDATA[ ]]>view:</p>
+        <ul class="EMCBullet1">
+            <li class="EMCBullet1" style="font-weight: bold;" value="1">Active Queries</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="2">Memory</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="3">CPU</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="4">Load</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="5">Swap (in use)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="6">Swap (pages in/out)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="7">Disk I/O (ops/s)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="8">Disk I/O (MB/s)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="9">Network (pkts/s)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="10">Network (MB/s)</li>
+        </ul>
+        <p class="EMCNote">When viewing the Network metrics (both pkts/s and MB/S), you have the option to view the data in either a line graph (<b>Smooth</b>) format or a bar graph (<b>Bars</b>) format. Click the appropriate radio button at the top right of the graph to switch between these formats.<br />Network metrics include traffic over all NICs (network interface cards); internal interconnect and administrative.</p>
+        <p><b>Overlaying Graphs:</b>
+        </p>
+        <p>Use the Overlay&#160;dropdown menu to overlay the graph for one metric over the graph of another metric.</p>
+        <h1 class="EMCHeading1">Viewing Realtime Metrics by Server&#160;</h1>
+        <p>
+            <img src="resources/images/realtime_metrics_menu.png" />
+        </p>
+        <p>The <b>Realtime (By Server)</b> view displays metrics by server, with a separate bar graph for each server in the array. Hovering the mouse cursor over the end point of these bar graphs displays a small window with the exact numeric value for the metric, as shown below. This screen gives you a quick overview of the performance of your system, you can quickly recognize issues such as data skew where one of the segment hosts has disproportionate CPU and/or memory usage.</p>
+        <p>You can sort by clicking on any of the column headers, clicking a second time changes the direction of the sort. An arrow in the column header indicates that this is the current sort column. </p>
+        <p>
+            <img src="resources/images/system_metrics_realtime-by_server.png" />
+        </p>
+        <p>For each server, the following information is displayed:</p>
+        <ul>
+            <li class="EMCBullet1" style="font-weight: bold;" value="1">CPU&#160;(User/System/Idle)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="2">Memory (Used/Free)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="3">Disk read rate (MB/s)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="4">Disk write rate (MB/s)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="5">Net read rate (MB/s)</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="6">Net write rate&#160;(MB/s)</li>
+        </ul>
+        <h1 class="EMCHeading1">Viewing Historical System Metrics</h1>
+        <p>With a default <a href="parameters.htm#quantum" class="codelink">quantum</a> setting of 15 seconds, Command Center agents collects very large amounts of historical system data. To view meaningful groupings of system data records, you can view the data by selected time intervals with Command Center. You can analyze this data to identify trends in the performance of the Pivotal Greenplum <MadCap:conditionalText MadCap:conditions="Default.appliance">Database </MadCap:conditionalText>system over time.</p>
+        <p>The <b>All Metrics</b> view in the System Metrics tab displays graphs in intervals up to a year in length, and you can use the <b>Duration</b> pull-down menu change interval. To view system metrics for time periods beyond a year, query the Command Center database using SQL commands as described in the <i>Pivotal Greenplum Command Center Administration Guide</i>.</p>
+        <script type="text/javascript" src="SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

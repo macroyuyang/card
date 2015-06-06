@@ -1,0 +1,245 @@
+$def with (protocol, host, port, server_name, gpPerfMonVersion, username="", password="")
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en-US">
+    <head profile="http://gmpg.org/xfn/11">
+
+<!-- 
+Smart developers always View Source. 
+
+This application was built using Adobe Flex, an open source framework
+for building rich Internet applications that get delivered via the
+Flash Player or to desktops via Adobe AIR. 
+
+Learn more about Flex at http://flex.org 
+// -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--  BEGIN Browser History required section -->
+<link rel="stylesheet" type="text/css" href="static/history/history.css" />
+<!--  END Browser History required section -->
+
+<title>Greenplum Command Center</title>
+<script src="static/AC_OETags.js" language="javascript"></script>
+
+<link rel='shortcut icon' href='static/assets/img/Pivotal_icon.png' type='image/x-icon'/ >
+
+<!--  BEGIN Browser History required section -->
+<script src="static/history/history.js" language="javascript"></script>
+<!--  END Browser History required section -->
+
+<style>
+    html{height:100%}
+    body{margin:0;overflow:hidden;width:100%;height:100%;}
+    .background-box
+    {
+        border: 0px solid #696;
+        padding: 0;
+        margin:0;
+        text-align: center;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        background: #EEFF99;
+        background: -webkit-gradient(linear, 0 0, 0 bottom, from(#cddeed), to(#e9eff5));
+        background: -webkit-linear-gradient(#cddeed, #e9eff5);
+        background: -moz-linear-gradient(#cddeed, #e9eff5);
+        background: -ms-linear-gradient(#cddeed, #e9eff5);
+        background: -o-linear-gradient(#cddeed, #e9eff5);
+        background: linear-gradient(#cddeed, #e9eff5);
+        -pie-background: linear-gradient(#cddeed, #e9eff5);
+        behavior: url(static/assets/js/PIE.htc);
+        display:table;
+        width:100%;
+        height:100%;
+    }
+    
+    .gradient-box
+    {
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        
+        background: #f9fafd;
+        background: -webkit-gradient(linear, 0 0, 0 bottom, from(#f9fafd), to(#fcfcfd));
+        background: -webkit-linear-gradient(#f9fafd, #fcfcfd);
+        background: -moz-linear-gradient(#f9fafd, #fcfcfd);
+        background: -ms-linear-gradient(#f9fafd, #fcfcfd);
+        background: -o-linear-gradient(#f9fafd, #fcfcfd);
+        background: linear-gradient(#f9fafd, #fcfcfd);
+        -pie-background: linear-gradient(#f9fafd, #fcfcfd);
+        behavior: url(static/assets/js/PIE.htc);
+        
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: left;
+        width:700px;
+        height:300px;
+        top: 20%;
+        left:20%;
+        position:absolute;
+        -moz-box-shadow: 0 0 30px 5px #999;
+        -webkit-box-shadow: 0 0 30px 5px #999;        
+        box-shadow:0 0 30px 5px #999;	   
+    }
+    
+    .box
+    {
+        background: #ccddec;
+        
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        text-align: left;
+        width:680px;
+        height:200px;
+    }
+    
+    .boxContent
+    {
+        top: 45%;
+        left: 35%;
+        position: absolute;
+    }
+    
+    .flashPlayer
+    {
+        padding: 0;
+        display:table-cell;
+        vertical-align:middle;
+        font-weight:bold;
+        text-align:center;
+        cursor: pointer;
+        fontFamily : Arial;
+    }
+    
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+// -----------------------------------------------------------------------------
+// Globals
+// Major version of Flash required
+var requiredMajorVersion = 11;
+// Minor version of Flash required
+var requiredMinorVersion = 0;
+// Minor version of Flash required
+var requiredRevision = 28;
+// -----------------------------------------------------------------------------
+// -->
+
+</script>
+</head>
+
+<body scroll="no">
+<script language="JavaScript" type="text/javascript">
+<!--
+// Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
+var hasProductInstall = DetectFlashVer(6, 0, 65);
+
+// Version check based upon the values defined in globals
+var hasRequestedVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
+
+if ( hasProductInstall && !hasRequestedVersion ) {
+		document.write("<div class='background-box'>");
+		        document.write("<div class='gradient-box'>");
+            			document.write("<div style='padding-bottom:10px'>");
+                			document.write("<image src='static/assets/img/greenplum_logo_title.png'/>");
+	       			document.write("</div>");            		
+        	    		document.write("<div class='box'>");
+               		 		document.write("<div class='boxContent'>")
+                    				document.write("<div class='flashPlayer' align='center'/>");
+                        			document.write("You required Adobe Flash Player <BR/>minimum version "+requiredMajorVersion+" and<BR/> Javascript to view this content.");
+                        			document.write("<BR/>") 
+                        			document.write("<BR/>") 
+                        			document.write("<image src='static/assets/img/flash-player.png'/>")
+                        			document.write("<BR/>") 
+                        			document.write("<BR/>") 
+                    				document.write("</div>")
+                			document.write("</div>")
+            			document.write("</div>")
+        		document.write("</div>")
+      		document.write("</div>");
+
+
+} else if (hasRequestedVersion) {
+	// if we've detected an acceptable version
+	// embed the Flash Content SWF when all tests are passed
+    // DO NOT MODIFY THE FOLLOWING FOUR LINES
+	// Location visited after installation is complete if installation is required
+	var MMPlayerType = (isIE == true) ? "ActiveX" : "PlugIn";
+	var MMredirectURL = window.location;
+	document.title = document.title.slice(0, 47) + " - Flash Player Installation";
+	var MMdoctitle = document.title;
+	var serverData ="username=${username}&password=${password}&serverProtocol=${protocol}&serverHost=${host}&serverPort=${port}&serverName=${server_name}&gpPerfMonVersion=${gpPerfMonVersion}&MMredirectURL="+MMredirectURL+'&MMplayerType='+MMPlayerType+'&MMdoctitle='+MMdoctitle+"";
+          	
+       AC_FL_RunContent(
+			"src", "static/GPPerfMon",
+			"FlashVars", serverData, 
+			"width", "100%",
+			"height", "100%",
+			"align", "middle",
+			"id", "GPPerfMon",
+			"quality", "high",
+			"bgcolor", "#cddeed",
+			"name", "GPPerfMon",
+			"allowScriptAccess","sameDomain",
+			"type", "application/x-shockwave-flash",
+            "allowFullScreen", "true",
+			"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+  } else {  // flash is too old or we can't detect the plugin
+
+
+      document.write("<div class='background-box'>");
+        document.write("<div class='gradient-box'>");
+            document.write("<div style='padding-bottom:10px'>");
+                document.write("<image src='static/assets/img/greenplum_logo_title.png'/>");
+            document.write("</div>");            		
+            document.write("<div class='box'>");
+                document.write("<div class='boxContent'>")
+                    document.write("<div class='flashPlayer' align='center' onclick='onClick()'/>");
+                        document.write("You need Adobe Flash Player and<BR/> Javascript to view this content.");
+                        document.write("<BR/>") 
+                        document.write("<BR/>") 
+                        document.write("<image src='static/assets/img/flash-player.png'/>")
+                    document.write("</div>")
+                document.write("</div>")
+            document.write("</div>")
+        document.write("</div>")
+      document.write("</div>");
+  }
+
+  function onClick()
+  {
+      location.href='http://get.adobe.com/flashplayer';
+  }
+    
+// -->
+</script>
+<noscript>
+  	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+			id="GPPerfMon" width="100%" height="100%"
+			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+			<param name="movie" value="GPPerfMon.swf" />
+			<param name="quality" value="high" />
+			<param name="bgcolor" value="#cddeed" />
+			<param name="allowScriptAccess" value="sameDomain" />
+            <param name="allowFullScreen" value="true" />
+			<embed src="static/GPPerfMon.swf" quality="high" bgcolor="#cddeed"
+				width="100%" height="100%" name="GPPerfMon" align="middle"
+				play="true"
+				loop="false"
+				FlashVars="username=${username}&password=${password}&serverProtocol=${protocol}&serverHost=${host}&serverPort=${port}&serverName=${server_name}&gpPerfMonVersion=${gpPerfMonVersion}"
+				quality="high"
+				allowScriptAccess="sameDomain"
+				type="application/x-shockwave-flash"
+                allowFullScreen="true"
+				pluginspage="http://www.adobe.com/go/getflashplayer">
+			</embed>
+	</object>
+</noscript>
+</body>
+</html>

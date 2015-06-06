@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="3834" MadCap:lastWidth="651" MadCap:disableMasterStylesheet="true" MadCap:tocPath="" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="" MadCap:HelpSystemFileName="index.xml" MadCap:SearchType="Stem">
+    <head>
+        <link href="SkinSupport/MadCap.css" rel="stylesheet" type="text/css" /><title>Pivotal Greenplum Command Center Parameters</title>
+        <link href="resources/stylesheets/emc_help_stylesheet.css" rel="stylesheet" type="text/css" />
+        <script src="SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 class="EMCHeadingLanding">Pivotal Greenplum Command Center Parameters</h1>
+        <p>Configuration parameters for Pivotal Greenplum Command Center are stored in the following files on the Greenplum Database Master host:</p>
+        <ul>
+            <li class="EMCBullet1" value="1"><code>$MASTER_DATA_DIRECTORY/gpperfmon/conf/gpperfmon.conf<br /></code>This stores configuration parameters for the Greenplum Command Center agents.</li>
+            <li class="EMCBullet1" value="2"><code>$GPPERFMONHOME/instances/<i>instance_name</i>/conf/gpperfmonui.conf</code> and <code>lighttpd.conf</code><br />This stores configuration parameters for the Command Center Console and web server. Each instance of the Command Center Console has its own configuration files. </li>
+            <li class="EMCBullet1" value="3"><code>$MASTER_DATA_DIRECTORY/postgresql.conf</code>
+                <br />This stores configuration parameters that enable the Command Center features for Greenplum Database.</li>
+        </ul>
+        <p>Any system user with write permissions to these directories can edit these configuration files. After editing any of these files, apply the configuration changes by restarting the Command Center instance:</p>
+        <P class="EMCSyntax">gpcmdr --restart "<i class="code">instance_name</i>"</P>
+        <p class="EMCHeading1">Pivotal Command Center Agent Parameters</p>
+        <p>The <code>$MASTER_DATA_DIRECTORY/gpperfmon/conf/gpperfmon.conf </code>stores configuration parameters for the Command Center agents. After editing this file, save <span class="code">gpperfmon.conf</span> and then restart Greenplum Database:</p>
+        <P class="EMCSyntax">gpstop -r</P>
+        <ul>
+            <li class="EMCBullet1" value="1"><a name="quantum"></a><code>quantum</code>
+            </li>
+        </ul>
+        <P class="EMCParagraphIndent1">Specifies the time in seconds between updates from Command Center agents on all segments. Valid values are 10, 15, 20, 30, and 60. Defaults to 15 seconds.</P>
+        <P class="EMCParagraphIndent1">If you want a less granular view of performance, or you want to collect and analyze minimal amounts of data for system metrics, specify a higher quantum. To collect data more frequently, enter a lower value.</P>
+        <ul>
+            <li class="EMCBullet1" value="1"><code>min_query_time</code>
+            </li>
+        </ul>
+        <P class="EMCParagraphIndent1">Specifies the minimum query run time in seconds for statistics collection. Command Center logs all queries that run longer than this value in the <span class="code">queries_history</span> table. For queries with shorter run times, no historical data is collected. Defaults to 20 seconds.</P>
+        <P class="EMCParagraphIndent1">If you  want to collect data for all queries, set this parameter to a low value. Setting the minimum query run time to zero, however, collects data even for the numerous queries run by Command Center itself, creating a large amount of data that might not be useful.</P>
+        <ul>
+            <li class="EMCBullet1" value="1"><a name="min_detailed_query_time"></a><code>min_detailed_query_time</code>
+            </li>
+        </ul>
+        <P class="EMCParagraphIndent1">Specifies the minimum iterator run time in seconds for statistics collection. Command Center logs all iterators that run longer than this value in the <span class="code">iterators_history</span> table. For iterators with shorter run times, no data is collected. Minimum value is 10 seconds.</P>
+        <P class="EMCParagraphIndent1">This parameter’s value must always be equal to, or greater than, the value of <span class="code">min_query_time</span>. Setting <span class="code">min_detailed_query_time</span>  higher than <span class="code">min_query_time</span> allows you to log detailed query plan iterator data only for especially complex, long-running queries, while still logging basic query data for shorter queries.</P>
+        <P class="EMCParagraphIndent1">Given the complexity and size of iterator data, you might want to adjust this parameter according to the size of the data collected. If the <span class="code">iterators_*</span> tables are growing to excessive size without providing useful information, you can raise the value of this parameter to log iterator details for fewer queries.</P>
+        <ul>
+            <li class="EMCBullet1" value="1"><a name="min_detailed_query_time"></a><code>log_location</code>
+            </li>
+        </ul>
+        <P class="EMCParagraphIndent1">Specifies a directory location for Command Center log files. Default is <span class="code">$MASTER_DATA_DIRECTORY/gpperfmon/logs</span>.</P>
+        <ul>
+            <li class="EMCBullet1" value="1"><a name="min_detailed_query_time"></a><code>max_log_size</code>
+            </li>
+        </ul>
+        <P class="EMCParagraphIndent1">This parameter is not included in the <span class="code">gpperfmon.conf</span> file, but it can be added to this file for use with Greenplum Command Center.</P>
+        <P class="EMCParagraphIndent1">To prevent the log files from becoming excessive in size, you can add the max_log_size parameter to <span class="code">gpperfmon.conf</span>. The value of this parameter is measured in bytes. For example:<br /></P>
+        <P class="EMCSyntax">max_log_size = 10485760</P>
+        <P class="EMCParagraphIndent1">With this setting, the log files will grow to 10MB before the system starts a new log file.</P>
+        <ul>
+            <li class="EMCBullet1" value="1"><a name="min_detailed_query_time"></a><code>Partition_age</code>
+            </li>
+        </ul>
+        <P class="EMCParagraphIndent1">The number of months that Greenplum Command Center statistics data will be retained. The default it is 0, which means we won't drop any data.</P>
+        <ul>
+            <li class="EMCBullet1" value="1"><a name="min_detailed_query_time"></a><code>smdw_aliases</code>
+            </li>
+        </ul>
+        <P class="EMCParagraphIndent1">This parameter allows you to specify additional host names for the standby master. For example, if the standby master has two NICs, you can enter.</P>
+        <P class="EMCSyntax">smdw_aliases= smdw-1,smdw-2</P>
+        <P class="EMCParagraphIndent1">This optional fault tolerance parameter is useful if the Pivotal Greenplum Command Center loses connectivity with the standby master. Instead of continuously retrying to connect to host <span class="code">smdw</span>, it will try to connect to the NIC-based aliases of <span class="code">smdw-1</span> and/or <span class="code">smdw-2</span>. This ensures that the  Command Center Console can continuously poll and monitor the standby master.</P>
+        <p class="EMCHeading1">Pivotal Command Center Console Parameters</p>
+        <p>These parameters only applies to the Greenplum Data Computing Appliance platform.</p>
+        <p>Each instance of the  Command Center Console has two configuration files located in <span class="code">$GPPERFMONHOME/instances/instance_name/conf</span>. The web application file is gpperfmonui.conf and the web server file is <span class="code">lighttpd.conf</span>.</p>
+        <p>After editing these files, reload the configuration by restarting the  Command Center Console instance (<span class="code">gpperfmon --restart "instance_name"</span>).</p>
+        <p class="EMCHeading2">Web Server Parameters (lighttpd.conf)</p>
+        <p>This file has several configuration parameters. However, the parameters below are the parameters related to the  Command Center Console, and ones you will likely to change. For more information on the other parameters in this configuration file, see the lighttpd documentation.</p>
+        <ul>
+            <li class="EMCBullet1Code" value="1">server.port</li>
+        </ul>
+        <P class="EMCParagraphIndent1">Sets the web server port number. The default HTTP port is 28080.</P>
+        <ul>
+            <li class="EMCBullet1Code" value="1">ssl.engine</li>
+        </ul>
+        <P class="EMCParagraphIndent1">Determines whether SSL encryption is used for client connections. Valid values are enable and disable. If you enable SSL at installation time, this is set to enable.</P>
+        <ul>
+            <li class="EMCBullet1Code" value="1">ssl.pemfile</li>
+        </ul>
+        <P class="EMCParagraphIndent1">Specifies the path to the PEM file for SSL support. If you enable SSL at installation time, this parameter points to a self-signed certificate. If you use a trusted signed certificate, you must specify it with this parameter.</P>
+        <p class="EMCHeading2">Web Application Parameters (gpperfmonui.conf)</p>
+        <p>The <span class="code">gpperfmonui.conf </span>file includes the following parameters:</p>
+        <ul>
+            <li class="EMCBullet1Code" value="1">server_name</li>
+        </ul>
+        <P class="EMCParagraphIndent1">Specifies the instance name displayed on the login page of the Greenplum  Command Center Console. This value can be any name you want to display to users, expressed as a text string. This parameter defaults to the instance name you specified when setting up the  Command Center Console.</P>
+        <ul>
+            <li class="EMCBullet1Code" value="1">master_port</li>
+        </ul>
+        <P class="EMCParagraphIndent1">Specifies the port number of the Greenplum Database master that this instance is monitoring.</P>
+        <p class="EMCHeading1">Greenplum Database Server Configuration Parameters</p>
+        <p>The following parameters must be uncommented and set in the server configuration file (<span class="code">postgresql.conf</span>) in order to enable the  Command Center data collection agents. With the exception of <span class="code">gp_enable_gpperfmon</span>, these parameters are set in the master postgresql.conf file only. Restart Greenplum Database to apply any changes you make to this file.</p>
+        <ul>
+            <li class="EMCBullet1Code" value="1">gp_enable_gpperfmon</li>
+        </ul>
+        <P class="EMCParagraphIndent1">Enables the  Command Center data collection agent for a segment. It must be set in all postgresql.conf files (master and all segments).</P>
+        <ul>
+            <li class="EMCBullet1Code" value="1">gpperfmon_port</li>
+        </ul>
+        <P class="EMCParagraphIndent1">Specifies the port for the  Command Center agents is (default is <span class="code">8888</span>).</P>
+        <ul>
+            <li class="EMCBullet1Code" value="1">gp_gpperfmon_send_interval</li>
+        </ul>
+        <P class="EMCParagraphIndent1">Sets the frequency in seconds that the Greenplum Database server processes send query execution updates to the  Command Center agent processes.</P>
+        <ul>
+            <li class="EMCBullet1Code" value="1">gp_external_enable_exec</li>
+        </ul>
+        <P class="EMCParagraphIndent1">This parameter is enabled by default and must remain enabled. It allows the use of external tables that execute OS commands or scripts on the segment hosts. The  Command Center agents use this type of external table to collect current system metrics from the segments.</P>
+        <ul>
+            <li class="EMCBullet1Code" value="1">gpperfmon_log_alert_level</li>
+        </ul>
+        <P class="EMCParagraphIndent1">Controls which message levels are written to the gpperfmon log. Each level includes all the levels that follow it. The later the level, the fewer messages are sent to the log. The default value is warning.</P>
+        <script type="text/javascript" src="SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

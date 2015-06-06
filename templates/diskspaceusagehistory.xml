@@ -1,0 +1,19 @@
+$def with (stime, etime, interval, tkeys, hkeys, ckeys, tab)
+<?xml version="1.0"?>
+<diskusagehistory start="$stime" end="$etime" interval="$interval">
+$for h in hkeys:
+    <host name="$h">
+    $for c in ckeys:
+        <$c> \
+        $for t in tkeys:
+            $if (h, t) in tab:
+                $ v = tab[(h, t)]
+                $if not v: v = {}
+                $ v = v.get(c, '#')
+                $if c == 'sample_time':
+                    ${loop.index != 1 and '|' or ''} ${v} \
+                $else:
+                    ${loop.index != 1 and '|' or ''} ${'%s%s%.3s' % ('%s' % v).partition('.')} \
+        </$c>
+    </host>
+</diskusagehistory>

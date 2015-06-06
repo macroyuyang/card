@@ -1,0 +1,5 @@
+$def with (started)
+<?xml version="1.0"?>
+<gpcontrol>
+   <submitted>$started</submitted>
+</gpcontrol>

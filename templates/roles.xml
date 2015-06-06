@@ -1,0 +1,9 @@
+$def with (tab)
+<?xml version="1.0"?>
+<Roles>
+$for r in tab:
+    <Role>
+        <Name>$r['rrrolname']</Name>
+        <Queue>$r['rrrsqname']</Queue>
+    </Role>
+</Roles>

@@ -1,0 +1,10 @@
+$def with (tab, version, gssStatus, clientSSlStatus)
+<?xml version="1.0"?>
+<API version="$version">
+$for command in tab:
+    <command> \
+    ${command} \
+    </command>
+<gpss>${gssStatus}</gpss>
+<ssl>${clientSSlStatus}</ssl>
+</API>

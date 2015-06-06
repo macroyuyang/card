@@ -1,0 +1,22 @@
+$def with (table)
+<?xml version="1.0"?>
+<GpSegmentConfiguration>
+    $for r in table:
+    <SegmentDatabase>
+        <Dbid>$r['dbid']</Dbid>
+        <Content>$r['content']</Content>
+        <Role>$r['role']</Role>
+        <PreferredRole>$r['preferred_role']</PreferredRole>
+        <Mode>$r['mode']</Mode>
+        <Status>$r['status']</Status>
+        <Port>$r['port']</Port>
+        <Hostname>$r['hostname']</Hostname>
+        <Address>$r['address']</Address>
+        <ReplicationPort>$r['replication_port']</ReplicationPort>
+        <RecoveryUnitsDone>$r['recovery_done']</RecoveryUnitsDone>
+        <RecoveryUnitsTotal>$r['recovery_total']</RecoveryUnitsTotal>
+        <Count>$r['count']</Count>
+        <LatestEvent>$r['latest_event']</LatestEvent>
+        <LatestEventDescription>$r['latest_event_description']</LatestEventDescription>
+    </SegmentDatabase>
+</GpSegmentConfiguration>

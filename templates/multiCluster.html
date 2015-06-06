@@ -1,0 +1,74 @@
+$def with (version, serverName)
+<!DOCTYPE html dir="ltr" lang="en-US">
+    <head profile="http://gmpg.org/xfn/11">
+    	<link rel="stylesheet" type="text/css" href="../home/assets/css/clustersRollupView.css"/>
+		<title>Greenplum Command Center</title>
+		<link rel="icon" type="image/png" href="../home/assets/images/Pivotal_icon.png">
+		<script type="text/javascript" src="../home/utils/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../home/utils/jquery.jsonp-2.4.0.min.js"></script>
+		<script type="text/javascript" src="../home/js/connectionManager.js"></script>
+		<script type="text/javascript" src="../home/js/rollup.js"></script>
+		<script type="text/javascript" src="../home/utils/jqueryForm.min.js"></script>
+	</head>
+    <body>
+    	<div id="maincontainer" >
+		    <div id = "landingPageView">
+				<div id="titleHeader">
+					  <div id="headerImg"></div>
+					  <div id="linkHolder">
+						<span class="link" id="logout">Logout</span>
+						<span class="separator">|</span>
+						<span class="link" id="help">Help</span>
+						<span class="separator">|</span>
+						<span class="link" id="feedback">Feedback</span>
+						<span class="separator">|</span>
+						<span class="link" id="support">Support</span>
+						<span class="separator">|</span>
+						<span class="link" id="pivotal">Pivotal</span>
+						<span class="separator">|</span>
+						<span id="greetings"></span>
+					  </div>
+				</div>	
+				<div id="innerContainer">
+					<div id="clusterView"></div>
+				</div>	
+			</div>
+			<div id ="loginView">
+				<div id="loginHeader">
+					<div id="titleImg"></div>
+				</div>	
+                <div id = "loginForm">
+					<div id="loginLabel">Login</div>
+					<div id = "loginStatus"></div>
+					<table>
+						<tr>
+							<td id="loginDataHeader">Server:</td>
+							<td id="loginData">${serverName}</td>
+						</tr>
+						<tr>
+							<td id="loginDataHeader">Username:</td>
+							<td id="loginData"><INPUT id='userName' TYPE="text" Name="username" size=40 style="height: 25px;"> </td>
+						</tr>
+						<tr>
+							<td id="loginDataHeader">Password:</td>
+							<td id="loginData"><INPUT id='password' TYPE="password" Name="password" size=40 style="height: 25px;"></td>
+						</tr>
+						<tr>
+							<td id="loginDataHeader"></td>
+							<td id="loginData" ><input type="checkbox" id="myCheck">Remember me on this computer</td>
+						</tr>
+						<tr>
+							<td id="loginDataHeader"></td>
+							<td id="loginData"><p id="logon"><INPUT TYPE="submit" class='grayButton' id="loginBtn" VALUE="Logon" disabled="disabled"></td>
+					</table>
+				</div>
+				<div id="loginFotter">
+					<span id = "licence">&#169; 2008-2014 Pivotal Software,Inc.All Rights Reserved.</span>
+					<span id = "termsLink"> [Terms of Use (link)]</span>
+					<span id = "version">${version}</span>
+				</div>
+			</div>
+			<div id = "hiddenFormClick" auto = 'false'></div>
+    	</div>
+    </body>
+</html>

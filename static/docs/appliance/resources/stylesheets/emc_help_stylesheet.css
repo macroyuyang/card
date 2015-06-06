@@ -1,0 +1,333 @@
+/*<meta />*/
+
+/*Created for Adobe RoboHelp 8.*/
+
+/* EMC RH stylesheet, we do not use em here - bad look in RH */
+
+/* ===================================================== */
+
+/* The default font is Verdana (no need to specify font in each style unless it is defferent):*/
+
+/* EMC Header Styles */
+
+/* ================= */
+
+a
+{
+	font-weight: normal;
+	font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+}
+
+a.link
+{
+	font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+	line-height: 14px;
+	padding: 16px;
+	font-size: 12px;
+}
+
+a.code
+{
+	font-size: 14px;
+	font-family: "Courier New", Courier, mono;
+}
+
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+body
+{
+	line-height: 14px;
+	padding: 16px;
+	color: #000000;
+	font-weight: normal;
+	font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.EMCHeadingLanding
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	border-bottom: 2px solid #1F4998;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-weight: bold;
+	line-height: 28px;
+	margin: 16px 0 24px 0;
+	color: #1F4998;
+	text-align: left;
+}
+
+.EMCHeading1
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 20px;
+	border-bottom: 2px solid #1F4998;
+	color: #1F4998;
+	margin: 16px 0 24px 0;
+	padding-top: 24px;
+	padding-bottom: 8px;
+}
+
+.EMCHeading2
+{
+	color: #1F4998;
+	font-size: 15px;
+	line-height: 16px;
+	font-weight: bold;
+	margin: 16px 0px 8px 0px;
+	padding-top: 24px;
+	padding-bottom: 8px;
+}
+
+.EMCHeading3
+{
+	color: #1F4998;
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: bold;
+	margin: 16px 0px 8px 0px;
+	padding-top: 24px;
+	padding-bottom: 16px;
+}
+
+P.EMCParagraph,
+P.Normal,
+P
+{
+	font-family: Verdana, Geneva, Arial, helvetica, sans-serif;
+	font-size: 12px;
+	margin: 16px 0px 16px 0px;
+}
+
+/* First level notes */
+
+P.EMCParagraphIndent1
+{
+	margin-left: 36px;
+	margin-right: 0px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+P.EMCParagraphIndent2
+{
+	margin: 8px 0px 0px 60px;
+}
+
+P.EMCParagraphIndent3
+{
+	margin: 8px 0px 8px 108px;
+	x-next-class: EMCParagraphIndent3;
+	x-next-type: P;
+}
+
+.code
+{
+	font-size: 14px;
+	font-family: "Courier New", Courier, mono;
+}
+
+.codelink
+{
+	font-size: 14px;
+	font-family: "Courier New", Courier, mono;
+	color: blue;
+}
+
+.EMCBullet1
+{
+	margin: 4px 8px 4px 24px;
+	padding: 4px;
+}
+
+.EMCBullet1Code
+{
+	margin: 4px 8px 4px 24px;
+	padding: 4px;
+	font-size: 14px;
+	font-family: "Courier New", Courier, mono;
+}
+
+P.EMCBullet2
+{
+	margin: 4px 8px 4px 32px;
+	padding: 4px;
+}
+
+P.EMCNumber1
+{
+	margin: 0;
+}
+
+/* Second level Notes */
+
+P.EMCNumber2
+{
+	margin: 0;
+}
+
+P.EMCSyntax
+{
+	font-family: "Courier New", Courier, mono;
+	margin: 16px 0 16px 16px;
+	border: 1px solid #1F4998;
+	padding: 8px 16px 8px 16px;
+}
+
+p.EMCDefinitionTerm,
+.EMCGlossaryTerm
+{
+	font-weight: bold;
+	margin: 8px 0 4px 16px;
+}
+
+p.EMCDefinitionDescription,
+.EMCGlossaryDefinition
+{
+	margin: 4px 0 8px 32px;
+}
+
+.EMCDanger
+{
+	background-image: url('art/danger.jpg');
+	background-position: 16px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0px 8px 0px;
+	padding: 8px 0px 8px 108px;
+	x-next-class: EMCDanger;
+	x-next-type: P;
+}
+
+.EMCWarning
+{
+	background-image: url('art/warning.jpg');
+	background-position: 16px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0px 8px 0px;
+	padding: 8px 0px 8px 108px;
+	x-next-class: EMCDanger;
+	x-next-type: P;
+}
+
+/* Images */
+
+.EMCCaution
+{
+	background-image: url('art/caution.jpg');
+	background-position: 16px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0px 8px 0px;
+	padding: 8px 0px 8px 108px;
+	x-next-class: EMCDanger;
+	x-next-type: P;
+}
+
+.EMCNotice
+{
+	background-image: url('art/notice.jpg');
+	background-position: 16px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0px 8px 0px;
+	padding: 8px 0px 8px 108px;
+	x-next-class: EMCDanger;
+	x-next-type: P;
+}
+
+.EMCNote
+{
+	background-image: url('art/note.gif');
+	background-position: 38px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0px 8px 0px;
+	padding: 8px 0px 4px 108px;
+	x-next-class: EMCDanger;
+	x-next-type: P;
+}
+
+.EMCHint
+{
+	background-image: url('art/hint.gif');
+	background-position: 38px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0px 8px 0px;
+	padding: 8px 0px 4px 108px;
+	x-next-class: EMCDanger;
+	x-next-type: P;
+}
+
+.EMCDangerIndent
+{
+	background-image: url('art/danger.jpg');
+	background-position: 40px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0 8px 0;
+	padding: 8px 0 8px 132px;
+	x-next-class: EMCDangerIndent;
+	x-next-type: P;
+}
+
+.EMCWarningIndent
+{
+	background-image: url('art/warning.jpg');
+	background-position: 40px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0 8px 0;
+	padding: 8px 0 8px 132px;
+	x-next-class: EMCWarningIndent;
+	x-next-type: P;
+}
+
+.EMCCautionIndent
+{
+	background-image: url('art/caution.jpg');
+	background-position: 40px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0 8px 0;
+	padding: 8px 0 8px 132px;
+	x-next-class: EMCCautionIndent;
+	x-next-type: P;
+}
+
+.EMCNoticeIndent
+{
+	background-image: url('art/notice.jpg');
+	background-position: 40px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0 8px 0;
+	padding: 8px 0 8px 132px;
+	x-next-class: EMCNoticeIndent;
+	x-next-type: P;
+}
+
+.EMCNoteIndent
+{
+	background-image: url('art/note.gif');
+	background-position: 60px 8px;
+	background-repeat: no-repeat;
+	margin: 8px 0 8px 0;
+	padding: 8px 0 4px 132px;
+	x-next-class: EMCNoticeIndent;
+	x-next-type: P;
+}
+
+MadCap|xref
+{
+	mc-format: '{quote}{paratext}{quote}';
+}
+
+MadCap|xref.new
+{
+	mc-format: '{h2}';
+}
+

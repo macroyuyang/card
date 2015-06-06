@@ -1,0 +1,10 @@
+$def with (table)
+<?xml version="1.0"?>
+<Rsqueues>
+    $for r in table:
+    <Rsqueuedetail>
+        <Name>$r['rsqname']</Name>
+        <Key>$r['resname']</Key>
+        <Value>$r['ressetting']</Value>
+    </Rsqueuedetail>
+</Rsqueues>

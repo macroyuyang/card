@@ -1,0 +1,9 @@
+$def with (queries, percents)
+<?xml version="1.0"?>
+<gpwlm_get_throttled_queries>
+$for i in range(len(queries)):
+   <query>
+      <query_id>$queries[i]</query_id>
+      <percent>$percents[i]</percent>
+   </query>
+</gpwlm_get_throttled_queries>

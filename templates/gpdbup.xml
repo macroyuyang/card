@@ -1,0 +1,5 @@
+$def with (running)
+<?xml version="1.0"?>
+<gpdbup>
+   <running>$running</running>
+</gpdbup>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="2834" MadCap:lastWidth="652" MadCap:disableMasterStylesheet="true" MadCap:tocPath="" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="" MadCap:HelpSystemFileName="index.xml" MadCap:SearchType="Stem">
+    <head>
+        <link href="SkinSupport/MadCap.css" rel="stylesheet" type="text/css" /><title>The Dashboard Tab</title>
+        <link href="resources/stylesheets/emc_help_stylesheet.css" rel="stylesheet" type="text/css" />
+        <script src="SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 class="EMCHeadingLanding">The Dashboard Tab</h1>
+        <p>The <b>Dashboard</b> tab displays after you log into Pivotal Greenplum Command Center. The <b>Dashboard</b> tab provides a quick summary view of the current system performance, workload, health, alerts/dial-homes.</p>
+        <p>Note that some of these features will only be available to you are running Pivotal Greenplum Command Center on an EMC Data&#160;Computing Appliance (DCA); for example, dial-homes.</p>
+        <p>You can export the data from any graph or table&#160;in the Command Center UI by clicking the <b>Export</b> icon in the upper right. See <a href="exporting_data.htm" target="" title="" alt="" class="MCXref">"Exporting Data"</a> for more details.</p>
+        <p>Click the <b>Show / Hide Charts</b> to specify which graphs are displayed or hidden on this page.</p>
+        <h2 class="EMCHeading2">Status</h2>
+        <p> The <b>Greenplum Status</b> section of the dashboard gives you a quick&#160;overview of the status and properties&#160;of the Greenplum Database  clusters that this instance of the Command Center is managing.</p>
+        <h3 class="EMCHeading3">Pivotal Greenplum Database Status</h3>
+        <p>Included&#160;in this section is the current <b>State </b>of the Greenplum Database. The condition can be one of the following:</p>
+        <ul class="EMCBullet1">
+            <li class="EMCBullet1" value="1"><b>Normal</b>: The database is functioning with no major errors or performance issues.</li>
+            <li class="EMCBullet1" value="2"><b>Segment Failure(s)</b>: The database is in change-tracking mode or resync mode. Overall performance and system reliability is greatly reduced. See the <i>Pivotal Greenplum Database System Administrator Guide</i> for information about resolving this condition.</li>
+            <li class="EMCBullet1" value="3"><b>Database Unreachable</b>: The Greenplum Performance Monitor agent cannot connect to the database. The database is likely down. See the <i>Pivotal Greenplum Database System Administrator Guide</i> for troubleshooting information.</li>
+            <li class="EMCBullet1" value="4"><b>Suboptimal Segment Configuration</b>: All segments are not running in their preferred roles. That is primaries are running as mirrors and mirrors are running as primaries, resulting in unbalanced processing.</li>
+        </ul>
+        <h2 class="EMCHeading2">Health</h2>
+        <p> The <b>Health </b>section of the dashboard displays a pie chart that gives  you an overview of the overall health of all the components in your Pivotal Greenplum Database system, including hardware, software, and Greenplum Database instances. A color indicator and associated number indicate the number of hosts in the system that are currently in that particular state. Hosts can have the following states:</p>
+        <ul class="EMCBullet1">
+            <li class="EMCBullet1" value="1"><b>Normal</b> (Green)</li>
+            <li class="EMCBullet1" value="2"><b>Warning</b> (Yellow)</li>
+            <li class="EMCBullet1" value="3"><b>Error</b> (Red)</li>
+            <li class="EMCBullet1" value="4"><b>Unknown</b> (Question mark)</li>
+            <li class="EMCBullet1" value="5"><b>Unreachable</b> (Black)</li>
+        </ul>
+        <p>If you click on any area in the pie chart, the <a href="health.htm">Health</a> tab opens. If you click on the segments of the pie chart that represents hosts in a state of normal, the Health tab opens displaying the details of hosts in that state.</p>
+        <p>If you have multiple Greenplum Database instances, you can create separate instances of Pivotal Greenplum Command Center for them. Each separate Command Center instance operates on a unique port and has its own unique configuration options.</p>
+        <h2 class="EMCHeading2">Key Metrics</h2>
+        <p>The&#160;main section of the dashboard displays graphs for key system metrics such as CPU, memory, and query metrics. </p>
+        <p>Clicking <b>More &gt;&gt;</b> in any of these graphs opens the <a href="system.htm">System Metrics</a> tab displaying Detail by Metric information for that graph.</p>
+        <ul class="EMCBullet1">
+            <li class="EMCBullet1" value="1"><b><b>CPU</b>. </b>This line graph displays average CPU&#160;usage across the entire cluster, over time (this includes Greenplum Database Master and Standby nodes). Hovering the mouse cursor over lines in the graphs displays a small window with percentage of CPU in use at any given time.</li>
+            <li class="EMCBullet1" value="2"><b><b>Queries/Jobs</b>. </b>This graph displays a summary view of active/queued queries over time.</li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="3"><b>Memory. </b><span style="font-weight: normal;">This graph displays the average memory use across the entire cluster over time.</span>
+            </li>
+        </ul>
+        <h2 class="EMCHeading2">Alerts</h2>
+        <p>This section lists the content of Greenplum Database error messages, the time they were issued, and the severity level.</p>
+        <p>
+            <img src="resources/images/alerts.png" />
+        </p>
+        <h2 class="EMCHeading2">Dial-Homes</h2>
+        <p>This section is only populated if this Command Center is&#160;monitoring a Data Computing Appliance (DCA) environment.</p>
+        <p>This section lists any dial-home messages that have been sent to EMC support. </p>
+        <p>Dial-home messages are generated for&#160;Data Computing Appliances (DCAs) only.</p>
+        <p>
+            <img src="resources/images/dial-homes.png" />
+        </p>
+        <p>About Dial-Homes:&#160;The EMC Greenplum Data Computing Appliance  supports dial-home functionality through the ConnectEMC software. ConnectEMC is a support utility that collects and sends event data - files indicating system errors and other information - from EMC products to EMC Global Services customer support. ConnectEMC events are triggered based on a hardware failure, a fix to a failed hardware component, or a Greenplum Database startup. Once an ConnectEMC event is triggered, an alert is sent to EMC Support.</p>
+        <p class="EMCNote">Dial-home using ConnectEMC functionality is setup during installation. If your system is not configured to use this functionality, contact EMC Global Services. </p>
+        <p class="EMCNote">Disk usage alerts are issued when your disk usage reaches a specified threshold. This threshold is configured with default values during installation (80% &amp; 90%); these values can be modified by EMC Services using the DCA Setup utility.</p>
+        <script type="text/javascript" src="SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

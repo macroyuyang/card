@@ -1,0 +1,5 @@
+$def with (result)
+<?xml version="1.0"?>
+<getadminusername>
+	<username>$result</username>
+</getadminusername>

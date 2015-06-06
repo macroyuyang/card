@@ -1,0 +1,15 @@
+$def with (state, version, jt_uptime, nn_uptime, sn_uptime, jobs, mapslots, maps, reduceslots, reducers, hdDescription)
+<?xml version="1.0"?>
+<hadoop_uptime>
+    <HDDescription>$hdDescription</HDDescription>
+    <State>$state</State>
+    <HDVersion>$version</HDVersion>
+    <JTUptime>$jt_uptime</JTUptime>
+    <NNUptime>$nn_uptime</NNUptime>
+    <SNUptime>$sn_uptime</SNUptime>
+    <Jobs>$jobs</Jobs>
+    <MapSlots>$mapslots</MapSlots>
+    <Maps>$maps</Maps>
+    <ReducerSlots>$reduceslots</ReducerSlots>
+    <Reducers>$reducers</Reducers>
+</hadoop_uptime>

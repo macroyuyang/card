@@ -1,0 +1,9 @@
+$def with (gpdb, etl, hdm, hdw, hbw, gpdb_desc, etl_desc, hdm_desc, hdw_desc, hbw_desc)
+<?xml version="1.0"?>
+<moduledetails>
+    <GPDB name="$gpdb_desc" count="$gpdb"></GPDB>
+    <DIA name="$etl_desc" count="$etl"></DIA>
+    <HDM name="$hdm_desc" count="$hdm"></HDM>
+    <HDW name="$hdw_desc" count="$hdw"></HDW>
+    <HBW name="$hbw_desc" count="$hbw"></HBW>
+</moduledetails>

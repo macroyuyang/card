@@ -1,0 +1,11 @@
+$def with (gpdbUptime, gpdbVersion, dcaVersion, dcaSerialNumber, openConnections, serverTime, gpdbDescription)
+<?xml version="1.0"?>
+<gpcontrol>
+    <GpdbDescription>$gpdbDescription</GpdbDescription>
+    <GpdbStartTime>$gpdbUptime</GpdbStartTime>
+    <GpdbVersion>$gpdbVersion</GpdbVersion>
+    <DcaVersion>$dcaVersion</DcaVersion>
+    <DcaSerialNumber>$dcaSerialNumber</DcaSerialNumber>
+    <NumOpenConnections>$openConnections</NumOpenConnections>
+    <LocalServerTime>$serverTime</LocalServerTime>
+</gpcontrol>

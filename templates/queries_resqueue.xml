@@ -1,0 +1,15 @@
+$def with (table)
+<?xml version="1.0"?>
+<Queries>
+    $for r in table:
+    <Query>
+        <UserName>$r['username']</UserName>
+        <Txt>$r['query_text']</Txt>
+        <ResourceQueue>$r['rrrsqname']</ResourceQueue>
+	<StartTime>$r['starttime']</StartTime>
+        <Days>$r['days']</Days>
+        <Hours>$r['hours']</Hours>
+        <Minutes>$r['minutes']</Minutes>
+        <Seconds>$r['seconds']</Seconds>
+    </Query>
+</Queries>

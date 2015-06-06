@@ -1,0 +1,8 @@
+$def with (req, code, msg, gss)
+<?xml version="1.0"?>
+<error>
+   <req>$req</req>
+   <code>$code</code>
+   <message>$msg</message>
+   <gss>$gss</gss>
+</error>

@@ -1,0 +1,13 @@
+$def with (table)
+<?xml version="1.0"?>
+<GpConfigurationHistory>
+    $if len(table) > 0:
+        $for r in table:
+            <LogEntry>
+                <Time>$r['time']</Time>
+                <Dbid>$r['dbid']</Dbid>
+                <Description>$r['desc']</Description>
+            </LogEntry>
+    $else:
+        <Description>No events in the segment history for the dbid</Description>
+</GpConfigurationHistory>

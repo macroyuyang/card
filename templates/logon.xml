@@ -1,0 +1,12 @@
+$def with (user, status, role, sid, csrf_token, appliance, timeout)
+<?xml version="1.0"?>
+<logon>
+   <username>$user</username>
+   <role>$role</role>
+   <status>$status</status>
+   <sessionid>$sid</sessionid>
+   <csrf_token>$csrf_token</csrf_token>
+   $if appliance:
+      <Device>Appliance</Device>
+   <timeout>$timeout</timeout>
+</logon>

@@ -1,0 +1,8 @@
+$def with (master, segment, balanced, name, min, max, scale)
+<?xml version="1.0"?>
+<getguc name="$name" min="$min" max="$max" scale="$scale" balanced="$balanced" >
+    $for gucval, units in segment:
+        <segment value="$gucval" unit="$units"> </segment>
+    $for gucval, units in master:
+        <master value="$gucval" unit="$units"> </master>
+</getguc>

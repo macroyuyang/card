@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="6717" MadCap:lastWidth="726" MadCap:disableMasterStylesheet="true" MadCap:tocPath="The Query Monitor Tab" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="" MadCap:HelpSystemFileName="index.xml" MadCap:SearchType="Stem">
+    <head>
+        <link href="SkinSupport/MadCap.css" rel="stylesheet" type="text/css" /><title>The Query Monitor Tab</title>
+        <link href="resources/tablestyles/inner.css" rel="stylesheet" MadCap:stylesheetType="table" />
+        <link href="resources/stylesheets/emc_help_stylesheet.css" rel="stylesheet" type="text/css" />
+        <script src="SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 class="EMCHeadingLanding">The Query Monitor Tab</h1>
+        <p>The <b>Query Monitor</b> tab allows you to view detailed information about active and completed Greenplum Database queries running on the system. Data is collected on currently running queries at every quantum interval. The metrics are updated at each interval until the query is completed. Query metrics include items such as the username of the user running the query and detailed information for individual iterators executing the query plan. Data on the total number of queries, active queries, and queued queries is also shown.</p>
+        <p>Use the <b>Show/Hide Columns</b> button to select specifically which query fields you want to display on this page.</p>
+        <p>Note that only superusers can see all queries; other users are only able to see details of their own queries.</p>
+        <p>Pivotal Greenplum Command Center provides several ways to view query data in the <b>Query Monitor</b> tab. You can view&#160;all active queries, only active queries submitted by yourself, or you can search past queries by Query ID or other search criteria.</p>
+        <p>This information is available through a secure web login, and allows DCA administrators to see all queries in the system while restricting end-users to seeing just the queries that they initiated. With these capabilities, administrators can easily,</p>
+        <ul>
+            <li class="EMCBullet1" value="1">Understand how the system is being used — both in real-time and trending over time.</li>
+            <li class="EMCBullet1" value="2">Identify and diagnose problem queries while they are running, detect skew, find runaway queries, and so on.</li>
+            <li class="EMCBullet1" value="3">Review and balance the query load on the system by better optimizing and scheduling the query load.</li>
+        </ul>
+        <p>Greenplum Command Center collects current system data at every quantum interval the default quantum interval is 15 seconds, this is configurable, see <a href="parameters.htm">Pivotal Greenplum Command Center Parameters</a> for more details.</p>
+        <p>For a full listing of all metrics collected, see the<i> Pivotal Greenplum Command Center Administrator Guide</i>.</p>
+        <p>You can export the data from any graph or table&#160;in the Command Center UI by clicking the <b>Export</b> icon in the upper right. See <a href="exporting_data.htm" target="" title="" alt="" class="MCXref">"Exporting Data"</a> for more details..</p>
+        <h1 class="EMCHeading1">Active Queries</h1>
+        <p>In the Search pane&#160;on the left, select <b>Filter by: All Active Queries</b> to view a complete list of all queries currently running on the system (if you are an administrative user), or select <b>Filter by: My Active Queries </b>to view only queries that were submitted by you. </p>
+        <p>If you have the appropriate permissions, you can stop one or more active queries by first checking the <b>Selected</b> box adjacent to one or more queries, then clicking the <b>Cancel Query</b> link at the top of the list of queries. You can also cancel a query by right-clicking on a query, then selecting <b>Cancel Query</b>.</p>
+        <p class="EMCNote">You can only cancel queries if you are running Greenplum Database version 4.2.1 or above.</p>
+        <h1 class="EMCHeading1">Past Queries</h1>
+        <p>In the Search pane on the left, use the <b>Search by:</b> fields to search for completed or aborted queries that match your search criteria. </p>
+        <p> To search completed or aborted queries, enter the <b>Query ID</b> <![CDATA[ ]]><i>or</i> any of the following information:</p>
+        <ul class="EMCBullet1">
+            <li class="EMCBullet1" style="font-weight: bold;" value="1">Start time </li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="2">End Time </li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="3">Username </li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="4">Database </li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="5">Min. Runtime (sec) </li>
+            <li class="EMCBullet1" style="font-weight: bold;" value="6">Query Status <span style="font-weight: normal;">(Either <b>finished</b> and/or <b>aborted</b>)</span></li>
+        </ul>
+        <p style="font-weight: normal;">If you enter a <b>Query ID</b>, the Command Center ignores any other search criteria you specified. If you do not specify a <b>Query ID</b>, you must at minimum select a value for the <b>Start Time</b> parameter. </p>
+        <p>Once you reinitialize Greenplum Database, historical queries will no longer be viewable.</p>
+        <h1 class="EMCHeading1">Query Details</h1>
+        <p>Whether you are viewing active queries or completed queries, the Query Monitor displays the following information:</p>
+        <table style="margin-left: 0;margin-right: auto;mc-table-style: url('Resources/TableStyles/Inner.css');" class="TableStyle_Inner" cellspacing="1">
+            <col style="width: 132px;" />
+            <col style="width: 339px;" />
+            <thead>
+                <tr>
+                    <th style="" class="TableStyle_Inner_Head_0_0_ColSep">Item / Metric</th>
+                    <th style="" class="TableStyle_Inner_Head_0_0_ColEnd">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Selected</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Query ID</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">An identification string for the query. In the Console, this looks something like "1295397846-56415-2".</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Submit Time</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The time the query was submitted to the query planner.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Username</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The Greenplum Database user who generated the query.</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Database</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The name of the database that was queried.</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Status</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">
+                        <p>The status of the query. This can be either:
+</p>
+                        <ul>
+                            <li class="EMCBullet1" value="1">Queued</li>
+                            <li class="EMCBullet1" value="2">Running</li>
+                            <li class="EMCBullet1" value="3">Completed</li>
+                            <li class="EMCBullet1" value="4">Aborted</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Wait time (s)</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">
+                        <p>This shows either:</p>
+                        <ul>
+                            <li class="EMCBullet1" value="1">The amount of time that query has spent in the queue (waiting to be executed)</li>
+                            <li class="EMCBullet1" value="2">The amount of time that a query spent in the queue before it was executed</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Run Time (s)</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The amount of time required for the query to produce a result.</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Rows out</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The total number of actual rows output for this query.</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">CPU %</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">Current CPU percent average for all processes executing this query. The percentages for all processes running on each segment are averaged, and then the average of all those values is calculated to render this metric.
+Current CPU percent average is always zero in historical and tail data.</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">CPU Total (s)</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">CPU usage by all processes across all segments executing this query (in seconds). It is the sum of the CPU usage values taken from all active primary segments in the database system.
+Note that the Greenplum Performance Monitor logs the value as 0 if the query runtime is shorter than the value for the quantum. </td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Row Skew</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">Displays the amount of row skew in the system. Row skew occurs when one segment produces a disproportionate number of rows for a query. This value is the coefficient of variation for the Rows Out metric of all iterators across all segments for this query, multiplied by 100. For example, a value of .95 is shown as 95.</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Priority</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">Each query is assigned to a resource queue and inherits the priority assigned to that. If a query is not custom-assigned to a resource queue, it is assigned to the default resource queue. However, Greenplum Database administrative users can change the priority of any query.</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Queue name</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The name of the resource queue.</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Details</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">Click the Details icon in this column to open the Query Details popup window, described below.</td>
+                </tr>
+                <tr>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowEnd_ColSep">Query plan</td>
+                    <td style="" class="TableStyle_Inner_Body_0_0_RowEnd_ColEnd">Click the Query plan icon in this column to open the Query Plan details, described below.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="EMCNote">Completed queries do not show Queue Names or Priority information.</p>
+        <p class="EMCNote">For more information about Resource Queues and Query Plans, refer to the <i>Greenplum Database Administrator Guide</i>.</p>
+        <h1 class="EMCHeading1">Viewing Query Details</h1>
+        <P>To view additional details for any query that appears in the <b>Query Monitor</b> tab, double-click the query (in the list) or click the icon in the <b>Details</b> column. A popup window that displays more details about the query, and also the syntax of the query (click the <b>Query Text</b> tab of the Query Details popup window). </P>
+        <P>
+            <img src="resources/images/query_details_2.png" />
+        </P>
+        <p class="EMCNote">You can also view the Query text by hovering over a query in the main Query Monitor view.</p>
+        <p>&#160;</p>
+        <h1 class="EMCHeading1">Query Plan Metrics</h1>
+        <p>Click the <b>Query Plan</b> icon for a graphical view of a query. </p>
+        <p>
+            <img src="resources/images/query_details.png" />
+        </p>
+        <p>Each database operation (or node) performed as part of the query includes process-specific information about its impact on system performance and shown in the following metrics:</p>
+        <table class="TableStyle_Inner" style="mc-table-style: url('Resources/TableStyles/Inner.css');margin-left: 0;margin-right: auto;caption-side: top;" cellspacing="1">
+            <col style="width: 119px;" />
+            <col style="width: 590px;" />
+            <thead>
+                <tr>
+                    <th class="TableStyle_Inner_Head_0_0_ColSep">Item / Metric</th>
+                    <th class="TableStyle_Inner_Head_0_0_ColEnd">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">CPU %</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">CPU usage (as a percentage) by this iterator process across all segments. This value is always zero for historical (completed) iterators. </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">CPU Time</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The sum (in seconds) of the CPU usage by all processes across all segments executing this iterator. </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">CPU&#160;Skew</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">
+                        <p>Displays the amount of processing skew in the system for this iterator. Processing/CPU skew occurs when one segment performs a disproportionate amount of processing for an iterator. </p>
+                        <p>This value is the coefficient of variation for the CPU% metric of this  iterator across all segments, multiplied by 100. For example, a value of  .95 is rendered as 95.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowEnd_ColSep">Row Skew</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowEnd_ColEnd">
+                        <p>Displays the amount of row skew in the system. Row skew occurs when one segment produces a disproportionate number of rows for an iterator. </p>
+                        <p>This value is the coefficient of variation for the Rows Out metric of  this iterator across all segments, multiplied by 100. For example, a  value of .95 is rendered as 95.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p> A graphical color indicator indicates whether the metrics for the node indicate a potential issue. </p>
+        <ul>
+            <li class="EMCBullet1" value="1">A <b>green</b> indicator means that no performance issues were detected. </li>
+            <li class="EMCBullet1" value="2">A <b>yellow</b> indicator means that the value returned was a slightly outside the expected range. </li>
+            <li class="EMCBullet1" value="3">An <b>orange</b> indicator means that the value returned was well outside the expected range.</li>
+            <li class="EMCBullet1" value="4">A <b>red</b> indicator might indicate that a performance issue exists in the system. However, red indicators do occasionally occur, and do not necessarily indicate performance problems. If these performance metrics routinely show as red, then you should investigate the cause of the performance issue.</li>
+        </ul>
+        <p>Click on a node type on the left side of the page to display full details for the iterator. </p>
+        <p> The right side of the <b>Query Plan</b> tab lists the following additional process-specific query metrics for a node.                                      </p>
+        <p>
+            <img src="resources/images/query_graphic_rightpane.png" />
+        </p>
+        <table style="margin-left: 0;margin-right: auto;mc-table-style: url('Resources/TableStyles/Inner.css');" class="TableStyle_Inner" cellspacing="1">
+            <col style="width: 131px;" />
+            <col style="width: 153px;" />
+            <col style="width: 266px;" />
+            <thead>
+                <tr>
+                    <th class="TableStyle_Inner_Head_0_0_ColSep">Metric</th>
+                    <th class="TableStyle_Inner_Head_0_0_ColSep">Unit</th>
+                    <th class="TableStyle_Inner_Head_0_0_ColEnd">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Node Type</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">N/A</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The database operation performed. The node type can be one of the following node types listed in the <a href="query_attributes.htm">Iterator Attributes</a> section. </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Last Updated</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">YYYY-MM-DD HH:MM:SS</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The time at which the node metrics were last updated.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Node Status</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">N/A</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">Indicates the current status of the operation. The status can be either:<br /><ul><li class="EMCBullet1" value="1">Initializing</li><li class="EMCBullet1" value="2">Executing</li><li class="EMCBullet1" value="3">Finished</li></ul></td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Start Time</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">YYYY-MM-DD HH:MM:SS</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">Indicates when the operation started. </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Duration</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Seconds</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The average execution time for this iterator.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">PMem Size</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Bytes</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The average work memory allocated by the Greenplum planner to this iterator’s query processes.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">PMem&#160;Max</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Bytes</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The average of the maximum planner work memory used by this iterator’s query processes.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Mem Size</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Bytes</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The average OS memory allocated to this iterator’s processes.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Mem Resident</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Bytes</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The average resident memory allocated to this iterator’s processes (as opposed to shared memory).</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Shared Mem</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Bytes</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The average shared memory allocated by the Greenplum planner to this iterator’s query processes.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Rows Out</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Rows</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The total number of actual rows output for this iterator on all segments.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Rows Estimate </td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColSep">Rows</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowSep_ColEnd">The total number of output rows for all segments as estimated by the query planner.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Inner_Body_0_0_RowEnd_ColSep">Additional Attributes</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowEnd_ColSep">N/A</td>
+                    <td class="TableStyle_Inner_Body_0_0_RowEnd_ColEnd">See the <a href="query_attributes.htm">Iterator Attributes</a> section for a complete list of attributes for every node type in Greenplum Database.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 class="EMCHeading2">Viewing Historical Query Metrics</h2>
+        <p>Historical tables in the Command Center database store all query and iterator data collected by the Command Center. You can analyze this data to identify trends in the performance of Greenplum Database over a period of time.</p>
+        <p>To view historical query metrics, use the Query Monitor's Search pane to configure and retrieve lists filtered by time period. When you click <b>Search</b>, Command Center retrieves lists of historical query metrics filtered by the time period you selected.</p>
+        <script type="text/javascript" src="SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,5 @@
+$def with (retcode)
+<?xml version="1.0"?>
+<rule_delete>
+    <retcode>$retcode</retcode>
+</rule_delete>

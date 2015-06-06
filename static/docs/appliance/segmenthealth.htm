@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="3014" MadCap:lastWidth="652" MadCap:conditionTagExpression="" MadCap:disableMasterStylesheet="true" MadCap:tocPath="The Administration Tab" MadCap:InPreviewMode="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" MadCap:PathToHelpSystem="" MadCap:HelpSystemFileName="index.xml" MadCap:SearchType="Stem">
+    <head>
+        <link href="SkinSupport/MadCap.css" rel="stylesheet" type="text/css" /><title>Administration Tab</title>
+        <link href="resources/stylesheets/emc_help_stylesheet.css" rel="stylesheet" type="text/css" />
+        <script src="SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <h1 class="EMCHeadingLanding">Administration Tab</h1>
+        <h2 class="EMCHeading2">Segment Health</h2>
+        <p style="font-style: normal;">This view displays information about a running Pivotal Greenplum Database instance. There is additional information you may want to know about a Greenplum Database system, since it is comprised of multiple PostgreSQL database instances (segments) spanning multiple machines. This view provides additional status information for a Greenplum Database system, such as:</p>
+        <ul>
+            <li class="EMCBullet1" value="1">Which segments are down.</li>
+            <li class="EMCBullet1" value="2">Segment configuration information (hosts, ports, etc.).</li>
+            <li class="EMCBullet1" value="3">The ports used by the system.</li>
+            <li class="EMCBullet1" value="4">A mapping of primary segments to their corresponding mirror segments.</li>
+        </ul>
+        <p>You can export the data from any graph or table&#160;in the Command Center UI by clicking the <b>Export</b> icon in the upper right. See <a href="exporting_data.htm" target="" title="" alt="" class="MCXref">"Exporting Data"</a> for more details.</p>
+        <p style="font-style: normal;">The top of the view displays three pie charts that give you a quick overview of the general health of your system. Hover over any segment of any of the pie charts to display more information&#160;about that segment of the chart, for example:</p>
+        <p>
+            <img src="resources/images/segment_health_slice.png" />
+        </p>
+        <p style="font-style: normal;">Click on any segment&#160;in any of the pie charts to reorder the table below based on that selection. For example, if you click on segments that are <b>Down</b>, the table below is reordered to display all <b>Down</b> segments at the top.</p>
+        <h3 class="EMCHeading3">Segment Status</h3>
+        <p>This pie chart displays the number of segments by status,  <b>Up</b> or <b>Down</b>. If a segment is down, an advisory note appears recommending that you recover that segment. You can perform recovery operations from this view, see below.</p>
+        <h3 class="EMCHeading3">Replication Status</h3>
+        <p style="font-style: normal;">This pie chart displays the number of segments by replication status. Either <b>Synced</b>, <b>Resyncing</b>, <b>Change Tracking</b>, or <b>Not Syncing</b>.</p>
+        <blockquote>
+            <p style="font-style: normal;">About Replication Status: </p>
+            <p style="font-style: normal;">Mirror segments allow database queries to fail over to a backup segment if the primary segment is unavailable. To configure mirroring, you must have enough nodes in your Greenplum Database system so that the mirror segment always resides on a different host than its primary.</p>
+            <p style="font-style: normal;">The mirror segment for a distributed table resides on a different host than its primary segment. During database operations, only the primary segment is active. Changes to a primary segment are copied over to its mirror using a file block replication process. Until a failure occurs on the primary segment, there is no live segment instance running on the mirror host -- only the replication process. The replication status in this scenario is <b>Not Syncing</b>.</p>
+            <p style="font-style: normal;">In the event of a segment failure, the file replication process is stopped and the mirror segment is automatically brought up as the active segment instance. All database operations then continue using the mirror. While the mirror is active, it is also logging all transactional changes made to the database. This system state is known as <b>Change Tracking</b> mode. When the failed segment is ready to be brought back online, administrators initiate a recovery process to bring it back into operation. The recovery process synchronizes with the mirror and only copies over the changes that were missed while the segment was down. This system state is known as <b>Resynchronizing</b> mode. Once all mirrors and their primaries are synchronized again, the system state becomes <b>Synchronized</b>.</p>
+        </blockquote>
+        <h3 class="EMCHeading3">Preferred Role
+        </h3>
+        <p style="font-style: normal;">This pie chart displays the number of segments by preferred role, one of either:</p>
+        <p style="font-style: normal;"><b>Preferred</b>: The role of this segment at initialization time, either <b>Primary</b> or <b>Mirrored</b>.</p>
+        <p style="font-style: normal;"><b>Not Preferred</b>: If this segment is not in the role it was at system initialization time.</p>
+        <p style="font-style: normal;">&#160;</p>
+        <p style="font-style: normal;">The center of the Segment Health view displays a table displaying the following information about all segments in your system:</p>
+        <p style="font-style: normal;">Note that the data in this table can be exported to a .csv file by clicking the Export button. &#160;See <a href="exporting_data.htm" target="" title="Exporting Data" alt="Exporting Data" class="MCXref">"Exporting Data"</a> for details.</p>
+        <p style="font-style: normal;"><b>Hostname</b>: System-configured host name.</p>
+        <p style="font-style: normal;"><b>Address</b>: Network address host name (NIC name).</p>
+        <p style="font-style: normal;"><b>Port</b>: Port number of the segment postgres database listener process.</p>
+        <p style="font-style: normal;"><b>Replication Port</b>: File replication port for this segment.</p>
+        <p style="font-style: normal;"><b>DBID</b>: System-assigned ID. The unique identifier of a segment (or master) instance.</p>
+        <p style="font-style: normal;"><b>Content ID</b>: The content ID of the segment. A primary segment and its mirror should have the same content ID</p>
+        <p><b>Status</b>: Either <b>Up </b>or <b>Down</b>.</p>
+        <p style="font-style: normal;"><b>Role</b>: Current role of a segment: <b>Mirror </b>or <b>Primary</b>.</p>
+        <p style="font-style: normal;"><b>Preferred Role</b>: Role of this segment at system initialization time: <b>Mirror</b> or <b>Primary</b>.</p>
+        <p style="font-style: normal;"><b>Recovery Status</b>: The percentage of segment recovery that is complete. Note that this number may be higher than 100% if the actual recovery is higher than the estimated recovery.</p>
+        <p style="font-style: normal;"><b>SAN&#160;Mounts</b>:</p>
+        <p><b>Last Event</b>:</p>
+        <h3 class="EMCHeading3">Recover/Rebalance 
+        </h3>
+        <p>Whenever Greeplum's fault detection process connect to a segment, it marks that segment instance as down in the Greenplum database system catalog. Once a segment is down, it will remain out of operation until an administrator initiates the recovery process to bring that segment back online. </p>
+        <p>The system will automatically failover to the mirror copy whenever a primary copy becomes unavailable. </p>
+        <p><b>Recovery</b>. The recovery utility locates the down segments, checks if they are valid, and compares the transactional state with the currently active segment to find out what changes were missed when the segment was offline. It then synchronizes only the changed database files with the active segment and brings the segment back online.</p>
+        <P><b>Rebalance</b>: After a segment recovery, segment instances may not be returned to the preferred role that they were given at system initialization time. This can leave the system in a potentially unbalanced state, as some segment hosts may have more active segments than is optimal for top system performance. Running rebalance will return segmens to their preferred roles.</P>
+        <p>Greenplum Command Center provides an quick and convenient method by which to run the recovery utility, bring segments back online, and rebalance them.</p>
+        <p>
+            <img src="resources/images/segment_health_recover.png" />
+        </p>
+        <p>This Recover/Rebalance section of the screen is only active if one or more segments are down. </p>
+        <p>To recover a segment, select one of:</p>
+        <ul>
+            <li class="EMCBullet1" value="1"><b>Normal</b>: Copy over the incremental changes that occurred while the segment was down.</li>
+            <li class="EMCBullet1" value="2"><b>Full</b>: Perform a full copy of the active segment instance in order to recover the failed segment. </li>
+        </ul>
+        <p>Then click <b>Recover Segments</b>.</p>
+        <p>Once you have recovered a segment, we recommend that you rebalance the primary and mirror segments by returning them to their preferred roles by clicking <b>Rebalance Segments</b>.</p>
+        <script type="text/javascript" src="SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

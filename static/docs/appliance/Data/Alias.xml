@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultAliasFile DefaultSkinName="default">
+    <Map Name="dashboard" Link="dashboard.htm" ResolvedId="1000" />
+    <Map Name="health" Link="health.htm" ResolvedId="1001" />
+    <Map Name="system_metrics" Link="system.htm" ResolvedId="1002" />
+    <Map Name="query_monitor" Link="queries.htm" ResolvedId="1003" />
+    <Map Name="admin" Link="administration.htm" ResolvedId="1004" />
+</CatapultAliasFile>

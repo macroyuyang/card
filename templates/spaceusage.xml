@@ -1,0 +1,13 @@
+$def with (table, status)
+<?xml version="1.0"?>
+<Usages status="$status">
+    $for r in table:
+    <Usage>
+        <Time>$r['timestamp']</Time>
+        <Database>$r['database']</Database> 
+        <Type>$r['spacetype']</Type>
+        <diskused>$r['diskused']</diskused>
+        <compressed>$r['compressed']</compressed>
+        <indexsize>$r['indexsize']</indexsize>
+    </Usage>
+</Usages>

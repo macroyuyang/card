@@ -1,0 +1,6 @@
+$def with (res)
+<?xml version="1.0"?>
+<alerts_summary>
+    $for date, desc in res:
+        <event date="$date" desc="$desc"> </event>
+</alerts_summary>

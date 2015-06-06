@@ -1,0 +1,16 @@
+$def with (updatetime, staledata, table)
+<?xml version="1.0"?>
+<Health>
+<StaleData>$staledata</StaleData>
+<LastUpdateTime>$updatetime</LastUpdateTime>
+<CategoryView>
+$for k in table.keys():
+    <Category Name="$k">
+    $for r in table[k]:
+        <Line>
+            <HostName>$r[0]</HostName>
+            <Status>$r[1]</Status>
+        </Line>
+    </Category>
+</CategoryView>
+</Health>

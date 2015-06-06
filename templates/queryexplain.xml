@@ -1,0 +1,8 @@
+$def with (input)
+<?xml version="1.0"?>
+<queryexplain>
+    <explain>
+        $for i in input
+            $:i['QUERY PLAN']
+    </explain>
+</queryexplain>

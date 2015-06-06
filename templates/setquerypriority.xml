@@ -1,0 +1,5 @@
+$def with (status)
+<?xml version="1.0"?>
+<setquerypriority>
+   <status>$status</status>
+</setquerypriority>
