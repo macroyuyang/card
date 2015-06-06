@@ -1,0 +1,126 @@
+@font-face {
+  font-family: 'fontIco';
+  src: url('../img/font/fontIco.eot?-zc2o4b');
+  src: url('../img/font/fontIco.eot?#iefix-zc2o4b') format('embedded-opentype'), url('../img/font/fontIco.ttf?-zc2o4b') format('truetype'), url('../img/font/fontIco.woff?-zc2o4b') format('woff'), url('../img/font/fontIco.svg?-zc2o4b#fontIco') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+i.icon {
+  font-family: 'fontIco';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ico_home:before {
+  content: "\e900";
+}
+.ico_news:before {
+  content: "\e904";
+}
+.ico_image:before {
+  content: "\e90d";
+}
+.ico_bullhorn:before {
+  content: "\e91a";
+}
+.ico_connection:before {
+  content: "\e91b";
+}
+.ico_profile:before {
+  content: "\e923";
+}
+.ico_cart:before {
+  content: "\e93a";
+}
+.ico_credit-card:before {
+  content: "\e93f";
+}
+.ico_address-book:before {
+  content: "\e944";
+}
+.ico_alarm:before {
+  content: "\e950";
+}
+.ico_bell:before {
+  content: "\e951";
+}
+.ico_calendar:before {
+  content: "\e953";
+}
+.ico_keyboard:before {
+  content: "\e955";
+}
+.ico_redo2:before {
+  content: "\e968";
+}
+.ico_forward:before {
+  content: "\e969";
+}
+.ico_reply:before {
+  content: "\e96a";
+}
+.ico_bubbles:before {
+  content: "\e96c";
+}
+.ico_bubbles2:before {
+  content: "\e96d";
+}
+.ico_bubbles4:before {
+  content: "\e970";
+}
+.ico_users:before {
+  content: "\e972";
+}
+.ico_spinner9:before {
+  content: "\e982";
+}
+.ico_spinner10:before {
+  content: "\e983";
+}
+.ico_gift:before {
+  content: "\e99f";
+}
+.ico_bin:before {
+  content: "\e9ac";
+}
+.ico_menu:before {
+  content: "\e9bd";
+}
+.ico_warning:before {
+  content: "\ea07";
+}
+.ico_plus:before {
+  content: "\ea0a";
+}
+.ico_minus:before {
+  content: "\ea0b";
+}
+.ico_cross:before {
+  content: "\ea0f";
+}
+.ico_exit:before {
+  content: "\ea14";
+}
+.ico_circle-up:before {
+  content: "\ea41";
+}
+.ico_circle-right:before {
+  content: "\ea42";
+}
+.ico_circle-down:before {
+  content: "\ea43";
+}
+.ico_circle-left:before {
+  content: "\ea44";
+}
+.ico_checkbox-checked:before {
+  content: "\ea52";
+}
+.ico_search:before {
+  content: "\e600";
+}

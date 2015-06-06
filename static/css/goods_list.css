@@ -1,0 +1,44 @@
+/*商品列表*/
+.hide_phone {
+  background: #36424b;
+}
+.hide_phone .banner-wrapper {
+  color: #fff;
+  margin: 0 auto;
+  width: 560px;
+  height: 60px;
+  position: relative;
+}
+.hide_phone .banner-wrapper .nav {
+  margin: 0;
+  padding-top: 3px;
+}
+.hide_phone .banner-wrapper .nav .banner-prev,
+.hide_phone .banner-wrapper .nav .banner-next {
+  background-color: #36424b;
+  color: #fff;
+  display: block;
+  font-size: 20px;
+  opacity: .7;
+  padding: 10px 0;
+  position: absolute;
+  width: 45px;
+  text-align: center;
+  z-index: 10;
+  -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+  -o-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+.hide_phone .banner-wrapper .nav .banner-prev:hover,
+.hide_phone .banner-wrapper .nav .banner-next:hover {
+  opacity: 1;
+}
+.hide_phone .banner-wrapper .nav .banner-prev {
+  left: 0;
+  text-align: left;
+}
+.hide_phone .banner-wrapper .nav .banner-next {
+  right: 0;
+  text-align: right;
+}

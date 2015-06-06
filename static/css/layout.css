@@ -1,0 +1,720 @@
+/******************重置样式开始*****************/
+html {
+  background: #fafafa;
+  color: #3d454d;
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 1px;
+}
+body,
+input,
+textarea,
+button,
+select,
+pre,
+tt,
+code,
+kbd,
+samp,
+optgroup,
+option {
+  line-height: 1.8;
+  font-family: 'Microsoft YaHei', arial, 'Hiragino Sans GB', '\5fae\8f6f\96c5\9ed1', '\5b8b\4f53', arial, verdana, helvetica, sans-serif;
+}
+body,
+ul,
+ol,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+figure,
+form,
+fieldset,
+legend,
+input,
+textarea,
+button,
+p,
+blockquote,
+th,
+td,
+pre,
+xmp {
+  margin: 0;
+  padding: 0;
+  font-weight: 100;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: left;
+}
+caption,
+th {
+  text-align: inherit;
+}
+ul,
+ol,
+menu {
+  list-style: none;
+}
+fieldset,
+img {
+  border: none;
+}
+img,
+object,
+input,
+textarea,
+button,
+select {
+  vertical-align: top;
+}
+article,
+aside,
+footer,
+header,
+section,
+nav,
+figure,
+figcaption,
+hgroup,
+details,
+menu {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+button,
+select,
+small {
+  font-size: 100%;
+}
+address,
+cite,
+dfn,
+em,
+i,
+optgroup,
+var {
+  font-style: normal;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+}
+textarea {
+  overflow: auto;
+  resize: none;
+}
+textarea,
+input {
+  outline: none;
+}
+mark {
+  background-color: #50be9e;
+}
+ins,
+s,
+u,
+del {
+  text-decoration: none;
+}
+a {
+  -webkit-transition: all 200ms ease-in;
+  -o-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+  color: #545e69;
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  color: #262b31;
+  text-decoration: none;
+}
+button {
+  border: 0 none;
+}
+input[disabled] {
+  background: #ececec;
+  color: #cccccc;
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #aaaaaa;
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #aaaaaa;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #aaaaaa;
+}
+::-ms-reveal {
+  display: none;
+}
+:focus {
+  -moz-outline-style: none;
+}
+button::-moz-focus-inner {
+  border: none;
+}
+button:focus {
+  outline-style: none;
+}
+/* for Firefox，IE8.0等 */
+/*清除浮动*/
+a {
+  color: #545e69;
+}
+a:hover {
+  color: #000000;
+}
+.hidden {
+  overflow: hidden;
+}
+/***************************主体样式开始***************************/
+html,
+body {
+  height: 100%;
+}
+body {
+  position: relative;
+}
+/*功能展开样式*/
+.rootwarp {
+  padding-top: 60px;
+  -webkit-transition: all 200ms ease-in;
+  -o-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  -transform: translateX(0);
+}
+.rootwarp.show {
+  -webkit-transform: translateX(-225px);
+  -moz-transform: translateX(-225px);
+  -ms-transform: translateX(-225px);
+  -o-transform: translateX(-225px);
+  -transform: translateX(-225px);
+}
+/*头部*/
+header {
+  -webkit-transition: all 200ms ease-in;
+  -o-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  -transform: translateX(0);
+  z-index: 999;
+}
+header.show {
+  -webkit-transform: translateX(-225px);
+  -moz-transform: translateX(-225px);
+  -ms-transform: translateX(-225px);
+  -o-transform: translateX(-225px);
+  -transform: translateX(-225px);
+}
+header.navbar {
+  background: #ffffff;
+}
+header.navbar-fixed-top {
+  position: fixed;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+}
+.inner-nav {
+  height: 60px;
+  overflow: hidden;
+  border-bottom: 1px solid #e0e2e3;
+  padding: 0px 20px;
+  *zoom: 1;
+}
+.inner-nav:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.inner-nav .logo {
+  float: left;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.inner-nav .logo a {
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+  display: block;
+  width: 105px;
+  height: 40px;
+  background-image: url('../img/bg/logo.png');
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+}
+.inner-nav ul {
+  *zoom: 1;
+}
+.inner-nav ul:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.inner-nav ul.nav {
+  line-height: 60px;
+  height: 60px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.inner-nav ul.nav li {
+  float: left;
+}
+.inner-nav ul.nav li a {
+  display: block;
+  padding: 0px 10px;
+  font-weight: bold;
+}
+.nav-sreach {
+  width: 238px;
+  height: 38px;
+  margin-right: 10px;
+  margin-top: 10px;
+  float: left;
+  display: block;
+  border-radius: 20px;
+  border: 1px solid #e0e2e3;
+  background: #fafafa;
+  position: relative;
+  *zoom: 1;
+}
+.nav-sreach:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.nav-sreach i {
+  float: left;
+  display: block;
+  margin-top: 7px;
+  margin-left: 12px;
+  color: #aab0b3;
+}
+.nav-sreach input {
+  border: none;
+  float: left;
+  width: 200px;
+  margin-top: 7px;
+  line-height: 22px;
+  padding-left: 5px;
+  background: none;
+}
+.nav-sreach .clearempty {
+  width: 20px;
+  height: 20px;
+  background: #98a9b5;
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  right: 10px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 14px;
+  cursor: pointer;
+  display: none;
+}
+.nav-sreach .clearempty i {
+  color: #ffffff;
+  margin-top: 0px;
+  margin-left: 0px;
+  font-size: 12px;
+  display: block;
+  text-align: center;
+  width: 20px;
+  margin: 3px auto;
+}
+.sell-buy-sec {
+  float: left;
+}
+.user-nav {
+  float: right;
+  margin-left: 16px;
+}
+.user-nav li.buycartbox {
+  position: relative;
+  cursor: pointer;
+}
+.user-nav li.buycartbox i {
+  font-size: 15px;
+  padding: 6px;
+  border-radius: 50%;
+  border: 1px solid #545e69;
+}
+.user-nav li.buycartbox a:hover i {
+  border: 1px solid #262b31;
+}
+.user-nav li.phonemune {
+  display: none;
+}
+.user-nav li.phonemune i {
+  border: none;
+  font-size: 20px;
+  color: #6a7886;
+  cursor: pointer;
+}
+.user-nav li.phonemune:hover i {
+  color: #3d454d;
+}
+.navipone {
+  width: 225px;
+  height: 100%;
+  background: #36424b;
+  color: #ffffff;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  -webkit-transition: all 200ms ease-in;
+  -o-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+  -webkit-transform: translateX(225px);
+  -moz-transform: translateX(225px);
+  -ms-transform: translateX(225px);
+  -o-transform: translateX(225px);
+  -transform: translateX(225px);
+}
+.navipone.show {
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  -o-transform: translateX(0px);
+  -transform: translateX(0px);
+}
+.navipone a {
+  color: #ffffff;
+}
+.navipone .nav-sreach {
+  width: 209px;
+  height: 38px;
+  *zoom: 1;
+  display: block;
+  margin: 15px 0px 15px 15px;
+}
+.navipone .nav-sreach:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.navipone .nav-sreach input {
+  border: none;
+  float: left;
+  width: 165px;
+  margin-top: 7px;
+  line-height: 22px;
+  padding-left: 5px;
+  background: none;
+}
+.navipone.show .line {
+  width: 100%;
+  height: 10px;
+  background: rgba(100, 100, 100, 0.2);
+}
+.navipone.show .user-nav {
+  float: none;
+}
+.navipone.show .user-nav li {
+  text-align: center;
+  border-bottom: 1px solid rgba(100, 100, 100, 0.2);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.navipone.show .user-nav li:nth-child(1) {
+  display: block;
+}
+.navipone.show .user-nav li:nth-child(2) {
+  display: block;
+}
+.navipone.show .user-nav li.phonemune {
+  display: block;
+}
+.navipone.show .user-nav li a:hover {
+  opacity: 0.6;
+}
+.navipone .inner-nav {
+  float: none;
+  display: block;
+}
+.navipone .inner-nav ul {
+  *zoom: 1;
+}
+.navipone .inner-nav ul:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.navipone .inner-nav ul.nav {
+  line-height: 60px;
+  height: 60px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+}
+.navipone .inner-nav ul.nav li {
+  margin-bottom: 20px;
+}
+.navipone .inner-nav ul.nav li:nth-child(1) {
+  display: block;
+}
+.navipone .inner-nav ul.nav li:nth-child(2) {
+  display: block;
+}
+.navipone .inner-nav ul.nav li a {
+  display: block;
+  padding: 0px 10px;
+  font-weight: bold;
+}
+/*页脚*/
+footer {
+  background: #fafafa;
+  border-top: 1px solid #e0e2e3;
+  padding: 50px 0;
+}
+footer li.header-footer {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+footer .copyright {
+  padding: 0px 20px;
+  text-align: center;
+  color: #788a91;
+}
+.container {
+  margin: 0px auto;
+  width: 1145px;
+}
+.container .row {
+  margin-left: -43px;
+  *zoom: 1;
+}
+.container .row .span3 {
+  width: 243px;
+  margin-left: 43px;
+  float: left;
+}
+.container .row .span3 ul {
+  margin-bottom: 35px;
+}
+.container .row .span4 {
+  width: 338px;
+  margin-left: 43px;
+  float: left;
+}
+.container .row .span4 ul {
+  margin-bottom: 35px;
+}
+.container .row:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+/**按钮*/
+@media (max-width: 1200px) {
+  .container,
+  .navbar-static-top .container,
+  .navbar-fixed-top .container,
+  .navbar-fixed-bottom .container {
+    width: 1145px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1050px) {
+  .container {
+    margin: 0px auto;
+    width: 100%;
+  }
+  .container .row {
+    margin-left: 0px;
+    padding-right: 5%;
+    *zoom: 1;
+  }
+  .container .row .span3 {
+    width: 28.33333333%;
+    margin-left: 5%;
+    float: left;
+  }
+  .container .row .span3 ul {
+    margin-bottom: 35px;
+  }
+  .container .row .span4 {
+    width: 45%;
+    margin-left: 5%;
+    float: left;
+  }
+  .container .row .span4 ul {
+    margin-bottom: 35px;
+  }
+  .container .row:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    margin: 0px auto;
+    width: 100%;
+  }
+  .container .row {
+    margin-left: 0px;
+    *zoom: 1;
+  }
+  .container .row .span3 {
+    width: 20%;
+    margin-left: 5%;
+    float: left;
+  }
+  .container .row .span3 ul {
+    margin-bottom: 35px;
+  }
+  .container .row .span4 {
+    width: 45%;
+    margin-left: 5%;
+    float: left;
+  }
+  .container .row .span4 ul {
+    margin-bottom: 35px;
+  }
+  .container .row:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+  .user-nav li:nth-child(1) {
+    display: none;
+  }
+  .user-nav li:nth-child(2) {
+    display: none;
+  }
+  .user-nav li.phonemune {
+    display: block;
+  }
+  .user-nav li.phonemune {
+    display: block;
+  }
+}
+@media (max-width: 660px) {
+  .container {
+    margin: 0px auto;
+    width: 100%;
+  }
+  .container .row {
+    padding-right: 5%;
+    margin-left: 0px;
+    *zoom: 1;
+  }
+  .container .row .span3 {
+    width: 45%;
+    margin-left: 5%;
+    float: left;
+  }
+  .container .row .span3 ul {
+    margin-bottom: 35px;
+  }
+  .container .row .span4 {
+    width: 95%;
+    margin-left: 5%;
+    float: left;
+  }
+  .container .row .span4 ul {
+    margin-bottom: 35px;
+  }
+  .container .row:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+  .sell-buy-sec {
+    display: none;
+  }
+}
+@media (max-width: 510px) {
+  .container {
+    margin: 0px auto;
+    width: 100%;
+  }
+  .container .row {
+    padding-right: 5%;
+    margin-left: 0px;
+    *zoom: 1;
+  }
+  .container .row .span3 {
+    width: 45%;
+    margin-left: 5%;
+    float: left;
+  }
+  .container .row .span3 ul {
+    margin-bottom: 10px;
+  }
+  .container .row .span4 {
+    width: 95%;
+    margin-left: 5%;
+    margin-right: 5%;
+    float: none;
+  }
+  .container .row .span4 ul {
+    margin-bottom: 35px;
+  }
+  .container .row:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+  .nav-sreach {
+    display: none;
+  }
+}
