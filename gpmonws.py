@@ -80,7 +80,7 @@ GPDB_PRODUCT_ID_FILE = '/opt/greenplum/conf/productid'
 MODULE_SIZE = 4
 MODULE_SIZE_V2 = 2
 
-instance_name = os.path.basename(os.path.abspath(os.path.join(os.getcwd(), '..')))
+instance_name = 'test' 
 tmp_schema_name = 'gpcmdr_instance_%s' % instance_name
 
 app = render = session = None
@@ -112,7 +112,6 @@ urls = ('/', 'index',
         '/resqueue', 'resqueue',
         '/roles', 'roles',
         '/gpconfig', 'gpconfig',
-        '/spaceusage', 'spaceusage',
         '/diskusagesummary', 'diskusagesummary',
         '/diskusagehistory', 'diskusagehistory',
         '/uptime', 'uptime',
@@ -136,7 +135,7 @@ urls = ('/', 'index',
 
 app = web.application(urls, locals())
 session = web.session.Session(app, 
-                              web.session.DiskStore(tempfile.mkdtemp(dir=os.path.join(os.getcwd(), '..', 'sessions'))), 
+                              web.session.DiskStore(tempfile.mkdtemp(dir=os.path.join(os.getcwd(), 'runtime', 'sessions'))), 
                               initializer={'user': '', 'password' : '', 'role': {}, 
                                            'loggedin': 0, 'gpperfmon_instance_name': instance_name, 'csrf_token':''})
 
@@ -587,7 +586,7 @@ class index:
         else:
             host = web.ctx.host
             port = ''
-        return render.index(web.ctx.protocol, host, port, displayed_server_name, gpperfmon_version, username, password)
+        return render.index()
   
     def GET(self):
         web.header('Content-Type', 'text/html')
@@ -601,7 +600,7 @@ class index:
         else:
             host = web.ctx.host
             port = ''
-        return render.index(web.ctx.protocol, host, port, displayed_server_name, gpperfmon_version)
+        return render.index()
 
 class api:
     def __init__(self):
@@ -749,7 +748,7 @@ class config:
         # Holds the complete configuration
         self.gpperfmon_config = {}
 
-        filename = os.path.join(os.getcwd(), '..', 'conf', 'gpperfmonui.conf')
+        filename = os.path.join(os.getcwd(), 'conf', 'gpperfmonui.conf')
         try:
             # parse configuration file
             cfg = ConfigParser.SafeConfigParser()
@@ -2420,138 +2419,6 @@ class gprecoverseg:
 
         return render.gpcontrol_output(args, starttime, token, status, retCode, byte_num, output)
 
-class spaceusage:
-    @csrf_protected
-    def POST(self):
-        web.header('Content-Type', 'text/xml')
-        web.header('Cache-Control', 'no-store')
-
-        i = web.input(token='')
-        cleanKrbFile()
-        if not session.loggedin:
-            return mkerr(error.ACCESS_DENIED, 'You must be logged on to perform this operation')
-        if not isOperatorOrSuper():
-            return mkerr(error.ACCESS_DENIED, 'You must be superuser or operator to perform this operation')
-
-        if i.token == '':
-            return mkerr(error.BADREQ, 'Must specify token')
-
-        dbnamelist = ""
-        dblist = db.db_list(session.user, session.password)
-        for dbmap in dblist:
-            dbnamelist += dbmap['datname']
-            dbnamelist += ','
-
-        db_installation_user = db.db_installing_user(session.user, session.password) 
-        
-        log.msg("dbname list is %s and installing user is %s" % (dbnamelist, db_installation_user))
-
-        ok = db.spaceusage(gpdb_server_name, dbnamelist, db_installation_user, i.token)
-
-        if not ok:
-            log.msg("failure trying to execute spaceusage")
-            return render.gpcontrol_submit(False)
-
-        return render.gpcontrol_submit(True)
-
-    @csrf_protected
-    def GET(self):
-
-        web.header('Content-Type', 'text/xml')
-        web.header('Cache-Control', 'no-store')
-
-        i = web.input()
-        cleanKrbFile()
-        if not session.loggedin:
-            return mkerr(error.ACCESS_DENIED, 'You must be logged on to perform this operation')
-
-        if not isOperatorOrSuper():
-            return mkerr(error.ACCESS_DENIED, 'You must be superuser or operator to perform this operation')
-
-        res = []
-        outfile = os.path.join(os.getcwd(), '..', 'commands', 'spaceusage.output')
-        log.msg('opening %s' % outfile)
-
-        tot_heap_dusage = 0
-        tot_heap_comp_sz = 0
-        tot_heap_indx_sz = 0
-        tot_heap_time = 0 
-        tot_ao_dusage = 0
-        tot_ao_comp_sz = 0
-        tot_ao_indx_sz = 0
-        tot_ao_time = 0 
-        tot_co_dusage = 0
-        tot_co_comp_sz = 0
-        tot_co_indx_sz = 0 
-        tot_co_time = 0
-
-        if os.path.exists(outfile):
-            try:
-                fd = open(outfile)
-                for line in fd:
-                    fields = line.strip().split('')
-                    if len(fields) != 6:
-                        continue
-                    row = dict()
-                    row['database'] = fields[0]
-                    row['timestamp'] = fields[1]
-                    row['spacetype'] = fields[2]
-                    row['diskused'] =   round(float(fields[3]), 2)
-                    row['compressed'] = round(float(fields[4]), 2)
-                    row['indexsize'] =  round(float(fields[5]), 2)
-                    if (row['spacetype'] == 'h'):
-                        tot_heap_dusage += round(float(fields[3]), 2)
-                        tot_heap_comp_sz += round(float(fields[4]), 2)                       
-                        tot_heap_indx_sz += round(float(fields[5]), 2)
-                        tot_heap_time = fields[1] 
-                    elif (row['spacetype'] == 'a'):
-                        tot_ao_dusage +=  round(float(fields[3]), 2)
-                        tot_ao_comp_sz += round(float(fields[4]), 2)
-                        tot_ao_indx_sz += round(float(fields[5]), 2)
-                        tot_ao_time = fields[1]
-                    elif (row['spacetype'] == 'c'):
-                        tot_co_dusage +=  round(float(fields[3]), 2)
-                        tot_co_comp_sz += round(float(fields[4]), 2)
-                        tot_co_indx_sz += round(float(fields[5]), 2)
-                        tot_co_time = fields[1]
-
-                    if row['spacetype'] != 'x':
-                        res.append(row)
-                log.msg('done')
-                heap_row = dict()
-                heap_row['database'] = "total"
-                heap_row['timestamp'] = tot_heap_time
-                heap_row['spacetype'] = 'h'
-                heap_row['diskused'] = tot_heap_dusage
-                heap_row['compressed'] = tot_heap_comp_sz
-                heap_row['indexsize'] = tot_heap_indx_sz
-                res.append(heap_row)
-
-                ao_row = dict()
-                ao_row['database'] = "total"
-                ao_row['timestamp'] = tot_ao_time
-                ao_row['spacetype'] = 'a'
-                ao_row['diskused'] = tot_ao_dusage
-                ao_row['compressed'] = tot_ao_comp_sz
-                ao_row['indexsize'] = tot_ao_indx_sz
-                res.append(ao_row)
-
-                co_row = dict()
-                co_row['database'] = "total"
-                co_row['timestamp'] = tot_co_time
-                co_row['spacetype'] = 'c'
-                co_row['diskused'] = tot_co_dusage
-                co_row['compressed'] = tot_co_comp_sz
-                co_row['indexsize'] = tot_co_indx_sz
-                res.append(co_row)
-
-                (args, starttime, token, status, retCode, byte_num, output) = db.get_application_meta_data('spaceusage', 'no', '1')
-
-                return render.spaceusage(res, status)
-            except Exception, e:
-                return mkerr(error.ACCESS_DENIED, 'An error occured %s' % e.__str__().strip())
-        else:
-            return render.success()
 
 class segmentconfig:
 
@@ -2898,18 +2765,17 @@ def init_session(app, instance_name, store_path, timeout, secure):
     return web.session.Session(app, store = store, initializer = initializer)
      
 if __name__ == '__main__':
-    log = gplog.GpWebLogger(os.getcwd() + "/../logs/gpmonws.log")
+    log = gplog.GpWebLogger(os.getcwd() + "/runtime/logs/gpmonws.log")
     log.msg("gpmonws started")
     db.set_logger(log)
 
     config()
-    global sessionTimeout
     app = web.application(urls, locals())
     app.notfound = page_not_found
     #app.internalerror = web.debugerror
     app.internalerror = internal_error
     
-    store_path = tempfile.mkdtemp(dir=os.path.join(os.getcwd(), '..', 'sessions'))
+    store_path = tempfile.mkdtemp(dir=os.path.join(os.getcwd(), 'runtime', 'sessions'))
     session = init_session(app, instance_name, store_path, sessionTimeout, ssl_enabled)
     
     render = web.template.render('./templates/', cache=False)
@@ -2917,4 +2783,3 @@ if __name__ == '__main__':
     thread.start_new_thread(defensive_check, (ONE_DAY_IN_SECONDS, ) )
 
     app.run()
-
