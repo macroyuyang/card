@@ -86,10 +86,8 @@ tmp_schema_name = 'gpcmdr_instance_%s' % instance_name
 app = render = session = None
 
 urls = ('/', 'index',
-        '/api', 'api',
         '/logon', 'logon',
         '/logoff', 'logoff',
-        '/config', 'config', 
         '/hosts', 'hosts',
         '/database', 'database',
         '/system', 'system',
@@ -120,7 +118,6 @@ urls = ('/', 'index',
         '/dialhome_summary', 'dialhome_summary',
         '/alerts_summary', 'alerts_summary',
         '/moduledetails', 'moduledetails',
-        '/clusterinfo', 'clusterinfo',
         '/healthinfo', 'healthinfo',
         '/multiCluster', 'multiCluster',
         '/getStatus', 'getStatus',
@@ -241,142 +238,7 @@ class getStatus():
             except urllib2.HTTPException, e:
                 log.msg("HTTP exception: %s" %(e))
                 return mkerr('UNREACHABLE', str(e))
-           
 
-
-class clusterinfo():
-    @csrf_protected
-    def GET(self):
-        global maxOpenConnections, dbHealth_PollInterval
-        
-        web.header('Content-Type', 'application/json')
-        web.header('Cache-Control', 'no-store')
-        web.header('Access-Control-Allow-Origin', '*')        
-        i = web.input()
-
-        filename = os.path.join(os.getcwd(), '..', 'conf', 'clusters.conf')
-        callbackFunction = i['callback']
-        if not session.loggedin:
-            data = [{'Error':True,'Code':"INVS", 'Message':"You must be logged on to perform this operation"}]
-            responseData = callbackFunction + '(' + json.dumps(data) + ')'
-            return responseData
-        try :
-            file = open(filename)
-        except :
-            log.msg("FATAL: Unable to load configuration file: cluster.conf")
-            data = [{'Error':True, 'Code':"FTOP", 'Message':"Unable to read clusters data. Check logs for more information"}]
-            responseData = callbackFunction + '(' + json.dumps(data) + ')'
-            return responseData
-
-        line = file.readline()
-        data = []
-        lineCount = 0
-        try :
-            while line:
-                lineCount = lineCount + 1
-                line = line.strip()
-                if (line != "") and (line[0] != '#') :
-                    values = line.split(':')
-                    valuesLen = len(values)
-                    if valuesLen == 6 :
-                        required = []
-                        specialCharCheck = re.compile('^[\w\s-]+$')
-                        for index in range(valuesLen):
-                            values[index] = values[index].strip()
-                            if (index == 0):
-                                check = specialCharCheck.search(values[index])
-                                if (values[index] == ''):
-                                    required.append("SERVER")
-                                elif (check == None):
-                                    log.msg("Invalid SERVER name special characters are not allowed at line number: %s" % lineCount)
-                                    file.close()
-                                    data = [{'Error':True, 'Code':"IVSN", 'Message':"An invalid character has been supplied in the SERVERNAME field. Allowable characters [A-Z/a-z/0-9/-/space/_]", 'Data':[values[index],lineCount]}]
-                                    responseData = callbackFunction + '(' + json.dumps(data) + ')'
-                                    return responseData
-                            elif (index == 1) and (values[index] == ''):
-                                required.append("HOST")
-                            elif (index == 2):
-                                if (values[index] == ''):
-                                    required.append("PORT")
-                                elif not values[index].isdigit():
-                                    log.msg("Invalid port number; only numbers are allowed at line number: %s" % lineCount)
-                                    file.close()
-                                    data = [{'Error':True, 'Code':"IVPN", 'Message':"An invalid PORT number has been supplied in the PORT field. Only numbers are allowed", 'Data':[values[index],lineCount]}]
-                                    responseData = callbackFunction + '(' + json.dumps(data) + ')'
-                                    return responseData
-                            elif (index == 3):
-                                check = specialCharCheck.search(values[index])
-                                if (values[index] == ''):
-                                    required.append("TABGROUP")
-                                elif (check == None):
-                                    log.msg("Invalid TABGROUP special characters are not allowed at line number: %s" % lineCount)
-                                    file.close()
-                                    data = [{'Error':True, 'Code':"IVTG", 'Message':"An invalid character has been supplied in the TABGROUP field. Allowable characters [A-Z/a-z/0-9/-/space/_]", 'Data':[values[index],lineCount]}]
-                                    responseData = callbackFunction + '(' + json.dumps(data) + ')'
-                                    return responseData
-                            elif (index == 4):
-                                autoLogin = values[index].lower() 
-                                if (autoLogin == ''):
-                                    values[index] = 'false'
-                                elif (autoLogin == 'true'):
-                                    values[index] = 'True'
-                                elif (autoLogin == 'false'):
-                                    values[index] = 'False'
-                                else:
-                                    log.msg("Invalid entry in AUTOLOGIN field it allows only true/false case insensitive")
-                                    file.close()
-                                    data = [{'Error':True, 'Code':"IALF", 'Message':"Invalid entry in AUTOLOGIN field it allows only true/false case insensitive", 'Data':[values[index],lineCount]}]
-                                    responseData = callbackFunction + '(' + json.dumps(data) + ')'
-                                    return responseData
-                            elif (index == 5):
-                                sslEnable = values[index].lower()
-                                if (sslEnable == ''):
-                                    values[index] = 'false'
-                                elif (sslEnable == 'true'):
-                                    values[index] = 'True'
-                                elif (sslEnable == 'false'):
-                                    values[index] = 'False'
-                                else:
-                                    log.msg("Invalid entry in SSL field it allows only true/false case insensitive")
-                                    file.close()
-                                    data = [{'Error':True, 'Code':"ISSLF", 'Message':"Invalid entry in SSL field it allows only true/false case insensitive", 'Data':[values[index],lineCount]}]
-                                    responseData = callbackFunction + '(' + json.dumps(data) + ')'
-                                    return responseData      
-                        if len(required) == 0 :
-                            data.append({'server':values[0], 'host':values[1], 'port':values[2], 'pagegroup':values[3], 'autologin':values[4], 'sslEnable':values[5], 'lineNo':lineCount}) 
-                        else :
-                            log.msg("Fields required at line no:%s values %s" % (lineCount, required))
-                            file.close()
-                            required.append(lineCount)
-                            data = [{'Error':True, 'Code':"RFM", 'Message':"One or more of the required fields (SERVER, HOST, PORT, TABGROUP, AUTOLOGIN, SSL) has been left blank.", 'Data':required}]
-                            responseData = callbackFunction + '(' + json.dumps(data) + ')'
-                            return responseData
-                    else :
-                        log.msg("Invalid number of fields in cluster configuration file : Required fields are (SERVER, HOST, PORT, TABGROUP, AUTOLOGIN and SSL) at line %s" % lineCount)
-                        file.close()
-                        data = [{'Error':True, 'Code':"INRF", 'Message':"Invalid number of fields in cluster configuration file : Required fields are (SERVER, HOST, PORT, TABGROUP, AUTOLOGIN and SSL)", 'Data':[lineCount]}]
-                        responseData = callbackFunction + '(' + json.dumps(data) + ')'
-                        return responseData
-
-                line = file.readline()
-        except Exception, e:
-            log.msg("Error parsing the cluster configuration file : %s" % e.__str__())
-            file.close()
-            data = [{'Error':True, 'Code':"FPE", 'Message':"Parse error. Check logs for more information"}]
-            responseData = callbackFunction + '(' + json.dumps(data) + ')'
-            return responseData
-        file.close()
-        if int(maxOpenConnections) < 1 :
-            maxOpenConnections = 1  
-            log.msg("Max parallel connection allowed is set in gpperfmonui.conf is inavllid and it's value is reset to %s" % maxOpenConnections)
-        
-        if int(dbHealth_PollInterval) < 5000 :
-            dbHealth_PollInterval = 5000  
-            log.msg("Poll Interval value set in gpperfmonui.conf is inavllid and it's value is reset to %s mill sec" % dbHealth_PollInterval)
-
-        data.append({'maxConnection':maxOpenConnections,'pollInterval':dbHealth_PollInterval})
-        responseData = callbackFunction + '(' + json.dumps(data) + ')' 
-        return responseData
 
 class multiCluster():
     def GET(self):
@@ -748,7 +610,7 @@ class config:
         # Holds the complete configuration
         self.gpperfmon_config = {}
 
-        filename = os.path.join(os.getcwd(), 'conf', 'gpperfmonui.conf')
+        filename = os.path.join(os.getcwd(), 'conf', 'webserver.conf')
         try:
             # parse configuration file
             cfg = ConfigParser.SafeConfigParser()
@@ -1821,10 +1683,10 @@ class alerts_summary:
         try:
             res = db.alerts_summary(limit, severity, session.user, session.password)
         except db.GPDBError, err:
-            log.msg('gpmonws: database error in call to db.alerts_summary: %s' % err)
+            log.msg('webserver: database error in call to db.alerts_summary: %s' % err)
             return mkerr(error.DATA_ACCESS, err.__str__())
         except Exception, err:
-            log.msg('gpmonws: unknown exception in call to db.alerts_summary: %s' % err)
+            log.msg('webserver: unknown exception in call to db.alerts_summary: %s' % err)
             return mkerr(error.BADREQ, err.__str__())
         except:
             err = sys.exc_info()[0]
@@ -1863,10 +1725,10 @@ class dialhome_summary:
         try:
             res = db.dialhome_summary(limit, severity, session.user, session.password)
         except db.GPDBError, err:
-            log.msg('gpmonws: database error in call to db.dialhome_summary: %s' % err)
+            log.msg('webserver: database error in call to db.dialhome_summary: %s' % err)
             return mkerr(error.DATA_ACCESS, err.__str__())
         except Exception, err:
-            log.msg('gpmonws: unknown exception in call to db.dialhome_summary: %s' % err)
+            log.msg('webserver: unknown exception in call to db.dialhome_summary: %s' % err)
             return mkerr(error.BADREQ, err.__str__())
         except:
             err = sys.exc_info()[0]
@@ -2343,83 +2205,6 @@ class uptime:
         return render.uptime(gpdbUptime, gpdbVersion, dcaVersion, dcaSerialNumber, openConnections, serverTime, gpdbDescription)
 
 
-class gprecoverseg:
-    @csrf_protected
-    def POST(self):
-        web.header('Content-Type', 'text/xml')
-        web.header('Cache-Control', 'no-store')
-
-        i = web.input(full='', token='', rebalance='')
-        cleanKrbFile()
-        if not session.loggedin:
-            return mkerr(error.ACCESS_DENIED, 'You must be logged on to perform this operation')
-
-        if not isSuperUser():
-            return mkerr(error.ACCESS_DENIED, 'You must be a super user to perform this operation')
-
-        if i.token == '':
-            return mkerr(error.BADREQ, 'Must specify token')
-
-        if i.full and i.rebalance:
-            return mkerr(error.BADREQ, 'Can not specify both the full and rebalance parameters to recoverseg')
-
-        if i.rebalance:
-            try:
-                gpdbVersion = db.getgpdbversion(session.user, session.password)
-            except db.GPDBError, err:
-                log.msg('Database error when calling gprecoverseg WS: %s' % err)
-                return mkerr(error.DATA_ACCESS, err.__str__())
-            except Exception, err:
-                log.msg('Unknown exception in call to gprecoverseg web service: %s' % err)
-                return mkerr(error.BADREQ, err.__str__())
-            except:
-                err = sys.exc_info()[0]
-                log.msg('Unknown exception in call to gprecoverseg web service: %s' % err)
-                return mkerr(error.BADREQ, err)
-            
-            parts = str(gpdbVersion).split("Greenplum Database ")
-            if len(parts) > 1:
-                gpdbVersion = parts[1]
-            parts = gpdbVersion.split(")")
-            gpdbVersion = parts[0].split()
-            if len(gpdbVersion) != 3:
-                return mkerr(error.BADREQ, "bad output while fetching GPDB version: %s" % (fields))
-            parts = gpdbVersion[0].split(".")
-            if len(parts) != 4:
-                 return mkerr(error.BADREQ, "gpdb version is not in expected format")
-            major = int(parts[0].strip())
-            minor = int(parts[1].strip())
-            if major == 4 and minor == 0:
-                return mkerr(error.BADREQ, 'Online rebalance is only available in GPDB version 4.1.x.x and above. You must restart the database in order to rebalance the segments.') 
-
-
-        ok = db.gprecoverseg(gpdb_server_name, i.full, i.token, i.rebalance)
-
-        if not ok:
-            log.msg("failure trying to execute gprecoverseg")
-            return render.gpcontrol_submit(False)
-
-        return render.gpcontrol_submit(True)
-
-    @csrf_protected
-    def GET(self):
-
-        web.header('Content-Type', 'text/xml')
-        web.header('Cache-Control', 'no-store')
-
-        i = web.input(plusoutput='no', firstbyte='0')
-        cleanKrbFile()
-        if not session.loggedin:
-            return mkerr(error.ACCESS_DENIED, 'You must be logged on to perform this operation')
-
-        (args, starttime, token, status, retCode, byte_num, output) = db.get_application_meta_data('gprecoverseg', i.plusoutput, i.firstbyte)
-
-        if not args:
-            return mkerr(error.BADREQ, 'could not locate command metadata')
-
-        return render.gpcontrol_output(args, starttime, token, status, retCode, byte_num, output)
-
-
 class segmentconfig:
 
     @csrf_protected
@@ -2744,10 +2529,10 @@ class autologininfo:
 def memory_check(threshold):
     memory_bytes = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     if memory_bytes >= threshold:
-        log.msg("gpmonws memory usage is more than %s, restarting..." % (memory_bytes))
+        log.msg("webserver memory usage is more than %s, restarting..." % (memory_bytes))
         sys.exit(1)
     else:
-        log.msg("gpmonws memory usage is %s" % (memory_bytes))
+        log.msg("webserver memory usage is %s" % (memory_bytes))
 
 def defensive_check(check_time):
     log.msg("starting defensive check thread, check time is %s" % check_time)
@@ -2765,8 +2550,8 @@ def init_session(app, instance_name, store_path, timeout, secure):
     return web.session.Session(app, store = store, initializer = initializer)
      
 if __name__ == '__main__':
-    log = gplog.GpWebLogger(os.getcwd() + "/runtime/logs/gpmonws.log")
-    log.msg("gpmonws started")
+    log = gplog.GpWebLogger(os.getcwd() + "/runtime/logs/webserver.log")
+    log.msg("webserver started")
     db.set_logger(log)
 
     config()
@@ -2776,7 +2561,7 @@ if __name__ == '__main__':
     app.internalerror = internal_error
     
     store_path = tempfile.mkdtemp(dir=os.path.join(os.getcwd(), 'runtime', 'sessions'))
-    session = init_session(app, instance_name, store_path, sessionTimeout, ssl_enabled)
+    #session = init_session(app, instance_name, store_path, sessionTimeout, ssl_enabled)
     
     render = web.template.render('./templates/', cache=False)
 
