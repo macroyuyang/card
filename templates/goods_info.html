@@ -810,7 +810,7 @@ egift卡可以网上唯一的救赎。他们发送到您的帐户在24小时内�
 
 
     <script type="text/javascript">
-        $(".txtScroll-left").slide({
+        jQuery(".txtScroll-left").slide({
             titCell:".hd ul",
             mainCell:".bd ul",
             autoPage:true,
@@ -821,13 +821,13 @@ egift卡可以网上唯一的救赎。他们发送到您的帐户在24小时内�
         });
 
 
-        $(".tr>.type,.tr>.value,.tr>.value,.tr>.off,.tr>.price").bind("click",function(){
-            var $parents=$(this).parents(".tr");
-            var $showhide=$parents.find(".detail");
-            if($showhide.is(":hidden")){
-                $showhide.slideDown();
+        jQuery(".tr>.type,.tr>.value,.tr>.value,.tr>.off,.tr>.price").bind("click",function(){
+            var parents=jQuery(this).parents(".tr");
+            var showhide=parents.find(".detail");
+            if(showhide.is(":hidden")){
+                showhide.slideDown();
             }else{
-                $showhide.slideUp();
+                showhide.slideUp();
             }
 
         })
