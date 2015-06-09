@@ -86,6 +86,8 @@ tmp_schema_name = 'gpcmdr_instance_%s' % instance_name
 app = render = session = None
 
 urls = ('/', 'index',
+        '/goods_list', 'goods_list',
+        '/buy-gift-cards', 'buy_gift_cards',
         '/logon', 'logon',
         '/logoff', 'logoff',
         '/hosts', 'hosts',
@@ -463,6 +465,88 @@ class index:
             host = web.ctx.host
             port = ''
         return render.index()
+
+class goods_list:
+    def POST(self):
+        web.header('Content-Type', 'text/html')
+        web.header('Cache-Control', 'no-store')
+        i = web.input()
+        if i.has_key('username'):
+            username = i['username']
+        else:
+            username = ''
+        if i.has_key('password'):
+            password = i['password']
+        else:
+            password  = ''
+        if web.ctx.env.has_key('KRB5CCNAME') :
+            if os.path.isfile(web.ctx.env['KRB5CCNAME']) :
+                db.removeKrbTicket(web.ctx.env['KRB5CCNAME'])
+        host_and_port = web.ctx.host.split(':', 1)
+        if len(host_and_port) == 2:
+            host = host_and_port[0]
+            port = host_and_port[1]
+        else:
+            host = web.ctx.host
+            port = ''
+        return render.goods_list()
+  
+    def GET(self):
+        web.header('Content-Type', 'text/html')
+        web.header('Cache-Control', 'no-store')
+
+        cleanKrbFile()
+        host_and_port = web.ctx.host.split(':',1)
+        if len(host_and_port) == 2:
+            host = host_and_port[0]
+            port = host_and_port[1]
+        else:
+            host = web.ctx.host
+            port = ''
+        i = web.input()
+        log.msg(i)
+        return render.goods_list()
+
+
+class buy_gift_cards:
+    def POST(self):
+        web.header('Content-Type', 'text/html')
+        web.header('Cache-Control', 'no-store')
+        i = web.input()
+        if i.has_key('username'):
+            username = i['username']
+        else:
+            username = ''
+        if i.has_key('password'):
+            password = i['password']
+        else:
+            password  = ''
+        if web.ctx.env.has_key('KRB5CCNAME') :
+            if os.path.isfile(web.ctx.env['KRB5CCNAME']) :
+                db.removeKrbTicket(web.ctx.env['KRB5CCNAME'])
+        host_and_port = web.ctx.host.split(':', 1)
+        if len(host_and_port) == 2:
+            host = host_and_port[0]
+            port = host_and_port[1]
+        else:
+            host = web.ctx.host
+            port = ''
+        return render.goods_list()
+  
+    def GET(self):
+        web.header('Content-Type', 'text/html')
+        web.header('Cache-Control', 'no-store')
+
+        cleanKrbFile()
+        host_and_port = web.ctx.host.split(':',1)
+        if len(host_and_port) == 2:
+            host = host_and_port[0]
+            port = host_and_port[1]
+        else:
+            host = web.ctx.host
+            port = ''
+        return render.goods_list()
+
 
 class api:
     def __init__(self):
@@ -2557,8 +2641,8 @@ if __name__ == '__main__':
     config()
     app = web.application(urls, locals())
     app.notfound = page_not_found
-    #app.internalerror = web.debugerror
-    app.internalerror = internal_error
+    app.internalerror = web.debugerror
+    #app.internalerror = internal_error
     
     store_path = tempfile.mkdtemp(dir=os.path.join(os.getcwd(), 'runtime', 'sessions'))
     #session = init_session(app, instance_name, store_path, sessionTimeout, ssl_enabled)
