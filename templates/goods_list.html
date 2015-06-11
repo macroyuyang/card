@@ -1,3 +1,4 @@
+$def with (cardtypes, cardcategories, sellitems)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +7,14 @@
     <meta name="Description" content="二手交易网 是国内首批网络二手交易平台之一,主要为全国工薪阶层、电商、中小企业主提供二手交易服务。" />
     <meta name="keywords" content="二手网,回收旧手机,礼品,礼品卡,网络设备" />
     <title>国内最大的二手交易平台</title>
-    <link rel="stylesheet" href="../static/css/layout.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/font_ico.css" type="text/css">
-    <link rel="stylesheet" href="../static/css/goods_list.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/layout.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font_ico.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/goods_list.css" type="text/css">
     <!--[if lt IE 8]><!-->
-     <link rel="stylesheet" href="../static/css/lib/ie7.css">
+     <link rel="stylesheet" href="/static/css/lib/ie7.css">
     <!--<![endif]-->
     <!--[if lt IE 9]>
-        <script type="text/javascript" src="../static/js/lib/html5.js"></script>
+        <script type="text/javascript" src="/static/js/lib/html5.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -147,35 +148,15 @@
                         <li><a href="">100--150</a></li>
                         <li><a href="">200--300</a></li>
                     </ul>
-                     <ul class="navlist">
+                     <ul class="navlist">	
                         <li class="title">卡类型</li>
-                        <li><a href="">超市卡</a></li>
-                        <li><a href="">银行卡</a></li>
-                        <li><a href="">家乐福卡</a></li>
-                        <li><a href="">沃尔玛卡</a></li>
+                        $for item in cardtypes:
+                            <li><a href="">$item.name</a></li>
                     </ul>
                      <ul class="navlist">
-                        <li class="title">类目五</li>
-                        <li><a href="">20--30</a></li>
-                        <li><a href="">30--50</a></li>
-                        <li><a href="">100--150</a></li>
-                        <li><a href="">200--300</a></li>
-                         <li><a href="">超市卡</a></li>
-                        <li><a href="">银行卡</a></li>
-                        <li><a href="">家乐福卡</a></li>
-                        <li><a href="">沃尔玛卡</a></li>
-                         <li><a href="">超市卡</a></li>
-                        <li><a href="">银行卡</a></li>
-                        <li><a href="">家乐福卡</a></li>
-                        <li><a href="">沃尔玛卡</a></li>
-                         <li><a href="">超市卡</a></li>
-                        <li><a href="">银行卡</a></li>
-                        <li><a href="">家乐福卡</a></li>
-                        <li><a href="">沃尔玛卡</a></li>
-                         <li><a href="">超市卡</a></li>
-                        <li><a href="">银行卡</a></li>
-                        <li><a href="">家乐福卡</a></li>
-                        <li><a href="">沃尔玛卡</a></li>
+                        <li class="title">卡种类</li>
+                        $for item in cardcategories:
+                            <li><a href="">$item.name</a></li>
                     </ul>
                   
                 </div>
@@ -197,122 +178,45 @@
                     <div class="row-fluid ">
                         <div class="brand-index">
                             <span>按名称搜索:</span>
-                            <a href="/buy-gift-cards?starts_with=number" class="brand-index-item, " rel="nofollow">#</a>
-                            <a href="/buy-gift-cards?starts_with=A" class="brand-index-item, " rel="nofollow">A</a>
-                            <a href="/buy-gift-cards?starts_with=B" class="brand-index-item, " rel="nofollow">B</a>
-                            <a href="/buy-gift-cards?starts_with=C" class="brand-index-item, " rel="nofollow">C</a>
-                            <a href="/buy-gift-cards?starts_with=D" class="brand-index-item, " rel="nofollow">D</a>
-                            <a href="/buy-gift-cards?starts_with=E" class="brand-index-item, " rel="nofollow">E</a>
-                            <a href="/buy-gift-cards?starts_with=F" class="brand-index-item, " rel="nofollow">F</a>
-                            <a href="/buy-gift-cards?starts_with=G" class="brand-index-item, " rel="nofollow">G</a>
-                            <a href="/buy-gift-cards?starts_with=H" class="brand-index-item, " rel="nofollow">H</a>
+                            <a href="/goods_list?starts_with=number" class="brand-index-item, " rel="nofollow">#</a>
+                            <a href="/goods_list?starts_with=A" class="brand-index-item, " rel="nofollow">A</a>
+                            <a href="/goods_list?starts_with=B" class="brand-index-item, " rel="nofollow">B</a>
+                            <a href="/goods_list?starts_with=C" class="brand-index-item, " rel="nofollow">C</a>
+                            <a href="/goods_list?starts_with=D" class="brand-index-item, " rel="nofollow">D</a>
+                            <a href="/goods_list?starts_with=E" class="brand-index-item, " rel="nofollow">E</a>
+                            <a href="/goods_list?starts_with=F" class="brand-index-item, " rel="nofollow">F</a>
+                            <a href="/goods_list?starts_with=G" class="brand-index-item, " rel="nofollow">G</a>
+                            <a href="/goods_list?starts_with=H" class="brand-index-item, " rel="nofollow">H</a>
             
-                            <a href="/buy-gift-cards?starts_with=J" class="brand-index-item, " rel="nofollow">J</a>
-                            <a href="/buy-gift-cards?starts_with=K" class="brand-index-item, " rel="nofollow">K</a>
-                            <a href="/buy-gift-cards?starts_with=L" class="brand-index-item, " rel="nofollow">L</a>
-                            <a href="/buy-gift-cards?starts_with=M" class="brand-index-item, " rel="nofollow">M</a>
-                            <a href="/buy-gift-cards?starts_with=N" class="brand-index-item, " rel="nofollow">N</a>
+                            <a href="/goods_list?starts_with=J" class="brand-index-item, " rel="nofollow">J</a>
+                            <a href="/goods_list?starts_with=K" class="brand-index-item, " rel="nofollow">K</a>
+                            <a href="/goods_list?starts_with=L" class="brand-index-item, " rel="nofollow">L</a>
+                            <a href="/goods_list?starts_with=M" class="brand-index-item, " rel="nofollow">M</a>
+                            <a href="/goods_list?starts_with=N" class="brand-index-item, " rel="nofollow">N</a>
                            
-                            <a href="/buy-gift-cards?starts_with=P" class="brand-index-item, " rel="nofollow">P</a>
-                            <a href="/buy-gift-cards?starts_with=Q" class="brand-index-item, " rel="nofollow">Q</a>
-                            <a href="/buy-gift-cards?starts_with=R" class="brand-index-item, " rel="nofollow">R</a>
-                            <a href="/buy-gift-cards?starts_with=S" class="brand-index-item, " rel="nofollow">S</a>
-                            <a href="/buy-gift-cards?starts_with=T" class="brand-index-item, " rel="nofollow">T</a>
-                            <a href="/buy-gift-cards?starts_with=W" class="brand-index-item, " rel="nofollow">W</a>
-                            <a href="/buy-gift-cards?starts_with=X" class="brand-index-item, " rel="nofollow">X</a>
-                            <a href="/buy-gift-cards?starts_with=Y" class="brand-index-item, " rel="nofollow">Y</a>
-                            <a href="/buy-gift-cards?starts_with=Z" class="brand-index-item, " rel="nofollow">Z</a>
+                            <a href="/goods_list?starts_with=P" class="brand-index-item, " rel="nofollow">P</a>
+                            <a href="/goods_list?starts_with=Q" class="brand-index-item, " rel="nofollow">Q</a>
+                            <a href="/goods_list?starts_with=R" class="brand-index-item, " rel="nofollow">R</a>
+                            <a href="/goods_list?starts_with=S" class="brand-index-item, " rel="nofollow">S</a>
+                            <a href="/goods_list?starts_with=T" class="brand-index-item, " rel="nofollow">T</a>
+                            <a href="/goods_list?starts_with=W" class="brand-index-item, " rel="nofollow">W</a>
+                            <a href="/goods_list?starts_with=X" class="brand-index-item, " rel="nofollow">X</a>
+                            <a href="/goods_list?starts_with=Y" class="brand-index-item, " rel="nofollow">Y</a>
+                            <a href="/goods_list?starts_with=Z" class="brand-index-item, " rel="nofollow">Z</a>
                         </div>
 
                     </div>
                    
                     <div class="cartlist">
                         <ul>
+                        $for item in sellitems:
                             <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
+                                <a href="/goods_info?card_id=$item.card.id">
+                                    <img src="$item.card.pic.path" alt="">
+                                    <p>$item.card.name</p>
+                                    <p class="discribe">$item.card.description</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-                             <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-                             <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-                             <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-                             <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-                             <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-                             <li>
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>卡名</p>
-                                    <p class="discribe">描述</p>
-                                </a>
-                            </li>
-
                         </ul>
                     </div>
 
@@ -375,7 +279,7 @@
                             <li class="header-footer">内容三内容三</li>
                             <li><a href="/login">内容三</a></li>
                            
-                            <li><a href="/bulk-buy-gift-cards">内容三</a></li>
+                            <li><a href="/bulk_buy_gift_cards">内容三</a></li>
                         </ul>
                         <ul class="unstyled">
                             <li class="header-footer">案例</li>
@@ -408,10 +312,10 @@
         </footer>
         <!--读取头部信息-->
     </div>
-    <script type="text/javascript" src="../static/js/lib/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="../static/js/lib/jquery.SuperSlide.2.1.js"></script>
-    <script type="text/javascript" src="../static/js/lib/sen.js"></script>
-    <script type="text/javascript" src="../static/js/commed.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jquery.SuperSlide.2.1.js"></script>
+    <script type="text/javascript" src="/static/js/lib/sen.js"></script>
+    <script type="text/javascript" src="/static/js/commed.js"></script>
 
 
 

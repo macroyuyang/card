@@ -18,6 +18,7 @@ from greenplum import db
 from greenplum import error
 from greenplum import interval
 from greenplum import gplog
+from model import pg
 
 isAppliance = False
 isV1Appliance = False
@@ -88,7 +89,6 @@ app = render = session = None
 urls = ('/', 'index',
         '/goods_list', 'goods_list',
         '/goods_info', 'goods_info',
-        '/buy-gift-cards', 'buy_gift_cards',
         '/logon', 'logon',
         '/logoff', 'logoff',
         '/hosts', 'hosts',
@@ -497,16 +497,15 @@ class goods_list:
         web.header('Cache-Control', 'no-store')
 
         cleanKrbFile()
-        host_and_port = web.ctx.host.split(':',1)
-        if len(host_and_port) == 2:
-            host = host_and_port[0]
-            port = host_and_port[1]
+        input = web.input()
+        cardtypes = pg.CardType.select().order_by(pg.CardType.name)
+        cardcategories = pg.CardCategory.select().order_by(pg.CardCategory.name)
+        if len(input) == 0:
+            sellitems = pg.SellItem.select()
         else:
-            host = web.ctx.host
-            port = ''
-        i = web.input()
-        log.msg(i)
-        return render.goods_list()
+            starts_with = input['starts_with']
+            sellitems = pg.SellItem.select().join(pg.Card, pg.JOIN.INNER).where(pg.Card.pinying.startswith(starts_with))
+        return render.goods_list(cardtypes, cardcategories, sellitems)
 
 
 class goods_info:
@@ -546,49 +545,18 @@ class goods_info:
         else:
             host = web.ctx.host
             port = ''
-        i = web.input()
-        log.msg(i)
-        return render.goods_info()
 
-
-class buy_gift_cards:
-    def POST(self):
-        web.header('Content-Type', 'text/html')
-        web.header('Cache-Control', 'no-store')
-        i = web.input()
-        if i.has_key('username'):
-            username = i['username']
+        input = web.input()
+        if len(input) == 0:
+            return mkerr(error.BADREQ, "good_id not set")
         else:
-            username = ''
-        if i.has_key('password'):
-            password = i['password']
-        else:
-            password  = ''
-        if web.ctx.env.has_key('KRB5CCNAME') :
-            if os.path.isfile(web.ctx.env['KRB5CCNAME']) :
-                db.removeKrbTicket(web.ctx.env['KRB5CCNAME'])
-        host_and_port = web.ctx.host.split(':', 1)
-        if len(host_and_port) == 2:
-            host = host_and_port[0]
-            port = host_and_port[1]
-        else:
-            host = web.ctx.host
-            port = ''
-        return render.goods_list()
-  
-    def GET(self):
-        web.header('Content-Type', 'text/html')
-        web.header('Cache-Control', 'no-store')
-
-        cleanKrbFile()
-        host_and_port = web.ctx.host.split(':',1)
-        if len(host_and_port) == 2:
-            host = host_and_port[0]
-            port = host_and_port[1]
-        else:
-            host = web.ctx.host
-            port = ''
-        return render.goods_list()
+            good_id = input['card_id']
+            card = pg.Card.select().where(pg.Card.id == good_id)
+            if card.count() != 1:
+                return mkerr(error.BADREQ, "good_id not set")
+            card = card[0]
+            sellitems = pg.SellItem.select().where(pg.SellItem.card == card.id)
+            return render.goods_info(card, sellitems)
 
 
 class api:

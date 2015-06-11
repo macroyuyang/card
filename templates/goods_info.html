@@ -1,3 +1,4 @@
+$def with (card, sellitems)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,7 +146,7 @@
                      <div class="infoleft">
                          <div class="paceimg">
                              <section>
-                                <img src="../static/img/temp/k1.jpg" alt="">
+                                <img src="$card.pic.path" alt="">
                             </section>
                             <h2>单卖</h2>
                             <a href="#">家乐福购物卡超值优惠.</a>
@@ -192,29 +193,6 @@ egift卡可以网上唯一的救赎。他们发送到您的帐户在24小时内�
                             <p>
                                T.J. Maxx的礼品卡可以兑换下面的商店：
                             </p>
-
-                            <div class="listinfo">
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>描述</p>
-                                </a>
-                            </div>
-
-                              <div class="listinfo">
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>描述</p>
-                                </a>
-                            </div>
-
-
-                              <div class="listinfo">
-                                <a href="">
-                                    <img src="../static/img/temp/k1.jpg" alt="">
-                                    <p>描述</p>
-                                </a>
-                            </div>
-                           
                          </div>
                      </div>
 
@@ -257,369 +235,61 @@ egift卡可以网上唯一的救赎。他们发送到您的帐户在24小时内�
                                 <div class="in">卡类型</div>
                             </div>
                             <div class="th value">
-                                <div class="in">原价</div>
+                                <div class="in">余额</div>
                             </div>
                            <div class="th off">
-                                <div class="in">热度</div>
+                                <div class="in">折扣</div>
                             </div>
                            <div class="th price">
                                 <div class="in">本站价</div>
                             </div>
                            <div class="th btn"> 
                                 <div class="in">&nbsp;</div>
-                            </div>
-                       </section>
-                       <section class="tr">
-                           <div class="td type">
-                                <div class="in">
-                                   <img src="../static/img/temp/k1.jpg" alt="">
-                                   <a href="javascript:void(0)" class="falg">家乐福</a>
-                               </div>
-                           </div>
-                           <div class="td value"><div class="in">￥500</div></div>
-                           <div class="td off"><div class="in">80%</div></div>
-                           <div class="td price">
-                                <div class="in">
-                                    ￥480
-                                    <br />
-                                    <a href="javascript:void(0)" class="info">
-                                        +详情
-                                    </a>
-                                </div>
-                            </div>
-                           <div class="td btn">
-                                <div class="in buy">
-                                    <a href="javascript:void(0)">购买</a>
-                                   
-                               </div>
-                           </div>
-                           <div class="detail">
-                               <h2>标题1</h2>
-                               <ul>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                               </ul>
-                               <h2>标题2</h2>
-                               <ul>
-                                   <li>内容内容</li>
-
-                               </ul>
                            </div>
                        </section>
+                    $for item in sellitems:
                         <section class="tr">
-                           <div class="td type">
-                                <div class="in">
-                                   <img src="../static/img/temp/k1.jpg" alt="">
-                                   <a href="javascript:void(0)" class="falg">家乐福</a>
-                               </div>
-                           </div>
-                           <div class="td value"><div class="in">￥500</div></div>
-                           <div class="td off"><div class="in">80%</div></div>
-                           <div class="td price">
-                                <div class="in">
-                                    ￥480
-                                    <br />
-                                    <a href="javascript:void(0)" class="info">
-                                        +详情
-                                    </a>
+                            <div class="td type">
+                                 <div class="in">
+                                    <img src="$card.pic.path" alt="">
+                                    <a href="javascript:void(0)" class="falg">$card.cardtype.name</a>
                                 </div>
                             </div>
-                           <div class="td btn">
-                                <div class="in buy">
-                                    <a href="javascript:void(0)">购买</a>
-                                   
-                               </div>
-                           </div>
-                           <div class="detail">
-                               <h2>标题1</h2>
-                               <ul>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                               </ul>
-                               <h2>标题2</h2>
-                               <ul>
-                                   <li>内容内容</li>
-
-                               </ul>
-                           </div>
-                       </section>
-                        <section class="tr">
-                           <div class="td type">
-                                <div class="in">
-                                   <img src="../static/img/temp/k1.jpg" alt="">
-                                   <a href="javascript:void(0)" class="falg">家乐福</a>
-                               </div>
-                           </div>
-                           <div class="td value"><div class="in">￥500</div></div>
-                           <div class="td off"><div class="in">80%</div></div>
-                           <div class="td price">
-                                <div class="in">
-                                    ￥480
-                                    <br />
-                                    <a href="javascript:void(0)" class="info">
-                                        +详情
-                                    </a>
+                            <div class="td value"><div class="in">￥$card.originprice</div></div>
+                            $ discount = item.price * 100.0 / item.balance
+                            $ discount = ("%.1f" % discount)
+                            <div class="td off"><div class="in">$discount%</div></div>
+                            <div class="td price">
+                                 <div class="in">
+                                     ￥$item.price
+                                     <br />
+                                     <a href="javascript:void(0)" class="info">
+                                         +详情
+                                     </a>
+                                 </div>
+                            </div>
+                            <div class="td btn">
+                                 <div class="in buy">
+                                     <a href="javascript:void(0)">购买</a>
+                                    
                                 </div>
                             </div>
-                           <div class="td btn">
-                                <div class="in buy">
-                                    <a href="javascript:void(0)">购买</a>
-                                   
-                               </div>
-                           </div>
-                           <div class="detail">
-                               <h2>标题1</h2>
-                               <ul>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                               </ul>
-                               <h2>标题2</h2>
-                               <ul>
-                                   <li>内容内容</li>
-
-                               </ul>
-                           </div>
-                       </section>
-                        <section class="tr">
-                           <div class="td type">
-                                <div class="in">
-                                   <img src="../static/img/temp/k1.jpg" alt="">
-                                   <a href="javascript:void(0)" class="falg">家乐福</a>
-                               </div>
-                           </div>
-                           <div class="td value"><div class="in">￥500</div></div>
-                           <div class="td off"><div class="in">80%</div></div>
-                           <div class="td price">
-                                <div class="in">
-                                    ￥480
-                                    <br />
-                                    <a href="javascript:void(0)" class="info">
-                                        +详情
-                                    </a>
-                                </div>
+                            <div class="detail">
+                                <h2>标题1</h2>
+                                <ul>
+                                    <li>内容内容</li>
+                                    <li>内容内容</li>
+                                    <li>内容内容</li>
+                                </ul>
+                                <h2>标题2</h2>
+                                <ul>
+                                    <li>内容内容</li>
+                                </ul>
                             </div>
-                           <div class="td btn">
-                                <div class="in buy">
-                                    <a href="javascript:void(0)">购买</a>
-                                   
-                               </div>
-                           </div>
-                           <div class="detail">
-                               <h2>标题1</h2>
-                               <ul>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                               </ul>
-                               <h2>标题2</h2>
-                               <ul>
-                                   <li>内容内容</li>
-
-                               </ul>
-                           </div>
-                       </section>
-                        <section class="tr">
-                           <div class="td type">
-                                <div class="in">
-                                   <img src="../static/img/temp/k1.jpg" alt="">
-                                   <a href="javascript:void(0)" class="falg">家乐福</a>
-                               </div>
-                           </div>
-                           <div class="td value"><div class="in">￥500</div></div>
-                           <div class="td off"><div class="in">80%</div></div>
-                           <div class="td price">
-                                <div class="in">
-                                    ￥480
-                                    <br />
-                                    <a href="javascript:void(0)" class="info">
-                                        +详情
-                                    </a>
-                                </div>
-                            </div>
-                           <div class="td btn">
-                                <div class="in buy">
-                                    <a href="javascript:void(0)">购买</a>
-                                   
-                               </div>
-                           </div>
-                           <div class="detail">
-                               <h2>标题1</h2>
-                               <ul>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                               </ul>
-                               <h2>标题2</h2>
-                               <ul>
-                                   <li>内容内容</li>
-
-                               </ul>
-                           </div>
-                       </section>
-                        <section class="tr">
-                           <div class="td type">
-                                <div class="in">
-                                   <img src="../static/img/temp/k1.jpg" alt="">
-                                   <a href="javascript:void(0)" class="falg">家乐福</a>
-                               </div>
-                           </div>
-                           <div class="td value"><div class="in">￥500</div></div>
-                           <div class="td off"><div class="in">80%</div></div>
-                           <div class="td price">
-                                <div class="in">
-                                    ￥480
-                                    <br />
-                                    <a href="javascript:void(0)" class="info">
-                                        +详情
-                                    </a>
-                                </div>
-                            </div>
-                           <div class="td btn">
-                                <div class="in buy">
-                                    <a href="javascript:void(0)">购买</a>
-                                   
-                               </div>
-                           </div>
-                           <div class="detail">
-                               <h2>标题1</h2>
-                               <ul>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                               </ul>
-                               <h2>标题2</h2>
-                               <ul>
-                                   <li>内容内容</li>
-
-                               </ul>
-                           </div>
-                       </section>
-                        <section class="tr">
-                           <div class="td type">
-                                <div class="in">
-                                   <img src="../static/img/temp/k1.jpg" alt="">
-                                   <a href="javascript:void(0)" class="falg">家乐福</a>
-                               </div>
-                           </div>
-                           <div class="td value"><div class="in">￥500</div></div>
-                           <div class="td off"><div class="in">80%</div></div>
-                           <div class="td price">
-                                <div class="in">
-                                    ￥480
-                                    <br />
-                                    <a href="javascript:void(0)" class="info">
-                                        +详情
-                                    </a>
-                                </div>
-                            </div>
-                           <div class="td btn">
-                                <div class="in buy">
-                                    <a href="javascript:void(0)">购买</a>
-                                   
-                               </div>
-                           </div>
-                           <div class="detail">
-                               <h2>标题1</h2>
-                               <ul>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                               </ul>
-                               <h2>标题2</h2>
-                               <ul>
-                                   <li>内容内容</li>
-
-                               </ul>
-                           </div>
-                       </section>
-                        <section class="tr">
-                           <div class="td type">
-                                <div class="in">
-                                   <img src="../static/img/temp/k1.jpg" alt="">
-                                   <a href="javascript:void(0)" class="falg">家乐福</a>
-                               </div>
-                           </div>
-                           <div class="td value"><div class="in">￥500</div></div>
-                           <div class="td off"><div class="in">80%</div></div>
-                           <div class="td price">
-                                <div class="in">
-                                    ￥480
-                                    <br />
-                                    <a href="javascript:void(0)" class="info">
-                                        +详情
-                                    </a>
-                                </div>
-                            </div>
-                           <div class="td btn">
-                                <div class="in buy">
-                                    <a href="javascript:void(0)">购买</a>
-                                   
-                               </div>
-                           </div>
-                           <div class="detail">
-                               <h2>标题1</h2>
-                               <ul>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                               </ul>
-                               <h2>标题2</h2>
-                               <ul>
-                                   <li>内容内容</li>
-
-                               </ul>
-                           </div>
-                       </section>
-                        <section class="tr">
-                           <div class="td type">
-                                <div class="in">
-                                   <img src="../static/img/temp/k1.jpg" alt="">
-                                   <a href="javascript:void(0)" class="falg">家乐福</a>
-                               </div>
-                           </div>
-                           <div class="td value"><div class="in">￥500</div></div>
-                           <div class="td off"><div class="in">80%</div></div>
-                           <div class="td price">
-                                <div class="in">
-                                    ￥480
-                                    <br />
-                                    <a href="javascript:void(0)" class="info">
-                                        +详情
-                                    </a>
-                                </div>
-                            </div>
-                           <div class="td btn">
-                                <div class="in buy">
-                                    <a href="javascript:void(0)">购买</a>
-                                   
-                               </div>
-                           </div>
-                           <div class="detail">
-                               <h2>标题1</h2>
-                               <ul>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                                   <li>内容内容</li>
-                               </ul>
-                               <h2>标题2</h2>
-                               <ul>
-                                   <li>内容内容</li>
-
-                               </ul>
-                           </div>
-                       </section>
+                        </section>
                     </div>
+                </div>
                     
-
-
-
-
-                 
-
-
                     <div class="pagelist">
                         <a href="">上一页</a>
                         <a href="">1</a>
