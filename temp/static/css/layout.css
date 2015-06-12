@@ -706,7 +706,27 @@ footer .copyright {
 .no-bottom-border {
   border-bottom: none!important;
 }
+.border-tp {
+  border-top: 1px solid #e0e2e3;
+}
+.border-bm {
+  border-bottom: 1px solid #e0e2e3;
+}
+.keycolor {
+  color: #49aace !important;
+}
 /**按钮*/
+.remove {
+  border: 1px solid #e0e2e3;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #788a91;
+}
+.remove:hover {
+  border-color: #c5c9cb;
+  color: #607076;
+}
 @media (max-width: 1200px) {
   .container,
   .navbar-static-top .container,

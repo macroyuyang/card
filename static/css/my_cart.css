@@ -102,7 +102,6 @@
 .container .left .inleft {
   display: block;
   padding-top: 20px;
-  border-right: 1px solid #e0e2e3;
   min-height: 500px;
 }
 .container .left .inleft ul.navlist {
@@ -128,10 +127,9 @@
   color: #607076;
 }
 .container .left .inleft .infoleft .paceimg {
-  border-bottom: 1px solid #e0e2e3;
   padding-bottom: 27px;
   margin-bottom: 27px;
-  margin-right: 60px;
+  margin-left: 27px;
 }
 .container .left .inleft .infoleft .paceimg:last-child {
   border-bottom: none;
@@ -198,8 +196,10 @@
   float: left;
   width: 75%;
 }
+.right .inright {
+  border-right: 1px solid #e0e2e3;
+}
 .right section {
-  border-bottom: 1px solid #e0e2e3;
   margin-bottom: 10px;
   *zoom: 1;
   position: relative;
@@ -243,7 +243,6 @@
 .right section .left {
   float: left;
   margin-right: 15px;
-  padding-left: 27px;
 }
 .right section .left h2 {
   float: none;
@@ -287,7 +286,7 @@
   padding: 10px 0px 27px 0px;
 }
 .right .infotables {
-  padding: 10px 27px;
+  padding: 10px 27px 10px 0px;
   display: block;
 }
 .right .infotables section {
@@ -295,9 +294,10 @@
   width: 100%;
 }
 .right .infotables section.tr {
+  position: relative;
   margin-bottom: 0px!important;
+  border-top: 1px solid #e0e2e3;
   *zoom: 1;
-  border-bottom: 1px solid #e0e2e3;
 }
 .right .infotables section.tr:after {
   content: "\0020";
@@ -306,10 +306,10 @@
   overflow: hidden;
   clear: both;
 }
-.right .infotables section.tr.first {
-  border-top: 1px solid #e0e2e3;
-  background: #efefef;
-  border-bottom: 1px solid #e0e2e3;
+.right .infotables section.tr .positionprice {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 .right .infotables section.tr .detail {
   clear: both;
@@ -342,7 +342,7 @@
 }
 .right .infotables section .th.type,
 .right .infotables section .td.type {
-  width: 40%;
+  width: 100px;
 }
 .right .infotables section .th.type img,
 .right .infotables section .td.type img {
@@ -352,38 +352,24 @@
   display: inline-block;
   float: left;
 }
-.right .infotables section .th.type .falg,
-.right .infotables section .td.type .falg {
+.right .infotables section .th.value,
+.right .infotables section .td.value {
+  width: 80%;
+  cursor: pointer;
+  position: relative;
+}
+.right .infotables section .th.value .falg,
+.right .infotables section .td.value .falg {
   padding: 0px 4px;
   border: 1px solid #788a91;
   color: #788a91;
   border-radius: 3px;
-  float: left;
   margin-top: 3px;
 }
-.right .infotables section .th.type .falg:hover,
-.right .infotables section .td.type .falg:hover {
+.right .infotables section .th.value .falg:hover,
+.right .infotables section .td.value .falg:hover {
   color: #607076;
   border-color: #607076;
-}
-.right .infotables section .th.value,
-.right .infotables section .td.value {
-  width: 16%;
-  cursor: pointer;
-}
-.right .infotables section .th.off,
-.right .infotables section .td.off {
-  width: 12%;
-  cursor: pointer;
-}
-.right .infotables section .th.price,
-.right .infotables section .td.price {
-  width: 16%;
-  cursor: pointer;
-}
-.right .infotables section .th.btn,
-.right .infotables section .td.btn {
-  width: 16%;
 }
 .right .infotables section .th:after,
 .right .infotables section .td:after {
@@ -432,6 +418,7 @@
 .right .infotables section .th .in,
 .right .infotables section .td .in {
   padding: 10px;
+  padding-bottom: 25px;
   *zoom: 1;
 }
 .right .infotables section .th .in:after,
@@ -441,6 +428,20 @@
   height: 0;
   overflow: hidden;
   clear: both;
+}
+.right .infotables section .th .in .title,
+.right .infotables section .td .in .title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.right .infotables section .th .in p span,
+.right .infotables section .td .in p span {
+  color: #788a91;
+}
+.right .infotables section .th .in .content,
+.right .infotables section .td .in .content {
+  margin-bottom: 12px;
 }
 .right .infotables section .th .in.buy,
 .right .infotables section .td .in.buy {
@@ -499,9 +500,6 @@
 .right .infotables section .th a.info:hover,
 .right .infotables section .td a.info:hover {
   color: #3090b4;
-}
-.right .infotables section .th {
-  background: #efefef;
 }
 .right .infotables h3.leisi {
   font-size: 19px;
@@ -602,11 +600,90 @@
 .breadcrumb .unstyled li:last-child {
   float: right;
 }
+.breadcrumb .unstyled li:last-child a {
+  padding-left: 5px;
+}
 .breadcrumb .unstyled li:first-child {
   float: left;
 }
 .breadcrumb .unstyled li i {
   margin-right: 5px;
+}
+.pricelist p {
+  margin-bottom: 0px!important;
+  *zoom: 1;
+  color: #788a91;
+  line-height: 30px;
+}
+.pricelist p:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.pricelist p .l {
+  float: left;
+}
+.pricelist p .r {
+  float: right;
+}
+.pricelist p.goon {
+  text-align: center;
+}
+.pricelist .btnbox a,
+.pricelist .btnbox input {
+  display: block;
+  padding: 10px 40px;
+  background: #50be9e;
+  border: 2px solid #3ba082;
+  display: inline-block;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 2px;
+  border-radius: 3px;
+}
+.pricelist .btnbox a:hover,
+.pricelist .btnbox input:hover {
+  background: #3ba082;
+}
+.pricelist .btnbox a.mo,
+.pricelist .btnbox input.mo {
+  background: none;
+  margin-left: 15px;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.pricelist .btnbox a.mo:hover,
+.pricelist .btnbox input.mo:hover {
+  border-color: #ffffff;
+}
+.pricelist .btnbox a {
+  color: #ffffff!important;
+  text-align: center;
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-width: 0px;
+}
+.aboutcart {
+  border: 1px solid #e0e2e3;
+  margin-bottom: 10px;
+}
+.aboutcart .in {
+  padding: 10px;
+}
+.aboutcart .in h2 {
+  padding-bottom: 10px;
+}
+.aboutcart .in li {
+  line-height: 30px;
+}
+.aboutcart .in li a {
+  color: #788a91 !important;
+  display: block;
+}
+.aboutcart .in li a:hover {
+  color: #607076;
 }
 @media (max-width: 1145px) {
   .breadcrumb .unstyled {
@@ -718,9 +795,17 @@
   }
 }
 @media (max-width: 760px) {
+  .container .left {
+    float: none;
+    width: 100%;
+    border-top: 1px solid #e0e2e3;
+  }
   .right {
     float: none;
     width: 100%;
+  }
+  .right .inright {
+    border-right: none;
   }
   .cartlist {
     *zoom: 1;

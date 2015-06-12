@@ -86,7 +86,8 @@
 .hero-content .btnbox {
   width: 45%;
 }
-.hero-content .btnbox a {
+.hero-content .btnbox a,
+.hero-content .btnbox input {
   display: block;
   padding: 10px 40px;
   background: #50be9e;
@@ -97,15 +98,18 @@
   letter-spacing: 2px;
   border-radius: 3px;
 }
-.hero-content .btnbox a:hover {
+.hero-content .btnbox a:hover,
+.hero-content .btnbox input:hover {
   background: #3ba082;
 }
-.hero-content .btnbox a.mo {
+.hero-content .btnbox a.mo,
+.hero-content .btnbox input.mo {
   background: none;
   margin-left: 15px;
   border-color: rgba(255, 255, 255, 0.5);
 }
-.hero-content .btnbox a.mo:hover {
+.hero-content .btnbox a.mo:hover,
+.hero-content .btnbox input.mo:hover {
   border-color: #ffffff;
 }
 .hero-content .btnbox a {
@@ -143,7 +147,8 @@
 .sliderbox .warpper .btnbox {
   text-align: center;
 }
-.sliderbox .warpper .btnbox a {
+.sliderbox .warpper .btnbox a,
+.sliderbox .warpper .btnbox input {
   display: block;
   padding: 10px 40px;
   background: #50be9e;
@@ -154,15 +159,18 @@
   letter-spacing: 2px;
   border-radius: 3px;
 }
-.sliderbox .warpper .btnbox a:hover {
+.sliderbox .warpper .btnbox a:hover,
+.sliderbox .warpper .btnbox input:hover {
   background: #3ba082;
 }
-.sliderbox .warpper .btnbox a.mo {
+.sliderbox .warpper .btnbox a.mo,
+.sliderbox .warpper .btnbox input.mo {
   background: none;
   margin-left: 15px;
   border-color: rgba(255, 255, 255, 0.5);
 }
-.sliderbox .warpper .btnbox a.mo:hover {
+.sliderbox .warpper .btnbox a.mo:hover,
+.sliderbox .warpper .btnbox input.mo:hover {
   border-color: #ffffff;
 }
 .sliderbox .warpper .btnbox a {
@@ -273,7 +281,8 @@
 .white .btnbox {
   margin-bottom: 20px;
 }
-.white .btnbox a {
+.white .btnbox a,
+.white .btnbox input {
   display: block;
   padding: 10px 40px;
   background: #50be9e;
@@ -284,15 +293,18 @@
   letter-spacing: 2px;
   border-radius: 3px;
 }
-.white .btnbox a:hover {
+.white .btnbox a:hover,
+.white .btnbox input:hover {
   background: #3ba082;
 }
-.white .btnbox a.mo {
+.white .btnbox a.mo,
+.white .btnbox input.mo {
   background: none;
   margin-left: 15px;
   border-color: rgba(255, 255, 255, 0.5);
 }
-.white .btnbox a.mo:hover {
+.white .btnbox a.mo:hover,
+.white .btnbox input.mo:hover {
   border-color: #ffffff;
 }
 .picScroll-left .bd ul {
@@ -390,7 +402,8 @@
     margin-left: 20px;
     margin-bottom: 20px;
   }
-  .white .btnbox a {
+  .white .btnbox a,
+  .white .btnbox input {
     display: block;
     padding: 10px 40px;
     background: #50be9e;
@@ -401,15 +414,18 @@
     letter-spacing: 2px;
     border-radius: 3px;
   }
-  .white .btnbox a:hover {
+  .white .btnbox a:hover,
+  .white .btnbox input:hover {
     background: #3ba082;
   }
-  .white .btnbox a.mo {
+  .white .btnbox a.mo,
+  .white .btnbox input.mo {
     background: none;
     margin-left: 15px;
     border-color: rgba(255, 255, 255, 0.5);
   }
-  .white .btnbox a.mo:hover {
+  .white .btnbox a.mo:hover,
+  .white .btnbox input.mo:hover {
     border-color: #ffffff;
   }
   .sliderbox .picScroll-left {
@@ -418,23 +434,25 @@
 }
 @media (max-width: 800px) {
   .hero-content h2 {
-    padding-left: 20px;
-    font-size: 22px;
-    width: 80%;
+    padding-left: 0px;
+    font-size: 26px;
+    width: 100%;
   }
   .hero-content p {
-    padding-left: 20px;
+    padding-left: 0px;
     font-size: 14px;
-    width: 80%;
+    width: 100%;
   }
   .hero-content .btnbox {
-    padding-left: 20px;
-    width: 80%;
+    padding-left: 0px;
+    width: 100%;
   }
   .hero-content .btnbox a {
     width: 100%;
     text-align: center;
     margin-bottom: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
   .hero-content .btnbox a.mo {
     margin-left: 0px;
@@ -471,7 +489,8 @@
     margin-left: 20px;
     margin-bottom: 20px;
   }
-  .white .btnbox a {
+  .white .btnbox a,
+  .white .btnbox input {
     display: block;
     padding: 10px 40px;
     background: #50be9e;
@@ -482,15 +501,18 @@
     letter-spacing: 2px;
     border-radius: 3px;
   }
-  .white .btnbox a:hover {
+  .white .btnbox a:hover,
+  .white .btnbox input:hover {
     background: #3ba082;
   }
-  .white .btnbox a.mo {
+  .white .btnbox a.mo,
+  .white .btnbox input.mo {
     background: none;
     margin-left: 15px;
     border-color: rgba(255, 255, 255, 0.5);
   }
-  .white .btnbox a.mo:hover {
+  .white .btnbox a.mo:hover,
+  .white .btnbox input.mo:hover {
     border-color: #ffffff;
   }
 }

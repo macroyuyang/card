@@ -82,35 +82,6 @@
   font-size: 11px;
   text-transform: none;
 }
-.breadcrumb {
-  border-bottom: 1px solid #e0e2e3;
-  line-height: 40px;
-  background: #f6f8f7;
-}
-.breadcrumb .unstyled {
-  *zoom: 1;
-  width: 1145px;
-  margin: 0px auto;
-}
-.breadcrumb .unstyled:after {
-  content: "\0020";
-  display: block;
-  height: 0;
-  overflow: hidden;
-  clear: both;
-}
-.breadcrumb .unstyled li {
-  color: #788a91;
-}
-.breadcrumb .unstyled li:last-child {
-  float: right;
-}
-.breadcrumb .unstyled li:first-child {
-  float: left;
-}
-.breadcrumb .unstyled li i {
-  margin-right: 5px;
-}
 .commts {
   background: #fff;
 }
@@ -478,7 +449,9 @@
   display: block;
 }
 .right .infotables section .th .in.buy a,
-.right .infotables section .td .in.buy a {
+.right .infotables section .td .in.buy a,
+.right .infotables section .th .in.buy input,
+.right .infotables section .td .in.buy input {
   display: block;
   padding: 2px 15px;
   background: #50be9e;
@@ -490,17 +463,23 @@
   border-radius: 3px;
 }
 .right .infotables section .th .in.buy a:hover,
-.right .infotables section .td .in.buy a:hover {
+.right .infotables section .td .in.buy a:hover,
+.right .infotables section .th .in.buy input:hover,
+.right .infotables section .td .in.buy input:hover {
   background: #3ba082;
 }
 .right .infotables section .th .in.buy a.mo,
-.right .infotables section .td .in.buy a.mo {
+.right .infotables section .td .in.buy a.mo,
+.right .infotables section .th .in.buy input.mo,
+.right .infotables section .td .in.buy input.mo {
   background: none;
   margin-left: 15px;
   border-color: rgba(255, 255, 255, 0.5);
 }
 .right .infotables section .th .in.buy a.mo:hover,
-.right .infotables section .td .in.buy a.mo:hover {
+.right .infotables section .td .in.buy a.mo:hover,
+.right .infotables section .th .in.buy input.mo:hover,
+.right .infotables section .td .in.buy input.mo:hover {
   border-color: #ffffff;
 }
 .right .infotables section .th .in.buy a,
@@ -600,7 +579,40 @@
 .goodstplbox {
   min-height: 300px;
 }
+.breadcrumb {
+  border-bottom: 1px solid #e0e2e3;
+  line-height: 40px;
+  background: #f6f8f7;
+}
+.breadcrumb .unstyled {
+  *zoom: 1;
+  width: 1145px;
+  margin: 0px auto;
+}
+.breadcrumb .unstyled:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.breadcrumb .unstyled li {
+  color: #788a91;
+}
+.breadcrumb .unstyled li:last-child {
+  float: right;
+}
+.breadcrumb .unstyled li:first-child {
+  float: left;
+}
+.breadcrumb .unstyled li i {
+  margin-right: 5px;
+}
 @media (max-width: 1145px) {
+  .breadcrumb .unstyled {
+    width: 97%;
+    margin: 0px auto;
+  }
   .cartlist {
     *zoom: 1;
     border-bottom: 1px solid #e0e2e3;

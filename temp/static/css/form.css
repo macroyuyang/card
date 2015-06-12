@@ -1,0 +1,116 @@
+/*商品列表*/
+.formbox {
+  width: 280px;
+  margin: 30px auto;
+  font-size: 14px;
+}
+.formbox a {
+  color: #49aace;
+}
+h1 {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
+  margin: 10px 0px;
+}
+p.nousername {
+  display: block;
+  padding-bottom: 24px;
+  text-align: center;
+}
+.form-sty {
+  font-size: 14px;
+}
+.form-sty label {
+  display: block;
+}
+.form-sty p {
+  line-height: 16px;
+  color: #788a91;
+  margin-bottom: 5px;
+  padding-left: 2px;
+}
+.form-sty p span {
+  color: #ff0000;
+  padding-left: 5px;
+}
+.form-sty input.textbox {
+  display: block;
+  height: 40px;
+  width: 268px;
+  padding: 0px 5px;
+  border: 1px solid #e0e2e3;
+}
+.form-sty input.textbox:focus {
+  border-color: #49aace;
+}
+.form-sty .alert {
+  height: 16px;
+  line-height: 16px;
+  color: #ff0000;
+  font-size: 12px;
+}
+.form-sty .inputbox {
+  *zoom: 1;
+}
+.form-sty .inputbox:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.form-sty .inputbox .left {
+  *zoom: 1;
+  float: left;
+}
+.form-sty .inputbox .left:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.form-sty .inputbox .left input {
+  float: left;
+  margin-top: 7px;
+  margin-right: 4px;
+}
+.form-sty .inputbox .right {
+  float: right;
+}
+.btnbox a,
+.btnbox input {
+  display: block;
+  padding: 7px 0px;
+  background: #36a0c8;
+  border: 2px solid #2b80a0;
+  display: inline-block;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 2px;
+  border-radius: 3px;
+}
+.btnbox a:hover,
+.btnbox input:hover {
+  background: #2b80a0;
+}
+.btnbox a.mo,
+.btnbox input.mo {
+  background: none;
+  margin-left: 15px;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.btnbox a.mo:hover,
+.btnbox input.mo:hover {
+  border-color: #ffffff;
+}
+.btnbox input {
+  margin-top: 16px;
+  width: 100%;
+  display: block;
+}
+.tk {
+  text-align: center;
+}

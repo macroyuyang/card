@@ -121,6 +121,12 @@ i.icon {
 .ico_checkbox-checked:before {
   content: "\ea52";
 }
+.ico_tel:before {
+  content: "\e601";
+}
+.ico_email:before {
+  content: "\e602";
+}
 .ico_search:before {
   content: "\e600";
 }
