@@ -171,8 +171,7 @@
   margin-bottom: 36px;
 }
 .container .left .inleft .infoleft .paceimg section img {
-  width: 224px;
-  height: 140px;
+  width: 100%;
   border-radius: 5px;
   display: block;
   margin-bottom: 27px;
@@ -368,6 +367,7 @@
 .right .infotables section .th,
 .right .infotables section .td {
   float: left;
+  *zoom: 1;
 }
 .right .infotables section .th.type,
 .right .infotables section .td.type {
@@ -398,18 +398,65 @@
 .right .infotables section .th.value,
 .right .infotables section .td.value {
   width: 16%;
+  cursor: pointer;
 }
 .right .infotables section .th.off,
 .right .infotables section .td.off {
   width: 12%;
+  cursor: pointer;
 }
 .right .infotables section .th.price,
 .right .infotables section .td.price {
   width: 16%;
+  cursor: pointer;
 }
 .right .infotables section .th.btn,
 .right .infotables section .td.btn {
   width: 16%;
+}
+.right .infotables section .th:after,
+.right .infotables section .td:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.right .infotables section .th span.lf,
+.right .infotables section .td span.lf {
+  float: left;
+  padding-right: 5px;
+}
+.right .infotables section .th span.sanjiao,
+.right .infotables section .td span.sanjiao {
+  width: 0px;
+  height: 0px;
+  display: none;
+  float: left;
+  margin-left: 10px;
+  color: #788a91;
+  margin-top: 9px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #788a91;
+}
+.right .infotables section .th.sortstart span.sanjiao,
+.right .infotables section .td.sortstart span.sanjiao {
+  display: block;
+}
+.right .infotables section .th.sortstart.desc span.sanjiao,
+.right .infotables section .td.sortstart.desc span.sanjiao {
+  width: 0px;
+  height: 0px;
+  display: block;
+  float: left;
+  margin-left: 10px;
+  color: #788a91;
+  margin-top: 9px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid #788a91;
 }
 .right .infotables section .th .in,
 .right .infotables section .td .in {
@@ -550,7 +597,14 @@
 .cartlist ul li a p.discribe {
   color: #788a91;
 }
+.goodstplbox {
+  min-height: 300px;
+}
 @media (max-width: 1145px) {
+  .breadcrumb .unstyled {
+    width: 97%;
+    margin: 0px auto;
+  }
   .cartlist {
     *zoom: 1;
     border-bottom: 1px solid #e0e2e3;
