@@ -121,6 +121,8 @@ class SellItem(Model):
     balance = FloatField(null = False)
     seller = ForeignKeyField(Account, null = False)
     status = CharField(null = False)
+    ctime = TimeField(null = False)
+    expire = TimeField(null = False)
     attr1 = CharField()
     attr2 = CharField()
     attr3 = CharField()

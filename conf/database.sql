@@ -54,6 +54,8 @@ CREATE TABLE sellitem(
     balance     FLOAT8 NOT NULL,
     seller_id   INTEGER NOT NULL CONSTRAINT sellitem_account REFERENCES account(id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE NO ACTION,
     status      CHAR(2) NOT NULL,
+    ctime       TIMESTAMP NOT NULL,
+    expire      TIMESTAMP NOT NULL,
     attr1       VARCHAR(80),
     attr2       VARCHAR(80),
     attr3       VARCHAR(80),

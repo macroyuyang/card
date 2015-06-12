@@ -502,9 +502,19 @@ class goods_list:
         cardcategories = pg.CardCategory.select().order_by(pg.CardCategory.name)
         if len(input) == 0:
             sellitems = pg.SellItem.select()
-        else:
+        elif 'starts_with' in input:
             starts_with = input['starts_with']
             sellitems = pg.SellItem.select().join(pg.Card, pg.JOIN.INNER).where(pg.Card.pinying.startswith(starts_with))
+        elif 'sort' in input:
+            sort = input['sort']
+            if sort == 'name':
+                sellitems = pg.SellItem.select().join(pg.Card, pg.JOIN.INNER).order_by(pg.Card.pinying)
+            elif sort == 'ctime':
+                sellitems = pg.SellItem.select().join(pg.Card, pg.JOIN.INNER).order_by(-pg.SellItem.ctime)
+            elif sort == 'expire':
+                sellitems = pg.SellItem.select().join(pg.Card, pg.JOIN.INNER).order_by(-pg.SellItem.expire)
+            else:
+                return mkerr(error.BADREQ, "Unknown sort type:%s" % sort)
         return render.goods_list(cardtypes, cardcategories, sellitems)
 
 

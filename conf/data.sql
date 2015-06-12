@@ -23,23 +23,23 @@ insert into card values(8, 1, 1, '大甩卖', 900, '家乐福购物卡900元','j
 
 insert into account values(1, 'xxx@gmail.com', 'xxx', 'LIV', 'YangYu', '13810772922', '123456', 'VIP');
 
-insert into sellitem values(1, 1, 95, 100, 1, 'NW', '', '', '', '');
-insert into sellitem values(2, 1, 90, 100, 1, 'NW', '', '', '', '');
-insert into sellitem values(3, 1, 60, 70, 1, 'NW', '', '', '', '');
-insert into sellitem values(4, 1, 70, 80, 1, 'NW', '', '', '', '');
+insert into sellitem values(1, 1, 95, 100, 1, 'NW', '2015-01-01', '2016-01-01', '', '', '', '');
+insert into sellitem values(2, 1, 90, 100, 1, 'NW', '2015-02-01', '2016-02-01', '', '', '', '');
+insert into sellitem values(3, 1, 60, 70, 1, 'NW', '2015-03-01', '2016-03-01', '', '', '', '');
+insert into sellitem values(4, 1, 70, 80, 1, 'NW', '2015-04-01', '2016-04-01', '', '', '', '');
 
-insert into sellitem values(5, 2, 95, 100, 1, 'NW', '', '', '', '');
-insert into sellitem values(6, 2, 90, 100, 1, 'NW', '', '', '', '');
-insert into sellitem values(7, 2, 60, 70, 1, 'NW', '', '', '', '');
-insert into sellitem values(8, 2, 70, 80, 1, 'NW', '', '', '', '');
+insert into sellitem values(5, 2, 95, 100, 1, 'NW', '2015-01-01', '2016-01-01', '', '', '', '');
+insert into sellitem values(6, 2, 90, 100, 1, 'NW', '2015-02-01', '2016-02-01', '', '', '', '');
+insert into sellitem values(7, 2, 60, 70, 1, 'NW', '2015-03-01', '2016-03-01', '', '', '', '');
+insert into sellitem values(8, 2, 70, 80, 1, 'NW', '2015-04-01', '2016-04-01', '', '', '', '');
 
-insert into sellitem values(9, 3, 95, 100, 1, 'NW', '', '', '', '');
-insert into sellitem values(10, 3, 90, 100, 1, 'NW', '', '', '', '');
-insert into sellitem values(11, 3, 60, 70, 1, 'NW', '', '', '', '');
-insert into sellitem values(12, 4, 70, 80, 1, 'NW', '', '', '', '');
-insert into sellitem values(13, 5, 70, 80, 1, 'NW', '', '', '', '');
-insert into sellitem values(14, 6, 70, 80, 1, 'NW', '', '', '', '');
-insert into sellitem values(15, 7, 70, 80, 1, 'NW', '', '', '', '');
-insert into sellitem values(16, 7, 70, 80, 1, 'NW', '', '', '', '');
-insert into sellitem values(17, 7, 70, 80, 1, 'NW', '', '', '', '');
-insert into sellitem values(18, 8, 70, 80, 1, 'NW', '', '', '', '');
+insert into sellitem values(9, 3, 95, 100, 1, 'NW', '2015-01-01', '2016-01-01', '', '', '', '');
+insert into sellitem values(10, 3, 90, 100, 1, 'NW', '2015-02-01', '2016-02-01', '', '', '', '');
+insert into sellitem values(11, 3, 60, 70, 1, 'NW', '2015-03-01', '2016-03-01', '', '', '', '');
+insert into sellitem values(12, 4, 70, 80, 1, 'NW', '2015-04-01', '2016-04-01', '', '', '', '');
+insert into sellitem values(13, 5, 70, 80, 1, 'NW', '2015-05-01', '2016-05-01', '', '', '', '');
+insert into sellitem values(14, 6, 70, 80, 1, 'NW', '2015-06-01', '2016-06-01', '', '', '', '');
+insert into sellitem values(15, 7, 70, 80, 1, 'NW', '2015-07-01', '2016-07-01', '', '', '', '');
+insert into sellitem values(16, 7, 70, 80, 1, 'NW', '2015-08-01', '2016-08-01', '', '', '', '');
+insert into sellitem values(17, 7, 70, 80, 1, 'NW', '2015-09-01', '2016-09-01', '', '', '', '');
+insert into sellitem values(18, 8, 70, 80, 1, 'NW', '2015-10-01', '2016-10-01', '', '', '', '');
