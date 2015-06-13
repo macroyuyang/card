@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, sys, socket, re, ConfigParser, types, operator, subprocess, string
+import os, sys, socket, re, json, ConfigParser, types, operator, subprocess, string
 from xml.sax.saxutils import escape
 import time, datetime, tempfile
 import resource, thread
@@ -89,7 +89,9 @@ app = render = session = None
 urls = ('/', 'index',
         '/goods_list', 'goods_list',
         '/goods_info', 'goods_info',
-        '/logon', 'logon',
+        '/my_cart', 'my_cart',
+        '/login', 'login',
+        '/sign_up', 'sign_up',
         '/logoff', 'logoff',
         '/hosts', 'hosts',
         '/database', 'database',
@@ -467,6 +469,23 @@ class index:
             port = ''
         return render.index()
 
+
+class my_cart:
+    def GET(self):
+        web.header('Content-Type', 'text/html')
+        web.header('Cache-Control', 'no-store')
+        i = web.input()
+        if i.has_key('username'):
+            username = i['username']
+        else:
+            username = ''
+        if i.has_key('password'):
+            password = i['password']
+        else:
+            password  = ''
+        return render.my_cart()
+
+
 class goods_list:
     def POST(self):
         web.header('Content-Type', 'text/html')
@@ -558,15 +577,81 @@ class goods_info:
 
         input = web.input()
         if len(input) == 0:
-            return mkerr(error.BADREQ, "good_id not set")
+            return web.seeother("/goods_list")
         else:
             good_id = input['card_id']
             card = pg.Card.select().where(pg.Card.id == good_id)
             if card.count() != 1:
-                return mkerr(error.BADREQ, "good_id not set")
+                return web.seeother("/goods_list")
             card = card[0]
             sellitems = pg.SellItem.select().where(pg.SellItem.card == card.id)
             return render.goods_info(card, sellitems)
+
+
+class login:
+    def POST(self):
+        web.header('Content-Type', 'text/html')
+        web.header('Cache-Control', 'no-store')
+        i = web.input()
+        if i.has_key('username'):
+            username = i['username']
+        else:
+            username = ''
+        if i.has_key('password'):
+            password = i['password']
+        else:
+            password  = ''
+        if web.ctx.env.has_key('KRB5CCNAME') :
+            if os.path.isfile(web.ctx.env['KRB5CCNAME']) :
+                db.removeKrbTicket(web.ctx.env['KRB5CCNAME'])
+        host_and_port = web.ctx.host.split(':', 1)
+        if len(host_and_port) == 2:
+            host = host_and_port[0]
+            port = host_and_port[1]
+        else:
+            host = web.ctx.host
+            port = ''
+        return render.goods_info()
+  
+    def GET(self):
+        web.header('Content-Type', 'text/html')
+        web.header('Cache-Control', 'no-store')
+
+        cleanKrbFile()
+        return render.login()
+
+
+class sign_up:
+    def POST(self):
+        web.header('Content-Type', 'text/html')
+        web.header('Cache-Control', 'no-store')
+        i = web.input()
+        if i.has_key('username'):
+            username = i['username']
+        else:
+            username = ''
+        if i.has_key('password'):
+            password = i['password']
+        else:
+            password  = ''
+        if web.ctx.env.has_key('KRB5CCNAME') :
+            if os.path.isfile(web.ctx.env['KRB5CCNAME']) :
+                db.removeKrbTicket(web.ctx.env['KRB5CCNAME'])
+        host_and_port = web.ctx.host.split(':', 1)
+        if len(host_and_port) == 2:
+            host = host_and_port[0]
+            port = host_and_port[1]
+        else:
+            host = web.ctx.host
+            port = ''
+        return render.goods_info()
+  
+    def GET(self):
+        web.header('Content-Type', 'text/html')
+        web.header('Cache-Control', 'no-store')
+
+        cleanKrbFile()
+        return render.sign_up()
 
 
 class api:

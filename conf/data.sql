@@ -10,16 +10,17 @@ insert into cardcategory(id, name, description) values(5, '餐饮卡', '');
 insert into pic values(1, '/static/img/temp/k1.jpg', '');
 
 insert into merchant values(1, '家乐福', '400-820-0889', 'www.carrefour.com.cn');
-insert into merchant values(2, '家乐福', '400-820-0889', 'www.carrefour.com.cn');
+insert into merchant values(2, '沃尔玛', '400-820-0889', 'www.carrefour.com.cn');
 
-insert into card values(1, 1, 1, '大甩卖', 100, '家乐福购物卡100元','jialefu', 1,1); 
-insert into card values(2, 1, 1, '大甩卖', 300, '家乐福购物卡300元','jialefu', 1,1); 
-insert into card values(3, 1, 1, '大甩卖', 400, '家乐福购物卡400元','jialefu', 1,1); 
-insert into card values(4, 1, 1, '大甩卖', 500, '家乐福购物卡500元','jialefu', 1,1); 
-insert into card values(5, 1, 1, '大甩卖', 600, '家乐福购物卡600元','jialefu', 1,1); 
-insert into card values(6, 1, 1, '大甩卖', 700, '家乐福购物卡700元','jialefu', 1,1); 
-insert into card values(7, 1, 1, '大甩卖', 800, '家乐福购物卡800元','jialefu', 1,1); 
-insert into card values(8, 1, 1, '大甩卖', 900, '家乐福购物卡900元','jialefu', 1,1); 
+insert into card values(1, 1, 1, '家乐福购物卡', 100, '家乐福购物卡100元','jialefu', 1,1); 
+insert into card values(2, 1, 1, '家乐福购物卡', 300, '家乐福购物卡300元','jialefu', 1,1); 
+insert into card values(3, 1, 1, '家乐福购物卡', 400, '家乐福购物卡400元','jialefu', 1,1); 
+insert into card values(4, 1, 1, '家乐福购物卡', 500, '家乐福购物卡500元','jialefu', 1,1); 
+insert into card values(5, 1, 1, '家乐福购物卡', 600, '家乐福购物卡600元','jialefu', 1,1); 
+insert into card values(6, 1, 1, '家乐福购物卡', 700, '家乐福购物卡700元','jialefu', 1,1); 
+insert into card values(7, 1, 1, '家乐福购物卡', 800, '家乐福购物卡800元','jialefu', 1,1); 
+insert into card values(8, 1, 1, '家乐福购物卡', 900, '家乐福购物卡900元','jialefu', 1,1); 
+insert into card values(9, 1, 1, '沃尔玛购物卡', 900, '沃尔玛购物卡900元','woerma', 2,1); 
 
 insert into account values(1, 'xxx@gmail.com', 'xxx', 'LIV', 'YangYu', '13810772922', '123456', 'VIP');
 
@@ -43,3 +44,4 @@ insert into sellitem values(15, 7, 70, 80, 1, 'NW', '2015-07-01', '2016-07-01', 
 insert into sellitem values(16, 7, 70, 80, 1, 'NW', '2015-08-01', '2016-08-01', '', '', '', '');
 insert into sellitem values(17, 7, 70, 80, 1, 'NW', '2015-09-01', '2016-09-01', '', '', '', '');
 insert into sellitem values(18, 8, 70, 80, 1, 'NW', '2015-10-01', '2016-10-01', '', '', '', '');
+insert into sellitem values(19, 9, 70, 80, 1, 'NW', '2015-10-01', '2016-10-01', '', '', '', '');

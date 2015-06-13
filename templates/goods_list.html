@@ -33,15 +33,15 @@ $def with (cardtypes, cardcategories, sellitems)
         </form>
 
         <ul class="nav user-nav">
-            <li><a href="#">买二手</a></li>
-            <li><a href="#">买二手</a></li>
+            <li><a href="goods_list">我想买卡</a></li>
+            <li><a href="#">我想卖卡</a></li>
         </ul>
 
         <div class="line"></div>
 
         <ul class="nav user-nav">
-            <li><a href="#">新用户注册</a></li>
-            <li><a href="#">用户登录</a></li>
+            <li><a href="sign_up">新用户注册</a></li>
+            <li><a href="login">用户登录</a></li>
         </ul>
         
     </div>
@@ -60,16 +60,23 @@ $def with (cardtypes, cardcategories, sellitems)
             </form>
 
             <ul class="nav sell-buy-sec">
-                <li><a href="#">买二手</a></li>
-                <li><a href="#">卖二手</a></li>
+                <li><a href="goods_list">我想买卡</a></li>
+                <li><a href="#">我想卖卡</a></li>
             </ul>
 
 
             <ul class="nav user-nav">
-                <li><a href="#">新用户注册</a></li>
-                <li><a href="#">用户登录</a></li>
+                <li><a href="sign_up">新用户注册</a></li>
+                <li><a href="login">用户登录</a></li>
 
-                <li class="buycartbox"><a href="javascript:void(0)"><i class="icon ico_cart"></i></a></li>
+                <li class="buycartbox">
+                    <span class="qipao" id="cartNum">0</span>
+                    <a href="my_cart"><i class="icon ico_cart" id="cartend"></i></a>
+
+                    <div class="cart-widget">
+                        <h2>暂时点这个按钮直接跳入购物车页吧！这个下下拉以后优化</h2>
+                    </div>
+                </li>
 
                 <li class="phonemune" id="showPhoneMune"><i class="icon ico_menu"></i></li>
             </ul>
@@ -123,20 +130,21 @@ $def with (cardtypes, cardcategories, sellitems)
 		</div>
 	</div>
 
-	<div class="breadcrumb hide_phone">
-			<ul class="unstyled social-widget social hidden-phone">
-				
-				
-				<li>
-					<a href="#"><i class="icon"></i>微信加关注</a>
-				</li>
+	
+        <div class="breadcrumb hide_phone">
+                <ul class="unstyled social-widget social hidden-phone">
+                    
+                    
+                    <li>
+                        <a href="#"><i class="icon"></i>商品列表</a>
+                    </li>
 
-			
-				<li>
-					<a href="#"><i class="icon ico_bubbles2"></i>微信加关注</a>
-				</li>
-			</ul>
-	</div>
+                
+                    <li>
+                        <a href="#"><i class="icon ico_bubbles2"></i>微信加关注</a>
+                    </li>
+                </ul>
+        </div>
         <div class="commts">
              <div class="container">
             <div class="left hide_phones">
@@ -148,14 +156,14 @@ $def with (cardtypes, cardcategories, sellitems)
                         <li><a href="">100--150</a></li>
                         <li><a href="">200--300</a></li>
                     </ul>
-                     <ul class="navlist">	
+                     <ul class="navlist">
                         <li class="title">卡类型</li>
                         $for item in cardtypes:
                             <li><a href="">$item.name</a></li>
                     </ul>
                      <ul class="navlist">
                         <li class="title">卡种类</li>
-                        $for item in cardcategories:
+                        $for item in cardcategories: 
                             <li><a href="">$item.name</a></li>
                     </ul>
                   
@@ -167,9 +175,9 @@ $def with (cardtypes, cardcategories, sellitems)
                          <h2>卡列表</h2>
                          <select name="" id="">
                             <option value="">按什么搜索</option>
-                            <option value="/goods_list?sort=ctime">按时间排序</option>
+                            <option value="/goods_list?sort=ctime">按最新排序</option>
                             <option value="/goods_list?sort=name">按名字排序</option>
-                            <option value="/goods_list?sort=expire">按名字排序</option>
+                            <option value="/goods_list?sort=expire">按有效期排序</option>
                          </select>
                     </section>
 
@@ -235,11 +243,6 @@ $def with (cardtypes, cardcategories, sellitems)
         </div>
             
         </div>
-
-       
-
-
-
 
 
         <!--读取头部信息-->

@@ -33,15 +33,15 @@ $def with (card, sellitems)
         </form>
 
         <ul class="nav user-nav">
-            <li><a href="#">买二手</a></li>
-            <li><a href="#">买二手</a></li>
+            <li><a href="goods_list">我想买卡</a></li>
+            <li><a href="#">我想卖卡</a></li>
         </ul>
 
         <div class="line"></div>
 
         <ul class="nav user-nav">
-            <li><a href="#">新用户注册</a></li>
-            <li><a href="#">用户登录</a></li>
+            <li><a href="sign_up">新用户注册</a></li>
+            <li><a href="login">用户登录</a></li>
         </ul>
         
     </div>
@@ -60,16 +60,23 @@ $def with (card, sellitems)
             </form>
 
             <ul class="nav sell-buy-sec">
-                <li><a href="#">买二手</a></li>
-                <li><a href="#">卖二手</a></li>
+                <li><a href="goods_list">我想买卡</a></li>
+                <li><a href="#">我想卖卡</a></li>
             </ul>
 
 
             <ul class="nav user-nav">
-                <li><a href="#">新用户注册</a></li>
-                <li><a href="#">用户登录</a></li>
+                <li><a href="sign_up">新用户注册</a></li>
+                <li><a href="login">用户登录</a></li>
 
-                <li class="buycartbox"><a href="javascript:void(0)"><i class="icon ico_cart"></i></a></li>
+                <li class="buycartbox">
+                    <span class="qipao" id="cartNum">0</span>
+                    <a href="/my_cart"><i class="icon ico_cart" id="cartend"></i></a>
+
+                    <div class="cart-widget">
+                        <h2>暂时点这个按钮直接跳入购物车页吧！这个下下拉以后优化</h2>
+                    </div>
+                </li>
 
                 <li class="phonemune" id="showPhoneMune"><i class="icon ico_menu"></i></li>
             </ul>
@@ -148,8 +155,7 @@ $def with (card, sellitems)
                              <section>
                                 <img src="$card.pic.path" alt="">
                             </section>
-                            <h2>单卖</h2>
-                            <a href="#">家乐福购物卡超值优惠.</a>
+                            <a href="#"><h2>有卡要卖</h2></a>
                          </div>
                      </div>
 
@@ -188,11 +194,6 @@ egift卡可以网上唯一的救赎。他们发送到您的帐户在24小时内�
                             <p>
                                 礼品卡是由验证卖家在提高市场提供。我们保证所有礼品卡是有效的在销售点或你的钱回来。
                             </p>
-
-                            <h2 class="pdt15">也接受</h2>
-                            <p>
-                               T.J. Maxx的礼品卡可以兑换下面的商店：
-                            </p>
                          </div>
                      </div>
 
@@ -211,7 +212,7 @@ egift卡可以网上唯一的救赎。他们发送到您的帐户在24小时内�
                             设置提醒
                         </a>
                         <div class="left">
-                            <h2 class="floatnone">家乐福购物卡</h2>
+                            <h2 class="floatnone">$card.description</h2>
                             <div class="starts">
                                 <a href="javascript:void(0)">★</a>
                                 <a href="javascript:void(0)">★</a>
@@ -234,75 +235,89 @@ egift卡可以网上唯一的救赎。他们发送到您的帐户在24小时内�
                             <div class="th type">
                                 <div class="in">卡类型</div>
                             </div>
-                            <div class="th value">
-                                <div class="in">余额</div>
+                            <div class="th value" data-sort="value">
+                                <div class="in"><span class="lf">余额</span><span class="sanjiao"></span></div>
                             </div>
-                           <div class="th off">
-                                <div class="in">折扣</div>
+                           <div class="th off" data-sort="off">
+                                <div class="in"><span class="lf">折扣</span><span class="sanjiao"></span></div>
                             </div>
-                           <div class="th price">
-                                <div class="in">本站价</div>
+                           <div class="th price" data-sort="price">
+                                 <div class="in"><span class="lf">优惠价</span><span class="sanjiao"></span></div>
                             </div>
                            <div class="th btn"> 
                                 <div class="in">&nbsp;</div>
-                           </div>
+                            </div>
                        </section>
-                    $for item in sellitems:
-                        <section class="tr">
-                            <div class="td type">
-                                 <div class="in">
-                                    <img src="$card.pic.path" alt="">
-                                    <a href="javascript:void(0)" class="falg">$card.cardtype.name</a>
-                                </div>
-                            </div>
-                            <div class="td value"><div class="in">￥$card.originprice</div></div>
-                            $ discount = item.price * 100.0 / item.balance
-                            $ discount = ("%.1f" % discount)
-                            <div class="td off"><div class="in">$discount%</div></div>
-                            <div class="td price">
-                                 <div class="in">
-                                     ￥$item.price
-                                     <br />
-                                     <a href="javascript:void(0)" class="info">
-                                         +详情
-                                     </a>
-                                 </div>
-                            </div>
-                            <div class="td btn">
-                                 <div class="in buy">
-                                     <a href="javascript:void(0)">购买</a>
-                                    
-                                </div>
-                            </div>
-                            <div class="detail">
-                                <h2>标题1</h2>
-                                <ul>
-                                    <li>内容内容</li>
-                                    <li>内容内容</li>
-                                    <li>内容内容</li>
-                                </ul>
-                                <h2>标题2</h2>
-                                <ul>
-                                    <li>内容内容</li>
-                                </ul>
-                            </div>
-                        </section>
+                       <div id="goodsList" class="goodstplbox"></div>
+
+
+                       <script id="tplGoodsList" type="text/template">
+                            {%_.each(dataCart,function(data){%}
+                                <section class="tr">
+                                   <div class="td type" title={%=data.typedesc%}>
+                                        <div class="in">
+                                           <img src={%=data.img%} alt={%=data.typedesc%}>
+                                           <a href="javascript:void(0)" class="falg">{%=data.type%}</a>
+                                       </div>
+                                   </div>
+                                   <div class="td value"><div class="in">￥{%=data.balance%}</div></div>
+                                   <div class="td off"><div class="in">{%=data.discount%}折</div></div>
+                                   <div class="td price">
+                                        <div class="in">
+                                            ￥{%=data.price%}
+                                            <br />
+                                            <a href="javascript:void(0)" class="info">
+                                                +详情
+                                            </a>
+                                        </div>
+                                    </div>
+                                   <div class="td btn">
+                                        <div class="in buy">
+                                            <a href="javascript:void(0)" class="addcart">购买</a>  
+                                       </div>
+                                   </div>
+                                   <div class="detail">
+                                        {%_.each(data.detail,function(detaildata){%}
+                                            {% var arr=detaildata.detailContent %}
+                                           <h2>{%=detaildata.detailTitle%}</h2>
+                                           <ul>
+                                                {% for(var i=0;i<arr.length;i++){ %}
+                                               <li>{%=arr[i]%}</li>
+                                              
+                                               {% } %}
+                                           </ul>
+                                        {%})%}
+                                   </div>
+                               </section> 
+                            {%})%}
+                       </script>
+                       
+                      
+                      
+                       
+                     
                     </div>
-                </div>
                     
-                    <div class="pagelist">
+
+
+
+
+                 
+
+
+                   <!--  <div class="pagelist">
                         <a href="">上一页</a>
                         <a href="">1</a>
                         <a href="">2</a>
                         <span>4</span>
                         <a href="">3</a>
                         <a href="">下一页</a>
-                    </div>
+                    </div> -->
 
 
                     <div class="infotables">
 
-                        <h3 class="leisi">类似的商店</h3>
+                        <h3 class="leisi">类似的卡片</h3>
 
                          <div class="leisilist">
                              <div class="inlist">
@@ -472,11 +487,33 @@ egift卡可以网上唯一的救赎。他们发送到您的帐户在24小时内�
         </footer>
         <!--读取头部信息-->
     </div>
-    <script type="text/javascript" src="../static/js/lib/jquery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="../static/js/lib/jquery.SuperSlide.2.1.js"></script>
-    <script type="text/javascript" src="../static/js/lib/sen.js"></script>
-    <script type="text/javascript" src="../static/js/commed.js"></script>
-
+    <script type="text/javascript" src="/static/js/lib/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jquery.fly.min.js"></script>
+     <script type="text/javascript" src="/static/js/lib/underscore.js"></script>
+    <script type="text/javascript" src="/static/js/lib/jquery.SuperSlide.2.1.js"></script>
+    <script type="text/javascript" src="/static/js/lib/sen.js"></script>
+    <script type="text/javascript" src="/static/js/commed.js"></script>
+    <script type="text/javascript" type="text/template">
+        var dataCart= [];
+        $for item in sellitems:
+            var item = {};
+            item.img = "$card.pic.path";
+            item.type = "$card.cardtype.name";
+            item.typedesc = "$card.cardtype.description";
+            item.balance = $item.balance;
+            item.price = $item.price;
+            $ discount = (item.price * 10.0) / item.balance if item.balance != 0 else 0.0
+            $ discount = "%0.1f"%discount
+            item.discount = $discount;
+            item.detail = [];
+            detail1 = {};
+            detail1.detailTitle = "detail1";
+            detail1.detailContent = [];
+            detail1.detailContent.push("content1");
+            detail1.detailContent.push("content2");
+            item.detail.push(detail1);
+            dataCart.push(item);
+    </script>
 
 
     <script type="text/javascript">
@@ -491,7 +528,7 @@ egift卡可以网上唯一的救赎。他们发送到您的帐户在24小时内�
         });
 
 
-        jQuery(".tr>.type,.tr>.value,.tr>.value,.tr>.off,.tr>.price").bind("click",function(){
+        jQuery(".tr>.type,.tr>.balance,.tr>.balance,.tr>.discount,.tr>.price").live("click",function(){
             var parents=jQuery(this).parents(".tr");
             var showhide=parents.find(".detail");
             if(showhide.is(":hidden")){
@@ -501,6 +538,115 @@ egift卡可以网上唯一的救赎。他们发送到您的帐户在24小时内�
             }
 
         })
+
+
+
+        /*排序*/
+        var sorts=false;
+        jQuery("div[data-sort]").live("click",function(){
+            var sortinfo=jQuery(this).attr("data-sort");
+            
+            if(!jQuery(this).hasClass("sortstart")){
+                jQuery(this).addClass("sortstart").siblings().removeClass("sortstart");
+                sorts=true;
+            }
+            if(sorts==true){
+                if(!jQuery(this).hasClass("desc")){
+                    jQuery(this).addClass("desc");
+                     dataCart=_.sortBy(dataCart,sortinfo).reverse();
+                    jQuery("#goodsList").html(_.template(jQuery("#tplGoodsList").html(), dataCart));
+                   
+                }else{
+                    jQuery(this).removeClass("desc");
+                     dataCart=_.sortBy(dataCart,sortinfo);
+                    jQuery("#goodsList").html(_.template(jQuery("#tplGoodsList").html(), dataCart));
+                    
+                }
+            }
+        });
+
+        jQuery("#goodsList").html(_.template(jQuery("#tplGoodsList").html(), dataCart));
+
+
+
+        /*飞入购物车*/
+
+
+
+
+
+
+function fly(from,to,callback){
+    var offset = jQuery(from).offset();
+     var winSt=jQuery(window).scrollTop();
+     var winSl=jQuery(window).scrollLeft();
+    jQuery(to).click(function (event) {
+        var addcar = jQuery(this);
+        var img = addcar.parents("section").find('img');
+        var imgsrc = img.attr('src');
+        var currL=img.offset().left;
+        var currT=img.offset().top;
+        var currW=img.width();
+        var currH=img.height();
+         winSt=jQuery(window).scrollTop();
+         winSl=jQuery(window).scrollLeft();
+       
+        var flyer = jQuery('<img class="u-flyer" src="' + imgsrc + '">');
+    if(!jQuery(this).hasClass("off")){
+            addcar.addClass("off");
+            flyer.fly({
+                start: {
+                    left: currL-winSl,
+                    top: currT-winSt
+                },
+                end: {
+                    left: offset.left+10,
+                    top: offset.top+10,
+                    width: 0,
+                    height: 0,
+                    opacity:0
+                },
+                onEnd: function () {
+
+                    addcar.parents("section").css({
+                            opacity:0.5  
+                     });
+                    callback && callback();
+                }
+            });
+        }   
+
+    });
+}
+
+function addFn(){
+    var num = parseInt(jQuery("#cartNum").html());
+    num++;
+    jQuery("#cartNum").html(num);
+    jQuery("#cartNum").fadeIn();
+    setCookie('cartnum',num,10);
+}
+
+
+
+
+
+
+
+jQuery(function(){
+    window.location.href="#"
+    fly("#cartend",".addcart",addFn);
+})
+
+
+
+
+
+
+        
+        
+        
+
 
     </script>
 </body>
