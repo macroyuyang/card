@@ -609,6 +609,82 @@ header.navbar-fixed-top {
   padding: 0px 10px;
   font-weight: bold;
 }
+.is_login .login {
+  display: block;
+}
+.is_login .not_login {
+  display: none;
+}
+.login {
+  display: none;
+  position: relative;
+  *zoom: 1;
+  z-index: 1005;
+  width: auto;
+}
+.login:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.login img {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 15px;
+  margin-top: 15px;
+}
+.login a {
+  display: inline-block !important;
+  padding-left: 0px!important;
+  padding-right: 22px!important;
+  position: relative;
+  margin-left: 0px!important;
+}
+.login a .sanjiao {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  right: 10px;
+  top: 18px;
+  color: #788a91;
+  margin-top: 9px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid #788a91;
+}
+.login .ullit {
+  position: absolute;
+  left: 50%;
+  margin-left: -60px;
+  top: 50px;
+  width: 120px;
+  display: none;
+  background: #ff0000;
+  border: 1px solid #e0e2e3;
+  border-radius: 5px;
+  background: #ffffff;
+  line-height: 30px;
+}
+.login .ullit a {
+  display: block!important;
+  padding: 10px 20px!important;
+  text-align: center;
+  color: #36424b;
+  font-weight: 100!important;
+}
+.login .ullit a:first-child {
+  border-bottom: 1px solid #e0e2e3;
+}
+.login .ullit a:last-child {
+  border-top: 1px solid #e0e2e3;
+}
+.login .ullit a:hover {
+  background: #efefef;
+}
 /*页脚*/
 footer {
   background: #fafafa;
@@ -726,6 +802,12 @@ footer .copyright {
 .remove:hover {
   border-color: #c5c9cb;
   color: #607076;
+}
+.center {
+  text-align: center;
+}
+.tleft {
+  text-align: left;
 }
 @media (max-width: 1200px) {
   .container,

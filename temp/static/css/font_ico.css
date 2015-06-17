@@ -127,6 +127,9 @@ i.icon {
 .ico_email:before {
   content: "\e602";
 }
+.ico_lock:before {
+  content: "\e603";
+}
 .ico_search:before {
   content: "\e600";
 }

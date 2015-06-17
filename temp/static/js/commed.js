@@ -62,4 +62,18 @@ $("#cartend").click(function(){
     }else{
         $(".cart-widget").fadeOut();
     }
+});
+
+
+
+$("header .login").bind("click",function(){
+    var xl=$(this).find(".ullit");
+    if(xl.is(":hidden")){
+        xl.slideDown();
+        
+    }else{
+        xl.slideUp();
+    }
 })
+
+

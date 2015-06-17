@@ -42,6 +42,12 @@
             <li><a href="#">新用户注册</a></li>
             <li><a href="#">用户登录</a></li>
         </ul>
+
+
+       
+
+
+
         
     </div>
     <!--小屏幕手机右侧导航-->
@@ -64,10 +70,29 @@
             </ul>
 
 
-            <ul class="nav user-nav">
-                <li><a href="#">新用户注册</a></li>
-                <li><a href="#">用户登录</a></li>
+            <ul class="nav user-nav is_login">
+                <li class="not_login"><a href="#">新用户注册</a></li>
+                <li class="not_login"><a href="#">用户登录</a></li>
 
+                <li class="login">
+
+                    <img src="../static/img/temp/k1.jpg" alt="">
+                    <a href="javascript:void(0)">
+                        张晓东
+                         <span class="sanjiao"></span>
+
+                    </a>
+                    <div class="ullit">
+                        <a href="">我的订单</a>
+                        <a href="">完善信息</a>
+                        <a href="">完善信息</a>
+                        <a href="">完善信息</a>
+                        <a href="">完善信息</a>
+                        <a href="">退出登录</a>
+                        
+                    </div>
+
+                </li>
                 <li class="buycartbox">
                     <span class="qipao" id="cartNum">0</span>
                     <a href="my_cart.html"><i class="icon ico_cart" id="cartend"></i></a>
@@ -199,7 +224,7 @@
                                     </div>
 
                                     <div>
-                                        <a href="javascript:void(0)" class="remove"><i class="icon ico_bin"></i>删除</a>
+                                        <a href="javascript:void(0)" class="remove del"><i class="icon ico_bin"></i>删除</a>
                                     </div>
                                     
                                     
@@ -241,7 +266,7 @@
                                     </div>
 
                                     <div>
-                                        <a href="javascript:void(0)" class="remove"><i class="icon ico_bin"></i>删除</a>
+                                        <a href="javascript:void(0)" class="remove del"><i class="icon ico_bin"></i>删除</a>
                                     </div>
                                     
                                     
@@ -283,7 +308,7 @@
                                     </div>
 
                                     <div>
-                                        <a href="javascript:void(0)" class="remove"><i class="icon ico_bin"></i>删除</a>
+                                        <a href="javascript:void(0)" class="remove del"><i class="icon ico_bin"></i>删除</a>
                                     </div>
                                     
                                     
@@ -505,6 +530,29 @@
 
 
         /*飞入购物车*/
+
+
+
+         $(".del").live("click",function(){
+          var root=jQuery(this).parents("section.tr");
+          jQuery.ajax({
+              type: 'POST',
+              url: ".test/text?nammdd=fds" ,
+              data: {"dataname":"datavalue"},
+              dataType: "json",
+              success: function(data){
+                  root.remove();
+              }
+          });
+
+
+
+
+          /*ajax调试成功这个可以去掉*/
+           root.remove();
+
+        })
+
 
 
 
