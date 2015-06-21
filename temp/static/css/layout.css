@@ -809,6 +809,43 @@ footer .copyright {
 .tleft {
   text-align: left;
 }
+.ordertable {
+  width: 100%;
+  line-height: 22px;
+}
+.ordertable td,
+.ordertable th {
+  border: 1px solid #e0e2e3;
+  padding: 5px;
+}
+.ordertable td a,
+.ordertable th a {
+  color: #49aace;
+}
+.ordertable td a:hover,
+.ordertable th a:hover {
+  color: #3090b4;
+}
+.ordertable th {
+  background: #fafafa;
+}
+.ordertable i.icon {
+  display: inline-block;
+  color: #788a91;
+  height: 23px;
+  width: 23px;
+  line-height: 23px;
+  border: 1px solid #e0e2e3;
+  cursor: pointer;
+}
+.ordertable .buycart {
+  width: 40px;
+  text-align: center;
+  border: 1px solid borderColor;
+}
+.borderbtnone {
+  border-bottom: none!important;
+}
 @media (max-width: 1200px) {
   .container,
   .navbar-static-top .container,

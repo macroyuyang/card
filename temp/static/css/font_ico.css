@@ -130,6 +130,12 @@ i.icon {
 .ico_lock:before {
   content: "\e603";
 }
+.ico_cog:before {
+  content: "\e604";
+}
+.ico_pencil:before {
+  content: "\e605";
+}
 .ico_search:before {
   content: "\e600";
 }

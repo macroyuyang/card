@@ -48,6 +48,12 @@
 		'ico_circle-down': '&#xea43;',
 		'ico_circle-left': '&#xea44;',
 		'ico_checkbox-checked': '&#xea52;',
+		'ico_tel': '&#xe601;',
+		'ico_email': '&#xe602;',
+		'ico_lock': '&#xe603;',
+		'ico_cog': '&#xe604;',
+		'ico_pencil': '&#xe605;',
+		'ico_search': '&#xe600;',
 		'0': 0
 		},
 		els = document.getElementsByTagName('*'),
