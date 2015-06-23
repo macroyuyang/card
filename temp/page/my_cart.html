@@ -17,8 +17,9 @@
     <![endif]-->
 </head>
 <body>
-    <!--读取头部信息-->
-        <!--小屏幕手机右侧导航-->
+
+        <!--读取头部信息-->
+            <!--小屏幕手机右侧导航-->
     <div class="navipone" id="PhoneMune">
 
        
@@ -70,7 +71,7 @@
             </ul>
 
 
-            <ul class="nav user-nav is_login">
+            <ul class="nav user-nav">
                 <li class="not_login"><a href="#">新用户注册</a></li>
                 <li class="not_login"><a href="#">用户登录</a></li>
 
@@ -108,7 +109,8 @@
         </nav>
     </header>
 
-    <!--读取头部信息-->
+        <!--读取头部信息-->
+
     <div class="rootwarp">
     		<div class="hide_phone" id="banner">
 		<div class="banner-wrapper">
@@ -576,7 +578,12 @@
 
         
         
-        
+        /*判断登陆状态JS*/
+
+  var isLogin=true;
+        if(isLogin==true){
+            $(".user-nav").addClass("is_login")
+        }
 
 
     </script>
