@@ -140,13 +140,13 @@
                                 我的列表
                             </a>
                         </li>
-                        <li class="on">
+                        <li >
                             <a href="">
                                 <i class="icon ico_cart"></i>
                                 我的订单
                             </a>
                         </li>
-                        <li>
+                        <li class="on">
                             <a href="">
                                 <i class="icon ico_gift"></i>
                                 我的奖励
@@ -169,7 +169,6 @@
             </div>
             <div class="right">
                 <div class="inright">
-
                    <!--  <div class="mytop mid borderbtnone">
                         <h2 class="title">我的订单列表</h2>
                         <table class="ordertable">
@@ -195,26 +194,23 @@
                         </table>
                        
                     </div> -->
-
-
-
-
-                    <div class="acticle">
-
-                        <i class="icon ico_cart big"></i>
-
-                        <h2>您的订单为空，请去购物充足订单</h2>
-                        <p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
-
-
-                        <div class="btnbox">
-                            <a href="#">去购物</a>
+                    <div class="tabview">
+                        <div class="alist">
+                            <a class="on">我的奖励</a>
+                            <a>推荐</a>
+                            <a>条款&条例</a>
                         </div>
-
-
-
-
-                        
+                        <div class="content">
+                            <div class="view show">
+                                1
+                            </div>
+                             <div class="view">
+                                2
+                            </div>
+                             <div class="view">
+                                3
+                            </div>
+                        </div>
                     </div>
 
 
@@ -309,7 +305,7 @@
 
 
     <script type="text/javascript">
-        $(".txtScroll-left").slide({
+        jQuery(".txtScroll-left").slide({
             titCell:".hd ul",
             mainCell:".bd ul",
             autoPage:true,
@@ -318,6 +314,28 @@
             scroll:1,
             vis:1
         });
+
+
+
+        $(".alist a").on("click",function(){
+            var num=jQuery(this).index();
+            var parer=jQuery(this).parents(".tabview");
+            jQuery(this).addClass("on").siblings("a").removeClass("on");
+        
+            parer.find(".view").eq(num).addClass("show");
+            parer.find(".view").eq(num).siblings(".view").removeClass("show");
+
+           
+        })
+
+
+
+
+
+
+
+
+
 
     </script>
 </body>
