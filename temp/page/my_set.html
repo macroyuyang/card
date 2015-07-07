@@ -8,7 +8,9 @@
     <title>国内最大的二手交易平台</title>
     <link rel="stylesheet" href="../static/css/layout.css" type="text/css">
     <link rel="stylesheet" href="../static/css/font_ico.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/receipts.css" type="text/css">
     <link rel="stylesheet" href="../static/css/my.css" type="text/css">
+
     <!--[if lt IE 8]><!-->
      <link rel="stylesheet" href="../static/css/lib/ie7.css">
     <!--<![endif]-->
@@ -146,7 +148,7 @@
                                 我的订单
                             </a>
                         </li>
-                        <li class="on">
+                        <li>
                             <a href="">
                                 <i class="icon ico_gift"></i>
                                 我的奖励
@@ -158,7 +160,7 @@
                                 简介
                             </a>
                         </li>
-                        <li>
+                        <li class="on">
                             <a href="my_set.html">
                                 <i class="icon ico_cog"></i>
                                 设置
@@ -169,6 +171,136 @@
             </div>
             <div class="right">
                 <div class="inright">
+
+
+
+                
+
+                <section class="no-bottom-border">
+                   <h2 class="floatnone">完善个人信息</h2>
+                </section>
+
+
+                <section class="formbox">
+
+                    <form action="" class="form-sty">
+                       
+
+                       
+
+
+                       
+
+                    
+
+                     
+
+                        <div class="title">基本信息</div>
+
+
+                        <label>
+                            <p>昵称<span>*</span></p>
+                            <div class="inputbox">
+                                <input type="text" class="textbox" placeholder="输入昵称" width="500">
+                               
+                            </div>
+                            <div class="alert"></div>
+                        </label>
+                        <label>
+                            <p>电话<span>*</span></p>
+                            <div class="inputbox">
+                                <input type="text" class="textbox" placeholder="请输入电话" width="500">
+                            </div>
+                            <div class="alert"></div>
+                        </label>
+                        
+
+
+                        <label>
+                            <p>常用地址<span>*</span></p>
+                            <div class="inputbox">
+                                <select name="" id="" style="width:120px">
+                                    <option>-选择省份-</option>
+                                    <option>北京</option>
+                                    <option>内蒙古</option>
+                               </select>
+                               <select name="" id="" style="width:120px">
+                                    <option>-选择城市-</option>
+                                    <option>哈尔滨</option>
+                                    <option>赤峰</option>
+                               </select>
+                                <select name="" id="" style="width:120px">
+                                    <option>-选择区县-</option>
+                                    <option>哈尔滨</option>
+                                    <option>赤峰</option>
+                               </select>
+                            </div>
+
+           
+                            <div class="alert"></div>
+                        </label>
+
+
+                        <label>
+                            <p>详细地址<span>*</span></p>
+                            <div class="inputbox">
+                                <input type="text" class="textbox" placeholder="详细地址" width="500">
+                            </div>
+                            <div class="alert"></div>
+                        </label>
+
+
+                         <label>
+                            <p>上传头像<span>*</span></p>
+                            <div class="inputbox">
+                                <!-- <input type="text" class="textbox" placeholder="请输入卡号" width="500"> -->
+
+                                
+                                <input type="file" >
+
+                            </div>
+                            <div class="alert"></div>
+                        </label>
+ 
+
+                     
+
+
+                     
+
+                        
+
+
+                      
+
+
+
+
+
+
+                    </form>
+                </section>
+
+
+
+                        
+
+
+
+
+                     
+
+
+                 
+
+
+
+
+
+
+                   
+          
+
                    <!--  <div class="mytop mid borderbtnone">
                         <h2 class="title">我的订单列表</h2>
                         <table class="ordertable">
@@ -194,24 +326,11 @@
                         </table>
                        
                     </div> -->
-                    <div class="tabview">
-                        <div class="alist">
-                            <a class="on">我的奖励</a>
-                            <a>推荐</a>
-                            <a>条款&条例</a>
-                        </div>
-                        <div class="content">
-                            <div class="view show">
-                                1
-                            </div>
-                             <div class="view">
-                                2
-                            </div>
-                             <div class="view">
-                                3
-                            </div>
-                        </div>
-                    </div>
+
+
+
+
+                  
 
 
                 </div>
@@ -305,7 +424,7 @@
 
 
     <script type="text/javascript">
-        jQuery(".txtScroll-left").slide({
+        $(".txtScroll-left").slide({
             titCell:".hd ul",
             mainCell:".bd ul",
             autoPage:true,
@@ -315,35 +434,12 @@
             vis:1
         });
 
-
-
-        $(".alist a").on("click",function(){
-            var num=jQuery(this).index();
-            var parer=jQuery(this).parents(".tabview");
-            jQuery(this).addClass("on").siblings("a").removeClass("on");
-        
-            parer.find(".view").eq(num).addClass("show");
-            parer.find(".view").eq(num).siblings(".view").removeClass("show");
-
-           
-        })
-
-
         /*判断登陆状态JS*/
 
   var isLogin=true;
         if(isLogin==true){
             $(".user-nav").addClass("is_login")
         }
-
-
-
-
-
-
-
-
-
 
     </script>
 </body>
